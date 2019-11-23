@@ -5,7 +5,6 @@ const ballroomSchema= mongoose.Schema({
   title: String,
   author: String,
   url: String,
-  important: Boolean,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

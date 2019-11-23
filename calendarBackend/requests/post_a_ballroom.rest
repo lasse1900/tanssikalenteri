@@ -5,6 +5,5 @@ Content-Type: application/json
   "title": " test",
   "author": "Lasse",
   "url": "/home/net2",
-  "important": true,
   "userId": "5ce67f8f16a32a300ce68d15"
 }

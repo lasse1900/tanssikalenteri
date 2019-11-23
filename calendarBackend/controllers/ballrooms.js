@@ -48,7 +48,6 @@ ballroomsRouter.post('/', async (request, response, next) => {
         title: body.title,
         url: body.url,
         user: user._id,
-        important: typeof body.important === 'undefined' ? 0 : body.important
       })
       const result = await ballroom.save()
       user.ballrooms = user.ballrooms.concat(result._id)
@@ -61,17 +60,14 @@ ballroomsRouter.post('/', async (request, response, next) => {
 })
 
 ballroomsRouter.put('/:id', async (request, response) => {
-  const body = await request.body
+  const { author, title, url } = request.body
 
-  if (!body.important) {
-    response.status(400).send({ error: 'missing important clausule' })
-  } else {
-    const ballroom = {
-      important: body.important
-    }
-    const result = await Ballroom.findByIdAndUpdate(request.params.id, ballroom, { new: true })
-    response.status(200).json(result)
+  const ballroom = {
+    author, title, url
   }
+
+  const result = await Ballroom.findByIdAndUpdate(request.params.id, ballroom, { new: true })
+  response.status(200).json(result)
 })
 
 module.exports = ballroomsRouter
