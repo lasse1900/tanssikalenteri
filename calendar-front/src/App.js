@@ -118,10 +118,10 @@ const App = (props) => {
             <Link className="link" to="/tanssipaikat">Tanssipaikat</Link>
             <Link className="link" to="/tanssikoulut">Tanssikoulut</Link>
             <Link className="link" to="/kalenteri">Kalenteri</Link>
-            <Link className="link" to="/videolinkit">Videolinkit</Link>
+            <Link className="link2" to="/videolinkit">Videolinkit</Link>
+            {`Logged in as ${user.name}`} <button onClick={() => handleLogout()}>logout</button>
           </ul>
           <hr />
-
           <Route exact path="/" component={Tanssikalenteri} />
           <Route exact path="/tanssipaikat" component={Tanssipaikat} />
           <Route exact path="/tanssikoulut" component={Tanssikoulut} />
@@ -129,8 +129,6 @@ const App = (props) => {
           <Route path="/videolinkit" component={Videolinkit} />
         </div>
       </Router>
-      <p>{`Logged in as ${user.name}`}</p>
-      <button onClick={() => handleLogout()}>logout</button>
     </div>
   )
 }
