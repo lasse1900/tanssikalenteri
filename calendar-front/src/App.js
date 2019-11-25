@@ -54,7 +54,7 @@ const App = (props) => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -75,7 +75,7 @@ const App = (props) => {
       const user = await loginService.login(
         credentials
       )
-      window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
+      window.localStorage.setItem('loggedBallroomappUser', JSON.stringify(user))
 
       setUser(user)
       username.reset('')
@@ -92,7 +92,7 @@ const App = (props) => {
   }
 
   const handleLogout = async (event) => {
-    window.localStorage.removeItem('loggedBlogappUser')
+    window.localStorage.removeItem('loggedBallroomappUser')
     // notify(`${user.username} logged out`, false)
     setUser(null)
   }
