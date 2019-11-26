@@ -30,12 +30,12 @@ describe('when there is initially one user at db', () => {
       .expect(201)
       // .expect('Content-Type', /application\/json/)
 
-      const blogsAtEnd = await helper.blogsInDb()
-      const response = await api.get('/api/blogs')
-      const contents = blogsAtEnd.map(n => n.title)
+      const ballroomsAtEnd = await helper.blogsInDb()
+      const response = await api.get('/api/ballrooms')
+      const contents = ballroomsAtEnd.map(n => n.title)
       console.log('---------- > contents', contents)
   
-      expect(blogsAtEnd.length).toBe(helper.initialBlogs.length + 1)
+      expect(ballroomsAtEnd.length).toBe(helper.initialBallrooms.length + 1)
       expect(contents).toContain('Tanhuhovi')
   })
   

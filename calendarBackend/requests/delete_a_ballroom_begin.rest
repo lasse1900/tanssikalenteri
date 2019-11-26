@@ -1,0 +1,2 @@
+DELETE http://localhost:3003/api/ballrooms/5ddd3f7122e3a387bf36de7a
+Content-Type: application/json

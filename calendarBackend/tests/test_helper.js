@@ -14,15 +14,15 @@ const initialBallrooms = [
   },
 ]
 
-beforeEach(async () => {
-  await Ballroom.remove({})
+// beforeEach(async () => {
+//   await Ballroom.remove({})
 
-  let ballroomObject = new Ballroom(initialBallrooms[0])
-  await ballroomObject.save()
+//   let ballroomObject = new Ballroom(initialBallrooms[0])
+//   await ballroomObject.save()
 
-  ballroomObject = new Ballroom(initialBallrooms[1])
-  await ballroomObject.save()
-})
+//   ballroomObject = new Ballroom(initialBallrooms[1])
+//   await ballroomObject.save()
+// })
 
 const nonExistingId = async () => {
   const ballroom = new Ballroom()
@@ -32,8 +32,15 @@ const nonExistingId = async () => {
   return ballroom._id.toString()
 }
 
+// const ballroomsInDb = async () => {
+//   const ballrooms = await Ballroom.find({})
+//   console.log('----->>>  ballromms', ballrooms.length)
+//   return ballrooms.map(ballroom => ballroom.toJSON())
+// }
+
 const ballroomsInDb = async () => {
   const ballrooms = await Ballroom.find({})
+  console.log('------------------ ****** ------------', ballrooms.length)
   return ballrooms.map(ballroom => ballroom.toJSON())
 }
 
