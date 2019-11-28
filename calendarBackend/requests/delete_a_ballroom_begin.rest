@@ -1,2 +1,2 @@
-DELETE http://localhost:3003/api/ballrooms/5ddd3f7122e3a387bf36de7a
+DELETE http://localhost:3003/api/ballrooms/5ddf9cb789af59255a8108dc
 Content-Type: application/json

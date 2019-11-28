@@ -1,9 +1,9 @@
 POST http://localhost:3003/api/ballrooms/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW8iLCJpZCI6IjVkZDkwOTQ4NjAzYWUwMTc5M2M4NTBmNiIsImlhdCI6MTU3NDUwNTA4MX0.0npNVzXRWc5eQ8KzbGzvQL4DZV7epqNPbCH6jUO2PfU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW8iLCJpZCI6IjVkZGZhMTM1OTQ0M2EwMjcwZWE1MmVkOCIsImlhdCI6MTU3NDkzNzM1NX0.PPm9aItnNxrcaLPFdBA_j1oa9xgL_A-JmYtjwYGndS0
 
 {
-	"title": "Pavi",
+	"title": "Tanhuhovi",
 	"author": "simo",
-	"url": "www://pavi.fi"
+	"url": "www://tanhuhovi.fi"
 }

@@ -21,6 +21,8 @@
     "mongoose-unique-validator": "^2.0.3"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
     "cross-env": "^5.2.0",
     "eslint": "^5.12.1",
     "jest": "^23.6.0",

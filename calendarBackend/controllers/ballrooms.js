@@ -10,6 +10,19 @@ ballroomsRouter.get('/', async (request, response) => {
   response.json(ballrooms.map(ballroom => ballroom.toJSON()))
 })
 
+ballroomsRouter.get('/:id', async (request, response, next) => {
+  try {
+    const ballroom = await Ballroom.findById(request.params.id)
+    if (ballroom) {
+      response.json(ballroom.toJSON())
+    } else {
+      response.status(404).end()
+    }
+  } catch (exception) {
+    next(exception)
+  }
+})
+
 ballroomsRouter.delete('/:id', async (request, response, next) => {
   try {
     const decodedToken = jwt.verify(request.token, process.env.SECRET)
@@ -69,5 +82,32 @@ ballroomsRouter.put('/:id', async (request, response) => {
   const result = await Ballroom.findByIdAndUpdate(request.params.id, ballroom, { new: true })
   response.status(200).json(result)
 })
+
+// FOR TESTING WITHOUT TOKEN
+// ballroomsRouter.delete('/:id', async (request, response, next) => {
+//   try {
+//     await Ballroom.findByIdAndRemove(request.params.id)
+//     response.status(204).end()
+//   } catch (exception) {
+//     next(exception)
+//   }
+// })
+
+// FOR TESTING WITHOUT TOKEN
+// ballroomsRouter.post('/', async (request, response, next) => {
+//   const body = request.body
+
+//   const ballroom = new Ballroom({
+//     author: body.author,
+//     title: body.title,
+//     url: body.url,
+//   })
+//   try {
+//     const savedBallroom = await ballroom.save()
+//     response.json(savedBallroom.toJSON())
+//   } catch (exception) {
+//     next(exception)
+//   }
+// })
 
 module.exports = ballroomsRouter
