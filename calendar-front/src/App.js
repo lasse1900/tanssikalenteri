@@ -1,10 +1,97 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'  // Redirect
 import loginService from './services/login'
-import LoginForm from './components/LoginForm'
 import { useField } from './hooks'
 import './App.css'
 
+
+const LoginPage = ({ handleSubmit, username, password }) => {
+  const [login, setLogin] = useState(false)
+  const [register, setRegister] = useState(false)
+  const [user, setUser] = useState(null)
+
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+    }
+  }, [])
+
+  const loginButton = () => {
+    console.log('login button ------------')
+    setLogin(true)
+    console.log('login:', login)
+  }
+
+  const registrationButton = () => {
+    console.log('register button ------------')
+    setRegister(true)
+    console.log('registration:', register)
+  }
+
+
+  if (user === null && login === false && register === false) {
+    return (
+      <div>
+        <br /><br />
+        <button onClick={() => loginButton()}>login</button>
+        <button onClick={() => registrationButton()}>register</button>
+      </div>
+    )
+  }
+
+  console.log('login', login)
+  console.log('register', register)
+
+  if (user === null && login === true) {
+    return (
+      <div>
+        <button onClick={() => loginButton()}>login</button>
+        <button>register</button>
+        <h2>Login</h2>
+        <form onSubmit={handleSubmit}>
+
+          <div>
+            username
+            <input {...username} />
+          </div>
+
+          <div>
+            password
+            <input {...password} />
+          </div>
+
+          <button type="submit">login</button>
+        </form>
+      </div>
+    )
+  }
+  if (user === null && register === true)
+    return (
+      <div>
+        <button onClick={() => registrationButton()}>register</button>
+        <button>register</button>
+        <h2>Registration</h2>
+        Give you credentials<br /><br />
+        <form onSubmit={handleSubmit}>
+
+          <div>
+            username
+          <input {...username} />
+          </div>
+
+          <div>
+            password
+          <input {...password} />
+          </div>
+
+          <button type="submit">register</button>
+        </form>
+      </div>
+    )
+}
 
 const Tanssikalenteri = () => {
   return (
@@ -42,13 +129,13 @@ const Videolinkit = ({ match }) => {
   return (
     <div>
       <h2>Tanssivideot</h2>
-      <a target='_blank' rel="noopener noreferrer" href= "https://www.youtube.com/watch?v=2iR_XlfBPpI">"arg. tango"</a>
+      <a target='_blank' rel="noopener noreferrer" href="https://www.youtube.com/watch?v=2iR_XlfBPpI">"arg. tango"</a>
     </div>
   )
 }
 
 
-const App = (props) => {
+const App = () => {
   const username = useField('username')
   const password = useField('password')
   const [user, setUser] = useState(null)
@@ -100,11 +187,14 @@ const App = (props) => {
   if (user === null) {
     return (
       <div>
-        <LoginForm className='loginform'
-          username={omitReset(username)}
-          password={omitReset(password)}
-          handleSubmit={handleLogin}
-        />
+        <div>
+          <LoginPage className='loginform'
+            username={omitReset(username)}
+            password={omitReset(password)}
+            handleSubmit={handleLogin}
+            toggleButton
+          />
+        </div>
       </div>
     )
   }
