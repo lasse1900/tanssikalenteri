@@ -1,0 +1,44 @@
+// import React from 'react';
+
+// export default class Login extends React.Component {
+//   render() {
+//     return (
+//       <h1>Login</h1>
+//     );
+//   }
+// }
+
+import React from 'react'
+import PropTypes from 'prop-types'
+
+const Login = ({ handleSubmit, username, password }) => {
+  
+
+  return (
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+
+        <div>
+          username
+          <input {...username} />
+        </div>
+
+        <div>
+          password
+          <input {...password} />
+        </div>
+
+        <button type="submit">login</button>
+      </form>
+    </div>
+  )
+}
+
+Login.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  username: PropTypes.object.isRequired,
+  password: PropTypes.object.isRequired
+}
+
+export default Login
