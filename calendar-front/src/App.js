@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'  // Redirect
-import loginService from './services/login'
-import { useField } from './hooks'
-import './App.css'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
+import './App.css'
 
 const Tanssikalenteri = () => {
   return (
@@ -48,8 +46,7 @@ const Videolinkit = ({ match }) => {
 }
 
 const App = (props) => {
-  const username = useField('username')
-  const password = useField('password')
+
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -60,36 +57,6 @@ const App = (props) => {
     }
   }, [])
 
-
-  const handleLogin = async (event) => {
-    event.preventDefault()
-
-    const credentials = {
-      username: username.value,
-      password: password.value
-    }
-
-    try {
-      // console.log('credentials', credentials)
-      const user = await loginService.login(
-        credentials
-      )
-      window.localStorage.setItem('loggedBallroomappUser', JSON.stringify(user))
-
-      setUser(user)
-      username.reset('')
-      password.reset('')
-    } catch (exception) {
-      console.log('käyttäjätunnus tai salasana virheellinen')
-    }
-  }
-
-  const omitReset = (hook) => {
-    let { reset, ...hookWithoutReset } = hook
-    // console.log('hookWitoutReset', JSON.stringify(hookWithoutReset))
-    return hookWithoutReset
-  }
-
   const handleLogout = async (event) => {
     window.localStorage.removeItem('loggedBallroomappUser')
     // notify(`${user.username} logged out`, false)
@@ -97,15 +64,11 @@ const App = (props) => {
   }
 
   if (user === null) {
-    
     return (<div>
       <button onClick={event => window.location.href = '/login'}>Login</button>
       <button onClick={event => window.location.href = '/register'}>Register</button>
       <Router>
-        <Route exact path='/login' render={() => <LoginForm className='loginform'
-          username={omitReset(username)}
-          password={omitReset(password)}
-          handleSubmit={handleLogin} />} />
+        <Route exact path='/login' render={() => <LoginForm className='loginform' />} />
         <Route exact path='/register' render={() => <RegisterForm />} />
       </Router>
     </div>)
