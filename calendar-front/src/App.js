@@ -47,8 +47,7 @@ const Videolinkit = ({ match }) => {
   )
 }
 
-
-const App = () => {
+const App = (props) => {
   const username = useField('username')
   const password = useField('password')
   const [user, setUser] = useState(null)
