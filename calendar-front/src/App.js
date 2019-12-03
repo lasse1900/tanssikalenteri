@@ -3,95 +3,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'  // Redi
 import loginService from './services/login'
 import { useField } from './hooks'
 import './App.css'
-
-
-const LoginPage = ({ handleSubmit, username, password }) => {
-  const [login, setLogin] = useState(false)
-  const [register, setRegister] = useState(false)
-  const [user, setUser] = useState(null)
-
-
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-    }
-  }, [])
-
-  const loginButton = () => {
-    console.log('login button ------------')
-    setLogin(true)
-    console.log('login:', login)
-  }
-
-  const registrationButton = () => {
-    console.log('register button ------------')
-    setRegister(true)
-    console.log('registration:', register)
-  }
-
-
-  if (user === null && login === false && register === false) {
-    return (
-      <div>
-        <br /><br />
-        <button onClick={() => loginButton()}>login</button>
-        <button onClick={() => registrationButton()}>register</button>
-      </div>
-    )
-  }
-
-  console.log('login', login)
-  console.log('register', register)
-
-  if (user === null && login === true) {
-    return (
-      <div>
-        <button onClick={() => loginButton()}>login</button>
-        <button>register</button>
-        <h2>Login</h2>
-        <form onSubmit={handleSubmit}>
-
-          <div>
-            username
-            <input {...username} />
-          </div>
-
-          <div>
-            password
-            <input {...password} />
-          </div>
-
-          <button type="submit">login</button>
-        </form>
-      </div>
-    )
-  }
-  if (user === null && register === true)
-    return (
-      <div>
-        <button onClick={() => registrationButton()}>register</button>
-        <button>register</button>
-        <h2>Registration</h2>
-        Give you credentials<br /><br />
-        <form onSubmit={handleSubmit}>
-
-          <div>
-            username
-          <input {...username} />
-          </div>
-
-          <div>
-            password
-          <input {...password} />
-          </div>
-
-          <button type="submit">register</button>
-        </form>
-      </div>
-    )
-}
+import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
 
 const Tanssikalenteri = () => {
   return (
@@ -134,8 +47,6 @@ const Videolinkit = ({ match }) => {
   )
 }
 
-
-// ****************** App **************************
 
 const App = () => {
   const username = useField('username')
@@ -187,18 +98,18 @@ const App = () => {
   }
 
   if (user === null) {
-    return (
-      <div>
-        <div>
-          <LoginPage className='loginform'
-            username={omitReset(username)}
-            password={omitReset(password)}
-            handleSubmit={handleLogin}
-            toggleButton
-          />
-        </div>
-      </div>
-    )
+    
+    return (<div>
+      <button onClick={event => window.location.href = '/login'}>Login</button>
+      <button onClick={event => window.location.href = '/register'}>Register</button>
+      <Router>
+        <Route exact path='/login' render={() => <LoginForm className='loginform'
+          username={omitReset(username)}
+          password={omitReset(password)}
+          handleSubmit={handleLogin} />} />
+        <Route exact path='/register' render={() => <RegisterForm />} />
+      </Router>
+    </div>)
   }
 
   return (

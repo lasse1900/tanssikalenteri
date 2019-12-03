@@ -1,22 +1,11 @@
-// import React from 'react';
-
-// export default class Login extends React.Component {
-//   render() {
-//     return (
-//       <h1>Login</h1>
-//     );
-//   }
-// }
-
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Login = ({ handleSubmit, username, password }) => {
-  
+const RegisterForm = ({ handleSubmit, username, password }) => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Register</h2>
       <form onSubmit={handleSubmit}>
 
         <div>
@@ -35,10 +24,10 @@ const Login = ({ handleSubmit, username, password }) => {
   )
 }
 
-Login.propTypes = {
+RegisterForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   username: PropTypes.object.isRequired,
   password: PropTypes.object.isRequired
 }
 
-export default Login
+export default RegisterForm
