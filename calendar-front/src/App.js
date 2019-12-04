@@ -1,45 +1,45 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'  // Redirect
+import { BrowserRouter as Router, Redirect, Route, Link } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import './App.css'
 
-const Tanssikalenteri = () => {
+const DanceCalendar = () => {
   return (
     <div>
-      <h2>Tanssikalenteri</h2>
+      <h2>Dance Calendar</h2>
     </div>
   );
 }
 
-const Tanssipaikat = () => {
+const Ballrooms = () => {
   return (
     <div>
-      <h2>Tanssipaikat</h2>
+      <h2>Ballrooms</h2>
     </div>
   );
 }
 
-const Tanssikoulut = () => {
+const DanseSchools = () => {
   return (
     <div>
-      <h2>Tanssikoulut</h2>
+      <h2>Danse Schools</h2>
     </div>
   );
 }
 
-const Kalenteri = () => {
+const Calendar = () => {
   return (
     <div>
-      <h2>Kalenteri</h2>
+      <h2>Calendar</h2>
     </div>
   );
 }
 
-const Videolinkit = ({ match }) => {
+const Videolinks = ({ match }) => {
   return (
     <div>
-      <h2>Tanssivideot</h2>
+      <h2>Danse videos</h2>
       <a target='_blank' rel="noopener noreferrer" href="https://www.youtube.com/watch?v=2iR_XlfBPpI">"arg. tango"</a>
     </div>
   )
@@ -65,11 +65,12 @@ const App = (props) => {
 
   if (user === null) {
     return (<div>
-      <button onClick={event => window.location.href = '/login'}>Login</button>
-      <button onClick={event => window.location.href = '/register'}>Register</button>
       <Router>
-        <Route exact path='/login' render={() => <LoginForm className='loginform' />} />
-        <Route exact path='/register' render={() => <RegisterForm />} />
+        <Link to="/login" className="link" id="login" data-cy="login">login</Link>
+        <Link to="/register" className="link" id="register" data-cy="register">register</Link>
+        <Route exact path="/login" render={({ match }) => <LoginForm path={match.path} />} />
+        <Route exact path="/register" render={({ match }) => <RegisterForm path={match.path} />} />
+        <Redirect to="/" />
       </Router>
     </div>)
   }
@@ -79,19 +80,19 @@ const App = (props) => {
       <Router>
         <div>
           <ul>
-            <Link className="link" to="/">Tanssikalenteri</Link>
-            <Link className="link" to="/tanssipaikat">Tanssipaikat</Link>
-            <Link className="link" to="/tanssikoulut">Tanssikoulut</Link>
-            <Link className="link" to="/kalenteri">Kalenteri</Link>
-            <Link className="link2" to="/videolinkit">Videolinkit</Link>
+            <Link className="link" to="/">DanceCalendar</Link>
+            <Link className="link" to="/ballrooms">Ballrooms</Link>
+            <Link className="link" to="/danseschools">DanseSchools</Link>
+            <Link className="link" to="/calendar">Calendar</Link>
+            <Link className="link2" to="/videolinks">Videolinks</Link>
             {`Logged in as ${user.name}`} <button onClick={() => handleLogout()}>logout</button>
           </ul>
           <hr />
-          <Route exact path="/" component={Tanssikalenteri} />
-          <Route exact path="/tanssipaikat" component={Tanssipaikat} />
-          <Route exact path="/tanssikoulut" component={Tanssikoulut} />
-          <Route exact path="/kalenteri" component={Kalenteri} />
-          <Route path="/videolinkit" component={Videolinkit} />
+          <Route exact path="/" component={DanceCalendar} />
+          <Route exact path="/ballrooms" component={Ballrooms} />
+          <Route exact path="/danseschools" component={DanseSchools} />
+          <Route exact path="/calendar" component={Calendar} />
+          <Route path="/videolinks" component={Videolinks} />
         </div>
       </Router>
     </div>

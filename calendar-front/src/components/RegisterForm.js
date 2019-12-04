@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { useField } from '../hooks'
 import loginService from '../services/login'
 
@@ -26,7 +26,7 @@ const RegisterForm = () => {
     }
 
     try {
-      // console.log('credentials', credentials)
+      console.log('credentials', credentials)
       const user = await loginService.login(
         credentials
       )
@@ -35,6 +35,7 @@ const RegisterForm = () => {
       setUser(user)
       username.reset('')
       password.reset('')
+      
     } catch (exception) {
       console.log('käyttäjätunnus tai salasana virheellinen')
     }
@@ -46,23 +47,28 @@ const RegisterForm = () => {
     return hookWithoutReset
   }
 
+  if (user === null) {
+    return (
+      <div>
+        <h2>Register</h2>
+        <form onSubmit={handleLogin} >
+          <div>
+            username
+        <input {...username} />
+          </div>
+
+          <div>
+            password
+        <input {...password} />
+          </div>
+          <button type="submit">register</button>
+        </form>
+      </div>
+    )
+  }
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-
-        <div>
-          username
-          <input {...username} />
-        </div>
-
-        <div>
-          password
-          <input {...password} />
-        </div>
-
-        <button type="submit">login</button>
-      </form>
+      {window.location.href = '/'}
     </div>
   )
 }

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import { useField } from '../hooks'
 import loginService from '../services/login'
 
-const LoginForm = () => {
+const LoginForm = (props) => {
 
   const username = useField('username')
   const password = useField('password')
@@ -26,7 +25,7 @@ const LoginForm = () => {
     }
 
     try {
-      // console.log('credentials', credentials)
+      console.log('credentials', credentials)
       const user = await loginService.login(
         credentials
       )
@@ -38,6 +37,7 @@ const LoginForm = () => {
     } catch (exception) {
       console.log('käyttäjätunnus tai salasana virheellinen')
     }
+
   }
 
   const omitReset = (hook) => {
@@ -46,29 +46,31 @@ const LoginForm = () => {
     return hookWithoutReset
   }
 
+  if (user === null) {
+    return (
+      <div>
+        <h2>Login</h2>
+        <form onSubmit={handleLogin} >
+          <div>
+            username
+        <input {...username} />
+          </div>
+
+          <div>
+            password
+        <input {...password} />
+          </div>
+          <button type="submit">login</button>
+        </form>
+      </div>
+    )
+  }
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-
-        <div>
-          username
-          <input {...username} />
-        </div>
-
-        <div>
-          password
-          <input {...password} />
-        </div>
-
-        <button type="submit">login</button>
-      </form>
+      {window.location.href = '/'}
     </div>
   )
 }
-
-//       <button type="submit">login</button>
-//         <button type="submit" onClick={event => window.location.href = '/login'}>Login</button>
 
 LoginForm.propTypes = {
   // handleSubmit: PropTypes.func.isRequired,
@@ -77,3 +79,6 @@ LoginForm.propTypes = {
 }
 
 export default LoginForm
+
+// <button type="submit" onClick={handleLogin}>register</button>
+// <button type="submit" onClick={event => window.location.href = '/'}>register</button>
