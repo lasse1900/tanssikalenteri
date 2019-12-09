@@ -3,8 +3,17 @@ import React from 'react'
 const DanceCalendar = () => {
   return (
     <div>
-      <h2>Dance Calendar</h2>
+      <h1><em>Dance Calendar</em></h1>
+      <p><em>Welcome to dance calendar app.</em></p>
+      <ul>
+        <li>Here you can search the nearest ballrooms</li><br />
+        <li>Look and save videolinks</li><br />
+        <li>Look and mark calendar</li>
+        <li></li>
+        <li></li>
+      </ul>
     </div>
   );
 }
+
 export default DanceCalendar;
