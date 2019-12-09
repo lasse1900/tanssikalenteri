@@ -5,12 +5,12 @@ import RegisterForm from './components/RegisterForm'
 import NavBar from './NavBar'
 import DanceCalendar from './pages/DanceCalendar'
 import DanseSchools from './pages/DanceSchools'
-import Ballrooms from './pages/Ballrooms'
+import Ballrooms from './pages/BallroomForm'
 import Calendar from './pages/Calendar'
 import Videolinks from './pages/VideoLinks'
 import NotFoundPage from './pages/NotFoundPage'
 import { Container } from 'semantic-ui-react'
-import './App.css'
+import './app.css'
 
 const App = () => {
 
@@ -39,7 +39,7 @@ const App = () => {
             <Link to="/register" className="link" id="register" data-cy="register">register</Link>
             <Route path="/login" render={({ match }) => <LoginForm path={match.path} />} />
             <Route path="/register" render={({ match }) => <RegisterForm path={match.path} />} />
-            <Redirect exact to="/" />
+           {/*<Redirect exact to="/" /> */}
           </Router>
         </div>
       </Container>)
@@ -61,7 +61,7 @@ const App = () => {
             </Switch>
           </div>
         </div>
-        <button className="login-button" onClick={() => handleLogout()}>logout</button>
+        <button className="button-login" onClick={() => handleLogout()}>logout</button>
       </Router>
     </Container>
   );
