@@ -8,10 +8,11 @@ import DanseSchools from './pages/DanceSchools'
 import Ballrooms from './pages/Ballrooms'
 import Calendar from './pages/Calendar'
 import Videolinks from './pages/VideoLinks'
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from './pages/NotFoundPage'
+import { Container } from 'semantic-ui-react'
 import './App.css'
 
-const App = (props) => {
+const App = () => {
 
   const [user, setUser] = useState(null)
 
@@ -30,34 +31,39 @@ const App = (props) => {
   }
 
   if (user === null) {
-    return (<div>
-      <Router>
-        <Link to="/login" className="link" id="login" data-cy="login">login</Link>
-        <Link to="/register" className="link" id="register" data-cy="register">register</Link>
-        <Route path="/login" render={({ match }) => <LoginForm path={match.path} />} />
-        <Route path="/register" render={({ match }) => <RegisterForm path={match.path} />} />
-        <Redirect exact to="/" />
-      </Router>
-    </div>)
+    return (
+      <Container>
+        <div>
+          <Router>
+            <Link to="/login" className="link" id="login" data-cy="login">login</Link>
+            <Link to="/register" className="link" id="register" data-cy="register">register</Link>
+            <Route path="/login" render={({ match }) => <LoginForm path={match.path} />} />
+            <Route path="/register" render={({ match }) => <RegisterForm path={match.path} />} />
+            <Redirect exact to="/" />
+          </Router>
+        </div>
+      </Container>)
   }
 
   return (
-    <Router>
-      <div className="App">
-        <NavBar />
-        <div id="page-body">
-          <Switch>
-            <Route exact path="/" component={DanceCalendar} />
-            <Route path="/ballrooms" component={Ballrooms} />
-            <Route path="/danseschools" component={DanseSchools} />
-            <Route path="/calendar" component={Calendar} />
-            <Route path="/videolinks" component={Videolinks} />
-            <Route component={NotFoundPage} />
-          </Switch>
+    <Container>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <div id="page-body">
+            <Switch>
+              <Route exact path="/" component={DanceCalendar} />
+              <Route path="/ballrooms" component={Ballrooms} />
+              <Route path="/danseschools" component={DanseSchools} />
+              <Route path="/calendar" component={Calendar} />
+              <Route path="/videolinks" component={Videolinks} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </div>
         </div>
-      </div>
-      {`Logged in as ${user.name}`} <button className="login-button" onClick={() => handleLogout()}>logout</button>
-    </Router>
+        <button className="login-button" onClick={() => handleLogout()}>logout</button>
+      </Router>
+    </Container>
   );
 }
 

@@ -42,7 +42,11 @@ body {
 } */
 
 button{
-  margin-top: 500;
+  position: absolute;
+  right: 10px;
+  background-color: rgb(241, 56, 10);
+  top: 0;
+  font-size: 16px;
 }
 
 h3, h4 {
