@@ -52,24 +52,24 @@ const App = ({
     setMessage({ message, error }, 4)
   }
 
-  const handleLogin = async (event) => {
-    event.preventDefault()
+  // const handleLogin = async (event) => {
+  //   event.preventDefault()
 
-    const credentials = {
-      username: username.value,
-      password: password.value
-    }
+  //   const credentials = {
+  //     username: username.value,
+  //     password: password.value
+  //   }
 
-    try {
-      const user = await loginUser(credentials)
-      username.reset()
-      password.reset()
+  //   try {
+  //     const user = await loginUser(credentials)
+  //     username.reset()
+  //     password.reset()
 
-      notify(`${user.username} successfully logged in`)
-    } catch (exception) {
-      notify('wrong username or password', 'error')
-    }
-  }
+  //     notify(`${user.username} successfully logged in`)
+  //   } catch (exception) {
+  //     notify('wrong username or password', 'error')
+  //   }
+  // }
 
   const omitReset = (hook) => {
     let { reset, ...hookWithoutReset } = hook

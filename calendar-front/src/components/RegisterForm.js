@@ -71,7 +71,7 @@ const RegisterForm = (props) => {
 
   if (user)
     return (
-      <div>Logattu</div>
+      <div></div>
     // <div>
     //   {window.location.href = '/ballroom'}
     // </div>

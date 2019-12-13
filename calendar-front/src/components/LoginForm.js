@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
 import { useField } from '../hooks'
 import loginService from '../services/login'
 import { connect } from 'react-redux'
 import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
+import NavBar from '../NavBar'
+import Calendar from '../pages/Calendar'
+import NotFoundPage from '../pages/NotFoundPage';
+import AboutPage from '../pages/AboutPage'
+import '../app.css'
 
 const LoginForm = (props) => {
 
@@ -69,14 +79,37 @@ const LoginForm = (props) => {
     )
   }
 
+  // if (user) {
+  //   return (
+  //     <Router>
+  //       <div className="App">
+  //         <NavBar />
+  //         <div id="page-body">
+  //           <Switch>
+  //             <Route path="/about" component={AboutPage} />
+  //             <Route component={NotFoundPage} />
+  //           </Switch>
+  //         </div>
+  //       </div>
+  //     </Router>
+  //   );
+  // }
+
+
   if (user)
     return (
+      // <Router>
+      //   <div>
+      //     <Switch>
+      //       <Route path="/calendar" component={Calendar} />
+      //     </Switch>
+      //   </div>
+      // </Router>
 
-      <div></div>
-    // <div>
-    //   {window.location.href = '/ballroom'}
-    // </div>
-  )
+      <div>
+        {window.location.href = '/caledar'}
+      </div>
+    )
 }
 
 LoginForm.propTypes = {
