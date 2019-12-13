@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
 import { useField } from './hooks'
 import { setMessage } from './reducers/notificationReducer'
 import { initializeBallrooms, removeBallroom } from './reducers/ballroomReducer'
@@ -15,6 +16,7 @@ import { initializeUsers } from './reducers/userReducer'
 import Ballroom from './components/Ballroom'
 import './index.css'
 import { Container } from 'semantic-ui-react'
+import NavBarLogin from './NavBarLogin'
 
 const App = ({
   user,
@@ -88,16 +90,15 @@ const App = ({
     return (
       <Container>
         <div>
-          <Notification />
-          <LoginForm className='loginform'
-            username={omitReset(username)}
-            password={omitReset(password)}
-
-            handleSubmit={handleLogin}
-          />
+          <Router>
+            <NavBarLogin />
+            <Switch>
+              <Route path="/login" render={({ match }) => <LoginForm path={match.path} />} />
+              <Route path="/register" render={({ match }) => <RegisterForm path={match.path} />} />
+            </Switch>
+          </Router>
         </div>
-      </Container>
-    )
+      </Container>)
   }
 
   return (

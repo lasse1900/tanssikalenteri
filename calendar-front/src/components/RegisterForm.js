@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-// import PropTypes from 'prop-types'
 import { useField } from '../hooks'
 import loginService from '../services/login'
+import { connect } from 'react-redux'
+import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
 
   const username = useField('username')
   const password = useField('password')
@@ -33,12 +34,13 @@ const RegisterForm = () => {
       window.localStorage.setItem('loggedBallroomappUser', JSON.stringify(user))
 
       setUser(user)
+      console.log('asetettu käyttäjä', user)
       username.reset('')
       password.reset('')
-      
     } catch (exception) {
       console.log('käyttäjätunnus tai salasana virheellinen')
     }
+
   }
 
   const omitReset = (hook) => {
@@ -50,7 +52,7 @@ const RegisterForm = () => {
   if (user === null) {
     return (
       <div>
-        <h2>Register</h2>
+        <h2>Login</h2>
         <form onSubmit={handleLogin} >
           <div>
             username
@@ -61,15 +63,18 @@ const RegisterForm = () => {
             password
         <input {...password} />
           </div>
-          <button type="submit">register</button>
+          <button type="submit">login</button>
         </form>
       </div>
     )
   }
-  return (
-    <div>
-      {window.location.href = '/'}
-    </div>
+
+  if (user)
+    return (
+      <div>Logattu</div>
+    // <div>
+    //   {window.location.href = '/ballroom'}
+    // </div>
   )
 }
 
@@ -79,4 +84,23 @@ RegisterForm.propTypes = {
   // password: PropTypes.object.isRequired
 }
 
-export default RegisterForm
+const mapStateToProps = state => {
+  return {
+    ballrooms: state.ballrooms,
+    user: state.user,
+    users: state.users
+  }
+}
+
+const mapDispatchToProps = {
+  loginUser,
+  setUser,
+  logoutUser
+}
+
+const ConnectedRegisterForm = connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
+
+export default ConnectedRegisterForm
+
+// <button type="submit" onClick={handleLogin}>register</button>
+// <button type="submit" onClick={event => window.location.href = '/'}>register</button>

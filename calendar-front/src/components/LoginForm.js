@@ -1,33 +1,107 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { useState, useEffect } from 'react'
+import { useField } from '../hooks'
+import loginService from '../services/login'
+import { connect } from 'react-redux'
+import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
 
-const LoginForm = ({ handleSubmit, username, password }) => {
+const LoginForm = (props) => {
 
-  return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+  const username = useField('username')
+  const password = useField('password')
+  const [user, setUser] = useState(null)
 
-        <div>
-          username
-          <input id="username" {...username} />
-        </div>
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      setUser(user)
+    }
+  }, [])
 
-        <div>
-          password
-          <input id="password" {...password} />
-        </div>
+  const handleLogin = async (event) => {
+    event.preventDefault()
 
-        <button type="submit" data-cy="login">login</button>
-      </form>
-    </div>
+    const credentials = {
+      username: username.value,
+      password: password.value
+    }
+
+    try {
+      console.log('credentials', credentials)
+      const user = await loginService.login(
+        credentials
+      )
+      window.localStorage.setItem('loggedBallroomappUser', JSON.stringify(user))
+
+      setUser(user)
+      console.log('asetettu käyttäjä', user)
+      username.reset('')
+      password.reset('')
+    } catch (exception) {
+      console.log('käyttäjätunnus tai salasana virheellinen')
+    }
+
+  }
+
+  const omitReset = (hook) => {
+    let { reset, ...hookWithoutReset } = hook
+    // console.log('hookWitoutReset', JSON.stringify(hookWithoutReset))
+    return hookWithoutReset
+  }
+
+  if (user === null) {
+    return (
+      <div>
+        <h2>Login</h2>
+        <form onSubmit={handleLogin} >
+          <div>
+            username
+        <input {...username} />
+          </div>
+
+          <div>
+            password
+        <input {...password} />
+          </div>
+          <button type="submit">login</button>
+        </form>
+      </div>
+    )
+  }
+
+  if (user)
+    return (
+
+      <div></div>
+    // <div>
+    //   {window.location.href = '/ballroom'}
+    // </div>
   )
 }
 
 LoginForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  username: PropTypes.object.isRequired,
-  password: PropTypes.object.isRequired
+  // handleSubmit: PropTypes.func.isRequired,
+  // username: PropTypes.object.isRequired,
+  // password: PropTypes.object.isRequired
 }
 
-export default LoginForm
+const mapStateToProps = state => {
+  return {
+    ballrooms: state.ballrooms,
+    user: state.user,
+    users: state.users
+  }
+}
+
+const mapDispatchToProps = {
+  loginUser,
+  setUser,
+  logoutUser
+}
+
+const ConnectedLoginForm = connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+
+export default ConnectedLoginForm
+
+// <button type="submit" onClick={handleLogin}>register</button>
+// <button type="submit" onClick={event => window.location.href = '/'}>register</button>
