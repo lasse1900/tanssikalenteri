@@ -2,25 +2,15 @@ const jwt = require('jsonwebtoken')
 const ballroomsRouter = require('express').Router()
 const Ballroom = require('../models/ballroom')
 const User = require('../models/user')
+const Comment = require('../models/comment')
 
 ballroomsRouter.get('/', async (request, response) => {
   const ballrooms = await Ballroom
-    .find({}).populate('user', { username: 1, name: 1 })
+    .find({})
+    .populate('user', { username: 1, name: 1 })
+    .populate('comments', { comment: 1 })
 
   response.json(ballrooms.map(ballroom => ballroom.toJSON()))
-})
-
-ballroomsRouter.get('/:id', async (request, response, next) => {
-  try {
-    const ballroom = await Ballroom.findById(request.params.id)
-    if (ballroom) {
-      response.json(ballroom.toJSON())
-    } else {
-      response.status(404).end()
-    }
-  } catch (exception) {
-    next(exception)
-  }
 })
 
 ballroomsRouter.delete('/:id', async (request, response, next) => {
@@ -53,34 +43,55 @@ ballroomsRouter.post('/', async (request, response, next) => {
 
     const user = await User.findById(decodedToken.id)
 
-    if (!body.title || !body.url) {
-      response.status(400).send({ error: 'title and url required' })
-    } else {
-      const ballroom = new Ballroom({
-        author: body.author,
-        title: body.title,
-        url: body.url,
-        user: user._id,
-      })
-      const result = await ballroom.save()
-      user.ballrooms = user.ballrooms.concat(result._id)
-      await user.save()
-      response.status(201).json(result)
-    }
-  } catch (error) {
-    next(error)
+    const ballroom = new Ballroom({
+      title: body.title,
+      author: body.author,
+      url: body.url,
+      likes: body.likes === undefined ? 0 : body.likes,
+      user: user.id
+    })
+
+    const savedBallroom = await ballroom.save()
+    const populatedBallroom = await Ballroom.findById(savedBallroom._id).populate('user', { username: 1, name: 1, id: 1 })
+    user.ballrooms = user.ballrooms.concat(savedBallroom._id)
+    await user.save()
+    response.status(201).json(populatedBallroom)
+  } catch (exception) {
+    next(exception)
   }
 })
 
 ballroomsRouter.put('/:id', async (request, response) => {
-  const { author, title, url } = request.body
+  const body = await request.body
 
-  const ballroom = {
-    author, title, url
+  if (!body.likes) {
+    response.status(400).send({ error: 'missing likes count' })
+  } else {
+    const ballroom = {
+      likes: body.likes
+    }
+    const result = await Ballroom.findByIdAndUpdate(request.params.id, ballroom, { new: true })
+    response.status(200).json(result)
+  }
+})
+
+ballroomsRouter.post('/:id/comments', async (request, response) => {
+  const ballroom = await Ballroom.findById(request.params.id)
+  console.log('body -->', ballroom)
+
+  if (!ballroom) {
+    return response.status(400).send({ error: 'no ballroom on that id' }).end()
   }
 
-  const result = await Ballroom.findByIdAndUpdate(request.params.id, ballroom, { new: true })
-  response.status(200).json(result)
+  const comment = new Comment(request.body)
+  comment.ballroom = ballroom._id
+  console.log('comment --->', comment)
+
+  const savedComment = await comment.save()
+  ballroom.comments = ballroom.comments.concat(savedComment._id)
+  await ballroom.save()
+
+  response.status(201).json(savedComment.toJSON())
 })
 
 // FOR TESTING WITHOUT TOKEN
