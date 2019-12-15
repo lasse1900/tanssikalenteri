@@ -12,6 +12,10 @@ import { setUser, logoutUser } from './reducers/userReducer'
 import BallroomList from './components/BallroomList'
 import Users from './components/Users'
 import User from './components/User'
+import DanseSchools from './components/DanceSchools'
+import VideoLinks from './components/VideoLinks'
+import Calendar from './components/Calendar'
+import AboutPage from './components/AboutPage'
 import { initializeUsers } from './reducers/userReducer'
 import Ballroom from './components/Ballroom'
 import { Container } from 'semantic-ui-react'
@@ -81,19 +85,22 @@ const App = ({
   }
 
   const loggedUser = user.username
-  console.log('username --->', loggedUser) 
+  console.log('username --->', loggedUser)
 
   return (
     <Container>
       <div>
         <Router>
           <div className='menuStyle'>
+            <Link to="/about" id="about" data-cy="about">about</Link>{' '}
             <Link to="/" id="ballrooms" data-cy="ballrooms" >ballrooms</Link>{' '}
-            <Link to="/users" id="users" data-cy="users">users</Link>
-            {' '}{user.username} logged in {' '}
+            <Link to="/schools" id="schools" data-cy="schools">schools</Link>{' '}
+            <Link to="/videos" id="videos" data-cy="videos">videos</Link>{' '}
+            <Link to="/calendar" id="calendar" data-cy="calendar">calendar</Link>{' '}
+            {' <'}{user.username}> logged in {' '}
             <button data-cy="logout" onClick={handleLogout}>logout</button>
           </div>
-          <h2>Ballroom app</h2>
+          <h2><em>Ballroom app</em></h2>
           <Notification />
 
           <Route exact path="/" render={() =>
@@ -103,6 +110,10 @@ const App = ({
           />
           <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
           <Route path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
+          <Route exact path="/schools" render={({ match }) => <DanseSchools path={match.path} />} />
+          <Route exact path="/videos" render={({ match }) => <VideoLinks path={match.path} />} />
+          <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />
+          <Route exact path="/about" render={({ match }) => <AboutPage path={match.path} />} />
           <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} {...loggedUser} />} />
           <Redirect to="/" />
         </Router>

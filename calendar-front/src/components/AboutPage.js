@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DanceCalendar = () => {
+const AboutPage = () => {
   return (
     <div>
       <h1><em>Dance Calendar</em></h1>
@@ -16,4 +16,4 @@ const DanceCalendar = () => {
   );
 }
 
-export default DanceCalendar;
+export default AboutPage;
