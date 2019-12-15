@@ -4,10 +4,10 @@ body {
 }
 
 button {
-  padding: 16px;
+  padding: 2px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
-  background-color: black;
+  background-color: grey;
   color: white;
   border-radius: 8px;
   cursor: pointer;

@@ -12,15 +12,15 @@ const login = async credentials => {
   return response.data
 }
 
-const get = async (uri) => {
+const get = async (url) => {
   const config = { headers: { Authorization: token }}
-  const result = await axios.get(uri, config)
+  const result = await axios.get(url, config)
   return result.data
 }
 
-const post = async (uri, data, headers) => {
+const post = async (url, data, headers) => {
   const config = { headers: { ...headers, Authorization: token }}
-  const result = await axios.post(uri, data, config)
+  const result = await axios.post(url, data, config)
   return result.data
 }
 

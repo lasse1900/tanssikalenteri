@@ -1,35 +1,32 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
-import { useField } from './hooks'
+// import { useField } from './hooks'
 import { setMessage } from './reducers/notificationReducer'
 import { initializeBallrooms, removeBallroom } from './reducers/ballroomReducer'
-import { loginUser, setUser, logoutUser } from './reducers/userReducer'
+import { setUser, logoutUser } from './reducers/userReducer'
 import BallroomList from './components/BallroomList'
 import Users from './components/Users'
 import User from './components/User'
 import { initializeUsers } from './reducers/userReducer'
 import Ballroom from './components/Ballroom'
-import './index.css'
 import { Container } from 'semantic-ui-react'
 import NavBarLogin from './NavBarLogin'
+import './index.css'
 
 const App = ({
-  user,
   users,
   initializeBallrooms,
   setMessage,
-  loginUser,
-  setUser,
   logoutUser,
   ballrooms
 }) => {
-  const username = useField('username')
-  const password = useField('password')
+
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     initializeBallrooms()
@@ -40,7 +37,7 @@ const App = ({
   }, [])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -52,35 +49,17 @@ const App = ({
     setMessage({ message, error }, 4)
   }
 
-  // const handleLogin = async (event) => {
-  //   event.preventDefault()
 
-  //   const credentials = {
-  //     username: username.value,
-  //     password: password.value
-  //   }
-
-  //   try {
-  //     const user = await loginUser(credentials)
-  //     username.reset()
-  //     password.reset()
-
-  //     notify(`${user.username} successfully logged in`)
-  //   } catch (exception) {
-  //     notify('wrong username or password', 'error')
-  //   }
+  // const omitReset = (hook) => {
+  //   let { reset, ...hookWithoutReset } = hook
+  //   return hookWithoutReset
   // }
-
-  const omitReset = (hook) => {
-    let { reset, ...hookWithoutReset } = hook
-    return hookWithoutReset
-  }
 
   const userId = id => users.find(user => user.id === id)
   const ballroomId = id => ballrooms.find(ballroom => ballroom.id === id)
 
   const handleLogout = () => {
-    window.localStorage.removeItem('loggedUser')
+    window.localStorage.removeItem('loggedBallroomappUser')
     notify(`${user.username} successfully logged out`, false)
     setUser(null)
     logoutUser()
@@ -101,6 +80,9 @@ const App = ({
       </Container>)
   }
 
+  const loggedUser = user.username
+  console.log('username --->', loggedUser) 
+
   return (
     <Container>
       <div>
@@ -113,7 +95,7 @@ const App = ({
           </div>
           <h2>Ballroom app</h2>
           <Notification />
-          <button data-cy="logout" onClick={handleLogout}>logout</button>
+
           <Route exact path="/" render={() =>
             <BallroomList
               notify={notify}
@@ -121,7 +103,7 @@ const App = ({
           />
           <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
           <Route path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
-          <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} />} />
+          <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} {...loggedUser} />} />
           <Redirect to="/" />
         </Router>
       </div>
@@ -142,7 +124,6 @@ const mapDispatchToProps = {
   initializeUsers,
   removeBallroom,
   setMessage,
-  loginUser,
   setUser,
   logoutUser
 }

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
 import loginService from '../services/login'
 import { connect } from 'react-redux'
 import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
+import '../app.css'
 
 const RegisterForm = (props) => {
 
@@ -40,41 +42,34 @@ const RegisterForm = (props) => {
     } catch (exception) {
       console.log('käyttäjätunnus tai salasana virheellinen')
     }
-
   }
 
-  const omitReset = (hook) => {
-    let { reset, ...hookWithoutReset } = hook
-    // console.log('hookWitoutReset', JSON.stringify(hookWithoutReset))
-    return hookWithoutReset
+  // const omitReset = (hook) => {
+  //   let { reset, ...hookWithoutReset } = hook
+  //   // console.log('hookWitoutReset', JSON.stringify(hookWithoutReset))
+  //   return hookWithoutReset
+  // }
+
+  if (user) {
+    props.history.push('/')
   }
 
-  if (user === null) {
-    return (
-      <div>
-        <h2>Login</h2>
-        <form onSubmit={handleLogin} >
-          <div>
-            username
+  return (
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleLogin} >
+        <div>
+          username
         <input {...username} />
-          </div>
+        </div>
 
-          <div>
-            password
+        <div>
+          password
         <input {...password} />
-          </div>
-          <button type="submit">login</button>
-        </form>
-      </div>
-    )
-  }
-
-  if (user)
-    return (
-      <div></div>
-    // <div>
-    //   {window.location.href = '/ballroom'}
-    // </div>
+        </div>
+        <button type="submit">login</button>
+      </form>
+    </div>
   )
 }
 
@@ -98,9 +93,6 @@ const mapDispatchToProps = {
   logoutUser
 }
 
-const ConnectedRegisterForm = connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
+const ConnectedLoginForm = connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
 
-export default ConnectedRegisterForm
-
-// <button type="submit" onClick={handleLogin}>register</button>
-// <button type="submit" onClick={event => window.location.href = '/'}>register</button>
+export default withRouter(ConnectedLoginForm)
