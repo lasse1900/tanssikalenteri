@@ -60,11 +60,11 @@ const LoginForm = (props, { setMessage }) => {
       <form onSubmit={handleLogin} >
         <div>
           username
-        <input {...username} placeholder='username' />
+        <input {...omitReset(username)} placeholder='username' />
         </div>
         <div>
           password
-        <input {...password} placeholder='password' />
+        <input {...omitReset(password)} placeholder='password' />
         </div>
         <button type="submit">login</button>
         {showInfo}

@@ -12,7 +12,7 @@ const RegisterForm = (props) => {
   const username = useField('username')
   const password = useField('password')
   const rPassword = useField('rPassword')
-  const [user, setUser] = useState(null)
+  const [showInfo, setShowInfo] = useState(false)
 
   // const [username, resetUsername] = useField('text')
   // const [password, resetPassword] = useField('password')
@@ -28,16 +28,15 @@ const RegisterForm = (props) => {
 
   const createUser = async (event) => {
     event.preventDefault()
-    console.log('createUser')
     if (password.value !== rPassword.value) {
-      props.notify('Please re-enter passwords!', 3)
+      setShowInfo(' please re-enter password!')
       password.reset()
       rPassword.reset()
       return
     }
     try {
-      console.log('username', username.value)
-      console.log('password', password.value)
+      console.log('username:', username.value)
+      console.log('password:', password.value)
       const user = {
         username: username.value,
         password: password.value,
@@ -56,11 +55,10 @@ const RegisterForm = (props) => {
     }
   }
 
-  // const omitReset = (hook) => {
-  //   let { reset, ...hookWithoutReset } = hook
-  //   // console.log('hookWitoutReset', JSON.stringify(hookWithoutReset))
-  //   return hookWithoutReset
-  // }
+  const omitReset = (hook) => {
+    let { reset, ...hookWithoutReset } = hook
+    return hookWithoutReset
+  }
 
   return (
     <div>
@@ -68,17 +66,18 @@ const RegisterForm = (props) => {
       <form onSubmit={createUser} >
         <div>
           username
-        <input {...username} placeholder='username'/>
+        <input {...omitReset(username) } placeholder='username' />
         </div>
         <div>
           password
-        <input {...password} placeholder='password'/>
+        <input {...omitReset(password) } placeholder='password' />
         </div>
         <div>
           retype password
-      <input {...rPassword} placeholder='retype password'/>
+        <input {...omitReset(rPassword) } placeholder='retype password' />
         </div>
         <button type="submit">register</button>
+        {showInfo}
       </form>
     </div>
   )
