@@ -89,20 +89,4 @@ RegisterForm.propTypes = {
   // password: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => {
-  return {
-    ballrooms: state.ballrooms,
-    user: state.user,
-    users: state.users
-  }
-}
-
-const mapDispatchToProps = {
-  loginUser,
-  setUser,
-  logoutUser
-}
-
-const ConnectedRegisterForm = connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
-
-export default withRouter(ConnectedRegisterForm)
+export default connect(null, { loginUser, logoutUser })(withRouter(RegisterForm))

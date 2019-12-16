@@ -5,7 +5,6 @@ import ballroomService from './services/ballrooms'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
-// import { useField } from './hooks'
 import { setMessage } from './reducers/notificationReducer'
 import { initializeBallrooms, removeBallroom } from './reducers/ballroomReducer'
 import { setUser, logoutUser } from './reducers/userReducer'
@@ -53,11 +52,6 @@ const App = ({
     setMessage({ message, error }, 4)
   }
 
-  // const omitReset = (hook) => {
-  //   let { reset, ...hookWithoutReset } = hook
-  //   return hookWithoutReset
-  // }
-
   const userId = id => users.find(user => user.id === id)
   const ballroomId = id => ballrooms.find(ballroom => ballroom.id === id)
 
@@ -88,11 +82,11 @@ const App = ({
       <div>
         <Router>
           <div className='menuStyle'>
-            <Link to="/about" id="about" data-cy="about">about</Link>{' '}
-            <Link to="/" id="ballrooms" data-cy="ballrooms" >ballrooms</Link>{' '}
+            <Link to="/" id="home" data-cy="home" >ballrooms</Link>{' '}
             <Link to="/schools" id="schools" data-cy="schools">schools</Link>{' '}
             <Link to="/videos" id="videos" data-cy="videos">videos</Link>{' '}
             <Link to="/calendar" id="calendar" data-cy="calendar">calendar</Link>{' '}
+            <Link to="/about" id="about" data-cy="about">about</Link>{' '}
             {' <'}{user.username}> logged in {' '}
             <button data-cy="logout" onClick={handleLogout}>logout</button>
           </div>
@@ -105,7 +99,7 @@ const App = ({
             />}
           />
           <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
-          <Route path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
+          <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
           <Route exact path="/schools" render={({ match }) => <DanseSchools path={match.path} />} />
           <Route exact path="/videos" render={({ match }) => <VideoLinks path={match.path} />} />
           <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />

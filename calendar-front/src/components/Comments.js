@@ -13,17 +13,17 @@ const Comment = props => {
     // comment.reset()
   }
 
-  // const omitReset = (hook) => {
-  //   let { reset, ...hookWithoutReset } = hook
-  //   return hookWithoutReset
-  // }
+  const omitReset = (hook) => {
+    let { reset, ...hookWithoutReset } = hook
+    return hookWithoutReset
+  }
 
   const comments = props.ballroom.comments.map(c => <li key={c.id}>{c.comment}</li>)
 
   return (
     <div>
       <h3>comments</h3>
-      <input id="commentInput"{ ...comment } />
+      <input id="commentInput"{ ...omitReset(comment)  } />
       <button id="addComment" onClick={handleComment}>add comment</button>
       <ul>{comments}</ul>
     </div>
