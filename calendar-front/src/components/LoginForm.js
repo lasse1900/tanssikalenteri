@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
+import PropTypes from 'prop-types';
 import loginService from '../services/login'
 import { connect } from 'react-redux'
 import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
@@ -10,7 +11,7 @@ const LoginForm = (props) => {
 
   const username = useField('username')
   const password = useField('password')
-  const [user, setUser] = useState(null)
+  // const [user, setUser] = useState(null)
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
@@ -39,6 +40,7 @@ const LoginForm = (props) => {
       console.log('asetettu käyttäjä', user)
       username.reset('')
       password.reset('')
+      props.history.push('/')
     } catch (exception) {
       console.log('käyttäjätunnus tai salasana virheellinen')
     }
@@ -50,10 +52,6 @@ const LoginForm = (props) => {
     return hookWithoutReset
   }
 
-  if (user) {
-    props.history.push('/')
-  }
-
   return (
     <div>
       <h2>Login</h2>
@@ -62,7 +60,6 @@ const LoginForm = (props) => {
           username
         <input {...username} />
         </div>
-
         <div>
           password
         <input {...password} />
@@ -74,7 +71,7 @@ const LoginForm = (props) => {
 }
 
 LoginForm.propTypes = {
-  // handleSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   // username: PropTypes.object.isRequired,
   // password: PropTypes.object.isRequired
 }

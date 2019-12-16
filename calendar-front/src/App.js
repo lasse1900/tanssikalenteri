@@ -53,6 +53,9 @@ const App = ({
     setMessage({ message, error }, 4)
   }
 
+  const alert = () => {
+    console.log('alert')
+  }
 
   // const omitReset = (hook) => {
   //   let { reset, ...hookWithoutReset } = hook
@@ -77,7 +80,7 @@ const App = ({
             <NavBarLogin />
             <Switch>
               <Route path="/login" render={({ match }) => <LoginForm path={match.path} />} />
-              <Route path="/register" render={({ match }) => <RegisterForm path={match.path} />} />
+              <Route path="/register" render={({ match }) => <RegisterForm path={match.path} notify={notify} alert={alert} />} />
             </Switch>
           </Router>
         </div>

@@ -10,7 +10,12 @@ const RegisterForm = (props) => {
 
   const username = useField('username')
   const password = useField('password')
+  const rPassword = useField('rPassword')
   const [user, setUser] = useState(null)
+
+  // const [username, resetUsername] = useField('text')
+  // const [password, resetPassword] = useField('password')
+  // const [rPassword, resetRPassword] = useField('password')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
@@ -20,27 +25,36 @@ const RegisterForm = (props) => {
     }
   }, [])
 
-  const handleLogin = async (event) => {
+  const createUser = async (event) => {
     event.preventDefault()
-
-    const credentials = {
-      username: username.value,
-      password: password.value
+    console.log('createUser')
+    props.alert()
+    console.log('username', username.name)
+    console.log('password', password.name)
+    if (password.value !== rPassword.value) {
+      props.notify('Please re-enter passwords!', 3)
+      password.reset()
+      rPassword.reset()
+      return
     }
-
     try {
-      console.log('credentials', credentials)
-      const user = await loginService.login(
-        credentials
-      )
-      window.localStorage.setItem('loggedBallroomappUser', JSON.stringify(user))
+      console.log('username', username.name)
+      console.log('password', password.name)
+      const user = {
+        username: username.value,
+        password: password.value,
+      }
 
-      setUser(user)
-      console.log('asetettu käyttäjä', user)
-      username.reset('')
-      password.reset('')
-    } catch (exception) {
-      console.log('käyttäjätunnus tai salasana virheellinen')
+      await loginService.post('/users/new', user)
+
+      username.reset()
+      password.reset()
+      rPassword.reset()
+
+      props.notify(`User ${user.username} created. You may now log in.`, 3)
+      props.history.push('/')
+    } catch (error) {
+      props.notify('Something went wrong. Please try again.')
     }
   }
 
@@ -50,24 +64,27 @@ const RegisterForm = (props) => {
   //   return hookWithoutReset
   // }
 
-  if (user) {
-    props.history.push('/')
-  }
+  // if (user) {
+  //   props.history.push('/')
+  // }
 
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleLogin} >
+      <form onSubmit={createUser} >
         <div>
           username
         <input {...username} />
         </div>
-
         <div>
           password
         <input {...password} />
         </div>
-        <button type="submit">login</button>
+        <div>
+          retype password
+      <input {...rPassword} />
+        </div>
+        <button type="submit">register</button>
       </form>
     </div>
   )
@@ -93,6 +110,6 @@ const mapDispatchToProps = {
   logoutUser
 }
 
-const ConnectedLoginForm = connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
+const ConnectedRegisterForm = connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
 
-export default withRouter(ConnectedLoginForm)
+export default withRouter(ConnectedRegisterForm)
