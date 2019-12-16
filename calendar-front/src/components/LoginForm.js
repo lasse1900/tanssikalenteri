@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import loginService from '../services/login'
 import { connect } from 'react-redux'
-import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
+import { loginUser, setUser } from '../reducers/userReducer'
+import { setMessage } from '../reducers/notificationReducer'
 import '../app.css'
 
-const LoginForm = (props) => {
-
+const LoginForm = (props, { setMessage }) => {
   const username = useField('username')
   const password = useField('password')
-  // const [user, setUser] = useState(null)
+  const [showInfo, setShowInfo] = useState(false)
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
@@ -44,7 +44,7 @@ const LoginForm = (props) => {
       password.reset('')
       props.history.push('/')
     } catch (exception) {
-      console.log('käyttäjätunnus tai salasana virheellinen')
+      setShowInfo(' username or password incorrect!')
     }
   }
 
@@ -60,38 +60,23 @@ const LoginForm = (props) => {
       <form onSubmit={handleLogin} >
         <div>
           username
-        <input {...username} placeholder='username'/>
+        <input {...username} placeholder='username' />
         </div>
         <div>
           password
-        <input {...password} placeholder='password'/>
+        <input {...password} placeholder='password' />
         </div>
         <button type="submit">login</button>
+        {showInfo}
       </form>
     </div>
   )
 }
 
 LoginForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
+  // handleSubmit: PropTypes.func.isRequired,
   // username: PropTypes.object.isRequired,
   // password: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => {
-  return {
-    ballrooms: state.ballrooms,
-    user: state.user,
-    users: state.users
-  }
-}
-
-const mapDispatchToProps = {
-  loginUser,
-  setUser,
-  logoutUser
-}
-
-const ConnectedLoginForm = connect(mapStateToProps, mapDispatchToProps)(LoginForm)
-
-export default withRouter(ConnectedLoginForm)
+export default connect(null, { loginUser, setMessage })(withRouter(LoginForm))
