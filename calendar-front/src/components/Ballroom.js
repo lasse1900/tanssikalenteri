@@ -9,9 +9,8 @@ const Ballroom = ({ ballroom, user, notify, likeBallroom, removeBallroom }) => {
 
   if (ballroom === undefined) return null
 
-  const ballroomOwner = ballroom.author === user
+  const ballroomOwner = ballroom.author === user.username
   const buttonShow = { display: ballroomOwner ? '' : 'none' }
-  console.log('loggedUser', user)
 
   const toggleVisibility = () => {
     setVisible(!hidden)
@@ -33,7 +32,6 @@ const Ballroom = ({ ballroom, user, notify, likeBallroom, removeBallroom }) => {
   const like = async () => {
     likeBallroom(ballroom)
     notify(`liked ballroom '${ballroom.title}'`, false)
-
   }
 
   return (

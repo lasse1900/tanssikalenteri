@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
@@ -23,14 +23,14 @@ import NavBarLogin from './NavBarLogin'
 import './index.css'
 
 const App = ({
+  user,
   users,
   initializeBallrooms,
   setMessage,
+  setUser,
   logoutUser,
   ballrooms
 }) => {
-
-  const [user, setUser] = useState(null)
 
   useEffect(() => {
     initializeBallrooms()
@@ -51,10 +51,6 @@ const App = ({
 
   const notify = (message, error) => {
     setMessage({ message, error }, 4)
-  }
-
-  const alert = () => {
-    console.log('alert')
   }
 
   // const omitReset = (hook) => {
@@ -80,15 +76,12 @@ const App = ({
             <NavBarLogin />
             <Switch>
               <Route path="/login" render={({ match }) => <LoginForm path={match.path} />} />
-              <Route path="/register" render={({ match }) => <RegisterForm path={match.path} notify={notify} alert={alert} />} />
+              <Route path="/register" render={({ match }) => <RegisterForm path={match.path} notify={notify} />} />
             </Switch>
           </Router>
         </div>
       </Container>)
   }
-
-  const loggedUser = user.username
-  console.log('username --->', loggedUser)
 
   return (
     <Container>
@@ -117,7 +110,7 @@ const App = ({
           <Route exact path="/videos" render={({ match }) => <VideoLinks path={match.path} />} />
           <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />
           <Route exact path="/about" render={({ match }) => <AboutPage path={match.path} />} />
-          <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} {...loggedUser} />} />
+          <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} />} />
           <Redirect to="/" />
         </Router>
       </div>

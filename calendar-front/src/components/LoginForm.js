@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import loginService from '../services/login'
 import { connect } from 'react-redux'
 import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
@@ -23,6 +23,8 @@ const LoginForm = (props) => {
 
   const handleLogin = async (event) => {
     event.preventDefault()
+
+    console.log('username', username.value)
 
     const credentials = {
       username: username.value,
@@ -58,11 +60,11 @@ const LoginForm = (props) => {
       <form onSubmit={handleLogin} >
         <div>
           username
-        <input {...username} />
+        <input {...username} placeholder='username'/>
         </div>
         <div>
           password
-        <input {...password} />
+        <input {...password} placeholder='password'/>
         </div>
         <button type="submit">login</button>
       </form>

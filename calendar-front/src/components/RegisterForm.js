@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
+import PropTypes from 'prop-types'
 import loginService from '../services/login'
 import { connect } from 'react-redux'
 import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
@@ -28,9 +29,6 @@ const RegisterForm = (props) => {
   const createUser = async (event) => {
     event.preventDefault()
     console.log('createUser')
-    props.alert()
-    console.log('username', username.name)
-    console.log('password', password.name)
     if (password.value !== rPassword.value) {
       props.notify('Please re-enter passwords!', 3)
       password.reset()
@@ -38,14 +36,14 @@ const RegisterForm = (props) => {
       return
     }
     try {
-      console.log('username', username.name)
-      console.log('password', password.name)
+      console.log('username', username.value)
+      console.log('password', password.value)
       const user = {
         username: username.value,
         password: password.value,
       }
 
-      await loginService.post('/users/new', user)
+      await loginService.post('/api/users', user)
 
       username.reset()
       password.reset()
@@ -64,25 +62,21 @@ const RegisterForm = (props) => {
   //   return hookWithoutReset
   // }
 
-  // if (user) {
-  //   props.history.push('/')
-  // }
-
   return (
     <div>
       <h2>Login</h2>
       <form onSubmit={createUser} >
         <div>
           username
-        <input {...username} />
+        <input {...username} placeholder='username'/>
         </div>
         <div>
           password
-        <input {...password} />
+        <input {...password} placeholder='password'/>
         </div>
         <div>
           retype password
-      <input {...rPassword} />
+      <input {...rPassword} placeholder='retype password'/>
         </div>
         <button type="submit">register</button>
       </form>
@@ -91,7 +85,7 @@ const RegisterForm = (props) => {
 }
 
 RegisterForm.propTypes = {
-  // handleSubmit: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
   // username: PropTypes.object.isRequired,
   // password: PropTypes.object.isRequired
 }
