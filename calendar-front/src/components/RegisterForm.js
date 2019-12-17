@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
 // import PropTypes from 'prop-types'
-import loginService from '../services/login'
+// import loginService from '../services/login'
+import userService from '../services/users'
 import { connect } from 'react-redux'
 import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
 import '../app.css'
@@ -13,10 +14,6 @@ const RegisterForm = (props) => {
   const password = useField('password')
   const rPassword = useField('rPassword')
   const [showInfo, setShowInfo] = useState(false)
-
-  // const [username, resetUsername] = useField('text')
-  // const [password, resetPassword] = useField('password')
-  // const [rPassword, resetRPassword] = useField('password')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
@@ -34,24 +31,26 @@ const RegisterForm = (props) => {
       rPassword.reset()
       return
     }
+
     try {
       console.log('username:', username.value)
       console.log('password:', password.value)
+
       const user = {
         username: username.value,
-        password: password.value,
+        name: username.value,
+        password: password.value
       }
 
-      await loginService.post('/api/users', user)
+      await userService.post('/api/users', user)
 
       username.reset()
       password.reset()
       rPassword.reset()
-
-      props.notify(`User ${user.username} created. You may now log in.`, 3)
+      console.log('user created', username)
       props.history.push('/')
     } catch (error) {
-      props.notify('Something went wrong. Please try again.')
+      console.log('Something went wrong. Please try again.', error)
     }
   }
 
@@ -66,15 +65,15 @@ const RegisterForm = (props) => {
       <form onSubmit={createUser} >
         <div>
           username
-        <input {...omitReset(username) } placeholder='username' />
+        <input {...omitReset(username)} placeholder='username' />
         </div>
         <div>
           password
-        <input {...omitReset(password) } placeholder='password' />
+        <input {...omitReset(password)} placeholder='password' />
         </div>
         <div>
           retype password
-        <input {...omitReset(rPassword) } placeholder='retype password' />
+        <input {...omitReset(rPassword)} placeholder='retype password' />
         </div>
         <button type="submit">register</button>
         {showInfo}

@@ -6,6 +6,8 @@ const userReducer = (state = null, action) => {
   switch (action.type) {
     case 'LOGIN':
       return action.data
+    case 'CREATE_USER':
+      return action.data
     case 'LOGOUT':
       return null
     case 'INIT':
@@ -39,6 +41,15 @@ export const loginUser = (credentials) => {
   }
 }
 
+export const createUser = user => {
+  return async dispatch => {
+    const createdUser = await ballroomService.create(user)
+    dispatch({
+      type: 'CREATE_USER',
+      data: createdUser
+    })
+  }
+}
 
 export const logoutUser = () => {
   return async dispatch => {
