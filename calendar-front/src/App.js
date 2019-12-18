@@ -107,7 +107,7 @@ const App = ({
   )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ballrooms: state.ballrooms,
     user: state.user,
