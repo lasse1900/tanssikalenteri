@@ -8,7 +8,7 @@ import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import '../app.css'
 
-const LoginForm = (props, { setMessage }) => {
+const LoginForm = (props) => {
   const username = useField('username')
   const password = useField('password')
   const [showInfo, setShowInfo] = useState(false)
@@ -42,9 +42,11 @@ const LoginForm = (props, { setMessage }) => {
       console.log('asetettu käyttäjä', user)
       username.reset('')
       password.reset('')
+      props.notify('login succeeded', false)
       props.history.push('/')
     } catch (exception) {
       setShowInfo(' username or password incorrect!')
+      props.notify('login not succeeded', false)
     }
   }
 

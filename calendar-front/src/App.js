@@ -69,8 +69,8 @@ const App = ({
           <Router>
             <NavBarLogin />
             <Switch>
-              <Route path="/login" render={({ match }) => <LoginForm path={match.path} />} />
-              <Route path="/register" render={({ match }) => <RegisterForm path={match.path} notify={notify} />} />
+              <Route path="/login" render={() => <LoginForm notify={notify} />} />
+              <Route path="/register" render={() => <RegisterForm notify={notify} />} />
             </Switch>
           </Router>
         </div>
@@ -92,12 +92,7 @@ const App = ({
           </div>
           <h2><em>Ballroom app</em></h2>
           <Notification />
-
-          <Route exact path="/" render={() =>
-            <BallroomList
-              notify={notify}
-            />}
-          />
+          <Route exact path="/" render={() => <BallroomList notify={notify} />} />
           <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
           <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
           <Route exact path="/schools" render={({ match }) => <DanseSchools path={match.path} />} />
