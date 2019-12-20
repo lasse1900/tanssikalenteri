@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
 // import PropTypes from 'prop-types'
-// import loginService from '../services/login'
+import { loginUser, setUser } from '../reducers/userReducer'
+import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
-import { connect } from 'react-redux'
-import { loginUser, setUser, logoutUser } from '../reducers/userReducer'
 import '../app.css'
 
 const RegisterForm = (props) => {
@@ -19,7 +19,7 @@ const RegisterForm = (props) => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      setUser(user)
+      props.setUser(user)
     }
   }, [])
 
@@ -47,10 +47,12 @@ const RegisterForm = (props) => {
       username.reset()
       password.reset()
       rPassword.reset()
+      props.notify('user created [from registerForm]', false)
       console.log('user created', username)
-      props.history.push('/')
+      props.history.push('/registerInfo')
     } catch (error) {
       console.log('Something went wrong. Please try again.', error)
+      setShowInfo(' Username already taken. Please try again!')
     }
   }
 
@@ -88,4 +90,4 @@ RegisterForm.propTypes = {
   // password: PropTypes.object.isRequired
 }
 
-export default connect(null, { loginUser, logoutUser })(withRouter(RegisterForm))
+export default connect(null, { loginUser, setUser })(withRouter(RegisterForm))

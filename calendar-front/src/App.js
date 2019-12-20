@@ -19,6 +19,7 @@ import { initializeUsers } from './reducers/userReducer'
 import Ballroom from './components/Ballroom'
 import { Container } from 'semantic-ui-react'
 import NavBarLogin from './NavBarLogin'
+import RegisterInfo from './components/RegisterInfo'
 import './index.css'
 
 const App = ({
@@ -70,6 +71,7 @@ const App = ({
             <NavBarLogin />
             <Switch>
               <Route path="/login" render={() => <LoginForm notify={notify} />} />
+              <Route path="/registerInfo" render={() => <RegisterInfo notify={notify} />} />
               <Route path="/register" render={() => <RegisterForm notify={notify} />} />
             </Switch>
           </Router>
@@ -124,6 +126,4 @@ const mapDispatchToProps = {
   logoutUser
 }
 
-const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
-
-export default ConnectedApp
+export default connect(mapStateToProps, mapDispatchToProps)(App)
