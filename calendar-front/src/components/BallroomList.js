@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BallroomForm from './BallroomForm'
+// import { setUser, logoutUser } from './../reducers/userReducer'
 import '../index.css'
 
 const BallroomList = ({ notify, sortBallrooms }) => {
@@ -27,13 +28,13 @@ const BallroomList = ({ notify, sortBallrooms }) => {
 
 const sortBallrooms = ballrooms => ballrooms.sort((a, b) => b.likes - a.likes)
 
-const mapStateToPros = state => {
+const mapStateToProps = state => {
   return {
     ballrooms: state.ballrooms,
-    sortBallrooms: sortBallrooms(state.ballrooms)
+    sortBallrooms: sortBallrooms(state.ballrooms),
+    user: state.user,
+    users: state.users
   }
 }
 
-const ConnectedBallroomList = connect(mapStateToPros)(BallroomList)
-
-export default ConnectedBallroomList
+export default connect(mapStateToProps)(BallroomList)

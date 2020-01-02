@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { useField } from '../hooks'
 import { createBallroom } from '../reducers/ballroomReducer'
 import { Form } from 'semantic-ui-react'
+// import { setUser, logoutUser } from './../reducers/userReducer'
 
 const BallroomForm = props => {
 
@@ -62,10 +63,16 @@ BallroomForm.propTypes = {
   notify: PropTypes.func.isRequired,
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.user,
+    ballrooms: state.ballrooms,
+    users: state.users
+  }
+}
+
 const mapDispatchToProps = {
   createBallroom
 }
 
-const ConnectedBallroomForm = connect(null, mapDispatchToProps)(BallroomForm)
-
-export default ConnectedBallroomForm
+export default connect(mapStateToProps, mapDispatchToProps)(BallroomForm)
