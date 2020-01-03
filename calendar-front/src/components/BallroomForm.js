@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import { useField } from '../hooks'
 import { createBallroom } from '../reducers/ballroomReducer'
 import { Form } from 'semantic-ui-react'
-// import { setUser, logoutUser } from './../reducers/userReducer'
 
 const BallroomForm = props => {
 

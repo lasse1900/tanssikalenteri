@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import '../index.css'
 import Comments from './Comments'
 import { likeBallroom, removeBallroom } from '../reducers/ballroomReducer'
-// import { setUser, logoutUser } from './../reducers/userReducer'
 
-const Ballroom = ({ ballroom, user, notify, likeBallroom, removeBallroom }, props) => {
+const Ballroom = ({ ballroom, user, notify, likeBallroom, removeBallroom }) => {
   const [hidden, setVisible] = useState(false)
 
   if (ballroom === undefined) return null

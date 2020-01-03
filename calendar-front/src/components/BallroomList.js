@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BallroomForm from './BallroomForm'
-// import { setUser, logoutUser } from './../reducers/userReducer'
 import '../index.css'
 
 const BallroomList = ({ notify, sortBallrooms }) => {
@@ -23,7 +22,6 @@ const BallroomList = ({ notify, sortBallrooms }) => {
       )}
     </div>
   )
-
 }
 
 const sortBallrooms = ballrooms => ballrooms.sort((a, b) => b.likes - a.likes)

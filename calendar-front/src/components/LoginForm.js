@@ -40,8 +40,8 @@ const LoginForm = (props) => {
       props.setUser(user)
       props.notify('login succeeded', false)
       console.log('asetettu käyttäjä', user)
-      username.reset('')
-      password.reset('')
+      // username.reset(''); password.reset('')  
+      // Causes a warning: index.js:1437 Warning: Can't perform a React state update on an unmounted component
       props.history.push('/')
     } catch (exception) {
       setShowInfo(' username or password incorrect!')
@@ -62,11 +62,11 @@ const LoginForm = (props) => {
       <form onSubmit={handleLogin} >
         <div>
           username
-        <input {...omitReset(username)} placeholder='username' />
+        <input id="username" {...omitReset(username)} placeholder='username' />
         </div>
         <div>
           password
-        <input {...omitReset(password)} placeholder='password' />
+        <input id="password" {...omitReset(password)} placeholder='password' />
         </div>
         <button type="submit">login</button>
         {showInfo}
@@ -76,7 +76,7 @@ const LoginForm = (props) => {
 }
 
 LoginForm.propTypes = {
-  // handleSubmit: PropTypes.func.isRequired,
+  // handleLogin: PropTypes.object.isRequired,
   // username: PropTypes.object.isRequired,
   // password: PropTypes.object.isRequired
 }
