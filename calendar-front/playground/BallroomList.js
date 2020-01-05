@@ -25,23 +25,10 @@ const BallroomList = (props, { ballroom }) => {
     />
   )
 
-  // return (
-  //   <div> {ballroomForm()}
-  //   {user.username}
-  //   {props.ballrooms.map(ballroom => <div key={ballroom.id}> {ballroom.title} {ballroom.author}</div>)}
-  //   </div>
-  // )
-
-    let myBallrooms = props.ballrooms.filter(function(ballroom){
-      return ballroom.author === user.username
-    })
-
-    console.log('myBallrooms', myBallrooms)
-
   return (
     <div> {ballroomForm()}
     {user.username}
-    {myBallrooms.author}
+    {props.ballrooms.map(ballroom => <div key={ballroom.id}> {ballroom.title} {ballroom.author}</div>)}
     </div>
   )
 
