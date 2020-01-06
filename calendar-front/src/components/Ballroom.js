@@ -1,27 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import '../index.css'
 import Comments from './Comments'
 import { likeBallroom, removeBallroom } from '../reducers/ballroomReducer'
 
-const Ballroom = ({ ballroom, user, notify, likeBallroom, removeBallroom }) => {
-  const [hidden, setVisible] = useState(false)
+const Ballroom = ({ ballroom, notify, removeBallroom }) => {
 
   if (ballroom === undefined) return null
-
-  const ballroomOwner = ballroom.author === user.username
-  const buttonShow = { display: ballroomOwner ? '' : 'none' }
-
-  const toggleVisibility = () => {
-    setVisible(!hidden)
-  }
-
-  if (!hidden) {
-    return (
-      <div className='ballroomStyle' onClick={toggleVisibility}>
-        {ballroom.title} {ballroom.author}
-      </div>)
-  }
 
   const remove = async () => {
     if (window.confirm(`remove ballroom ${ballroom.title}? by ${ballroom.author}`)) {
@@ -30,20 +15,13 @@ const Ballroom = ({ ballroom, user, notify, likeBallroom, removeBallroom }) => {
     }
   }
 
-  // const like = async () => {
-  //   likeBallroom(ballroom)
-  //   notify(`liked ballroom '${ballroom.title}'`, false)
-  // }
-
   return (
     <div className='ballroomStyle'>
-      <div className='toggle' onClick={toggleVisibility}>
+      <div className='toggle' >
         {ballroom.title}
         <br />
-        <a href={ballroom.url}>{ballroom.url}</a><br></br> {/* {ballroom.likes} - likes  */}
-       {/* <br /> <button onClick={like}>like</button> */}
-        <br /> added by {ballroom.author}
-        <br /> <button style={buttonShow} onClick={remove}>remove</button>
+        <a href={ballroom.url} target="_blank" rel="noopener noreferrer">{ballroom.url} </a><br></br>
+        <br /> <button onClick={remove}>remove</button>
       </div>
       <Comments ballroom={ballroom} />
     </div>

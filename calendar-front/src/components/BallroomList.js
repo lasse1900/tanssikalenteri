@@ -13,7 +13,6 @@ const BallroomList = (props) => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
     if (loggedUserJSON) {
       const userNew = JSON.parse(loggedUserJSON)
-      console.log('user:', user.name)
       setUser(userNew)
     }
   }, [])
@@ -24,15 +23,14 @@ const BallroomList = (props) => {
     />
   )
 
-
-  let sortBallrooms = props.ballrooms.filter(function (ballroom) {
+  let userBallrooms = props.ballrooms.filter(function (ballroom) {
     return ballroom.author === user.username
   })
 
   return (
     <div> {ballroomForm()}
       {user.username}
-      {sortBallrooms.map(ballroom =>
+      {userBallrooms.map(ballroom =>
         <div className='ballroomStyle' key={ballroom.id}>
           <Link id="ballroomsList" to={`/ballrooms/${ballroom.id}`}>{ballroom.title}</Link>
         </div>
