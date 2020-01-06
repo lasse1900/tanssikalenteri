@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
 // import PropTypes from 'prop-types'
 import { loginUser, setUser } from '../reducers/userReducer'
-import { setMessage } from '../reducers/notificationReducer'
+// import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
 import '../app.css'
 

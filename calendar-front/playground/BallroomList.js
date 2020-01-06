@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BallroomForm from './BallroomForm'
-import { loginUser, setUser } from './../reducers/userReducer'
+import { setUser } from './../reducers/userReducer'
 import '../index.css'
 
 // const BallroomList = ({ notify, sortBallrooms }) => {
-const BallroomList = (props, { ballroom }) => {
+const BallroomList = (props) => {
 
   const [user, setUser] = useState('')
+  const [myFavourite, setMyFavourite] = useState('')
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
@@ -25,10 +26,40 @@ const BallroomList = (props, { ballroom }) => {
     />
   )
 
+  // return (
+  //   <div> {ballroomForm()}
+  //   {user.username}
+  //   {props.ballrooms.map(ballroom => <div key={ballroom.id}> {ballroom.title} {ballroom.author}</div>)}
+  //   </div>
+  // )
+
+  let myBallrooms = props.ballrooms.filter(function (ballroom) {
+    return ballroom.author === user.username
+  })
+
+  let myBallrooms2 = myBallrooms.map(function (ballroom) {
+    return ballroom.title + ' url: ' + ballroom.url
+  })
+
+  let sortBallrooms = props.ballrooms.filter(function(ballroom){
+    return ballroom.author === user.username
+  })
+
+  console.log('myBallrooms2', myBallrooms2)
+
+  useEffect(() => {
+    setMyFavourite(myBallrooms2)
+    console.log('--->', myFavourite.title)
+  }, [])
+
   return (
     <div> {ballroomForm()}
-    {user.username}
-    {props.ballrooms.map(ballroom => <div key={ballroom.id}> {ballroom.title} {ballroom.author}</div>)}
+      {user.username}
+      {sortBallrooms.map(ballroom =>
+        <div className='ballroomStyle' key={ballroom.id}>
+          <Link id="ballroomsList" to={`/ballrooms/${ballroom.id}`}>{ballroom.title}</Link>
+        </div>
+      )}
     </div>
   )
 
@@ -42,22 +73,29 @@ const BallroomList = (props, { ballroom }) => {
   //     )}
   //   </div>
   // )
-
-
 }
 
-const sortBallrooms = ballrooms => ballrooms.sort((a, b) => b.likes - a.likes)
 
-// console.log('ballrooms:', sortBallrooms)
+
+// let myBallrooms = props.ballrooms.filter(function (ballroom) {
+//   return ballroom.author === user.username
+// })
+
+// const sortBallrooms = ballrooms => ballrooms.sort((a, b) => b.likes - a.likes)
+// const sortBallrooms = ballrooms => ballrooms.filter()
+
+
+// console.log('sorted ballrooms:', sortBallrooms)
 // console.log('user', {user})
 // console.log('ballroom', ballroom.title)
 
 const mapStateToProps = state => {
   return {
     ballrooms: state.ballrooms,
-    sortBallrooms: sortBallrooms(state.ballrooms),
+    // sortBallrooms: sortBallrooms(state.ballrooms),
     user: state.user,
-    users: state.users
+    users: state.users,
+    // myBallrooms2: sortBallrooms(state.ballrooms)
   }
 }
 

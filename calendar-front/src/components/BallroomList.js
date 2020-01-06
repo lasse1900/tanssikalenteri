@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BallroomForm from './BallroomForm'
-import { loginUser, setUser } from './../reducers/userReducer'
+import { setUser } from './../reducers/userReducer'
 import '../index.css'
 
-// const BallroomList = ({ notify, sortBallrooms }) => {
-const BallroomList = (props, { ballroom }) => {
+const BallroomList = (props) => {
 
   const [user, setUser] = useState('')
 
@@ -25,52 +24,28 @@ const BallroomList = (props, { ballroom }) => {
     />
   )
 
-  // return (
-  //   <div> {ballroomForm()}
-  //   {user.username}
-  //   {props.ballrooms.map(ballroom => <div key={ballroom.id}> {ballroom.title} {ballroom.author}</div>)}
-  //   </div>
-  // )
 
-    let myBallrooms = props.ballrooms.filter(function(ballroom){
-      return ballroom.author === user.username
-    })
-
-    console.log('myBallrooms', myBallrooms)
+  let sortBallrooms = props.ballrooms.filter(function (ballroom) {
+    return ballroom.author === user.username
+  })
 
   return (
     <div> {ballroomForm()}
-    {user.username}
-    {myBallrooms.author}
+      {user.username}
+      {sortBallrooms.map(ballroom =>
+        <div className='ballroomStyle' key={ballroom.id}>
+          <Link id="ballroomsList" to={`/ballrooms/${ballroom.id}`}>{ballroom.title}</Link>
+        </div>
+      )}
     </div>
   )
-
-  // return (
-  //   <div>
-  //     {ballroomForm()}
-  //     {props.sortBallrooms.map(ballroom =>
-  //       <div className='ballroomStyle' key={ballroom.id}>
-  //         <Link id="ballroomsList" to={`/ballrooms/${ballroom.id}`}>{ballroom.title}</Link>
-  //       </div>
-  //     )}
-  //   </div>
-  // )
-
-
 }
-
-const sortBallrooms = ballrooms => ballrooms.sort((a, b) => b.likes - a.likes)
-
-// console.log('ballrooms:', sortBallrooms)
-// console.log('user', {user})
-// console.log('ballroom', ballroom.title)
 
 const mapStateToProps = state => {
   return {
     ballrooms: state.ballrooms,
-    sortBallrooms: sortBallrooms(state.ballrooms),
     user: state.user,
-    users: state.users
+    users: state.users,
   }
 }
 

@@ -30,10 +30,10 @@ const Ballroom = ({ ballroom, user, notify, likeBallroom, removeBallroom }) => {
     }
   }
 
-  const like = async () => {
-    likeBallroom(ballroom)
-    notify(`liked ballroom '${ballroom.title}'`, false)
-  }
+  // const like = async () => {
+  //   likeBallroom(ballroom)
+  //   notify(`liked ballroom '${ballroom.title}'`, false)
+  // }
 
   return (
     <div className='ballroomStyle'>
