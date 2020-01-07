@@ -29,7 +29,7 @@ const BallroomList = (props) => {
 
   return (
     <div> {ballroomForm()}
-      {user.username}
+      <br></br>
       {userBallrooms.map(ballroom =>
         <div className='ballroomStyle' key={ballroom.id}>
           <Link id="ballroomsList" to={`/ballrooms/${ballroom.id}`}>{ballroom.title}</Link>
