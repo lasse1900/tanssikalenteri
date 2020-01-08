@@ -41,7 +41,8 @@ const addComment = async (id, comment) => {
   return response.data
 }
 
-const remove = async id => {
+const remove = async (id) => {
+  console.log('id to remove', id)
   const config = {
     headers: { Authorization: token }
   }
