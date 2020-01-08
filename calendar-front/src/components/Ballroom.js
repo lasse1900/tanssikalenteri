@@ -3,15 +3,18 @@ import { connect } from 'react-redux'
 import '../index.css'
 import Comments from './Comments'
 import { likeBallroom, removeBallroom } from '../reducers/ballroomReducer'
+import { useHistory } from 'react-router-dom'
 
 const Ballroom = ({ ballroom, notify, removeBallroom }) => {
+  const history = useHistory()
 
   if (ballroom === undefined) return null
 
   const remove = async () => {
     if (window.confirm(`remove ballroom ${ballroom.title}? by ${ballroom.author}`)) {
-      removeBallroom(ballroom)
+      await removeBallroom(ballroom)
       notify(`ballroom '${ballroom.title}' removed succesfully`, false)
+      history.push('/')
     }
   }
 

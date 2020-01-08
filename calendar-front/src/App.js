@@ -41,7 +41,7 @@ const App = ({
   }, [])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -57,7 +57,7 @@ const App = ({
   const ballroomId = id => ballrooms.find(ballroom => ballroom.id === id)
 
   const handleLogout = () => {
-    window.localStorage.removeItem('loggedBallroomappUser')
+    window.localStorage.removeItem('loggedBallroomAppUser')
     notify(`${user.username} successfully logged out`, false)
     setUser(null)
     logoutUser()

@@ -10,7 +10,7 @@ const BallroomList = (props) => {
   const [user, setUser] = useState('')
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const userNew = JSON.parse(loggedUserJSON)
       setUser(userNew)

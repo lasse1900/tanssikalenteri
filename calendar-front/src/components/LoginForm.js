@@ -14,7 +14,7 @@ const LoginForm = (props) => {
   const [showInfo, setShowInfo] = useState(false)
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       props.setUser(user)
@@ -36,7 +36,7 @@ const LoginForm = (props) => {
       const user = await loginService.login(
         credentials
       )
-      window.localStorage.setItem('loggedBallroomappUser', JSON.stringify(user))
+      window.localStorage.setItem('loggedBallroomAppUser', JSON.stringify(user))
       props.setUser(user)
       props.notify('login succeeded', false)
       console.log('asetettu käyttäjä', user)

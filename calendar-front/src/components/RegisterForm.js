@@ -16,7 +16,7 @@ const RegisterForm = (props) => {
   const [showInfo, setShowInfo] = useState(false)
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       props.setUser(user)

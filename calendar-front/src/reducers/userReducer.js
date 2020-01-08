@@ -31,7 +31,7 @@ export const setUser = user => {
 export const loginUser = (credentials) => {
   return async dispatch => {
     const user = await loginService.login(credentials)
-    window.localStorage.setItem('loggedballroomAppUser', JSON.stringify(user))
+    window.localStorage.setItem('loggedBallroomAppUser', JSON.stringify(user))
     ballroomService.setToken(user.token)
     dispatch({
       type: 'LOGIN',

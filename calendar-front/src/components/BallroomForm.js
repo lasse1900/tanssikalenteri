@@ -21,7 +21,7 @@ const BallroomForm = props => {
     }
 
     try {
-      props.createBallroom(ballroomObject)
+      await props.createBallroom(ballroomObject)
       title.reset()
       author.reset()
       url.reset()

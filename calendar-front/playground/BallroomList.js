@@ -12,7 +12,7 @@ const BallroomList = (props) => {
   const [myFavourite, setMyFavourite] = useState('')
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomappUser')
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const userNew = JSON.parse(loggedUserJSON)
       console.log('user:', user.name)
