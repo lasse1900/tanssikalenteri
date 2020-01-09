@@ -5,6 +5,7 @@ const reducer = (state = [], action) => {
   case 'INITIALIZE':
     return action.data.ballrooms
   case 'CREATE_BALLROOM':
+    console.log('CREATE BALLROOM -->', action)
     return [...state, action.data]
   case 'LIKE_BALLROOM':
     console.log('like ballroom', action.data)

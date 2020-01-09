@@ -15,7 +15,7 @@ const create = async (newBallroom) => {
   const config = {
     headers: { Authorization: token }
   }
-
+  console.log('services ballrooms -> token:', { token })
   const response = await axios.post(baseUrl, newBallroom, config)
   return response.data
 }
