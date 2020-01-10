@@ -3,7 +3,12 @@ const baseUrl = '/api/ballrooms'
 
 let token = null
 
-const setToken = newToken => {
+// const setToken = newToken => {
+//   token = `bearer ${newToken}`
+//   console.log('ballrooms.js - token', token)
+// }
+
+const setToken = function (newToken) {
   token = `bearer ${newToken}`
   console.log('ballrooms.js - token', token)
 }
@@ -12,7 +17,18 @@ const deleteToken = () => {
   token = null
 }
 
+
+const setTokenizer = () => {
+  const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
+  console.log('KÄVIN TÄÄLLÄ')
+  const user = JSON.parse(loggedUserJSON)
+  console.log('ballrooms.js - user token:', user.token)
+  token = user.token
+}
+
 const create = async (newBallroom) => {
+  // setTokenizer()
+  console.log('ballrooms.js - create: [token]', token)
   const config = {
     headers: { Authorization: token }
   }

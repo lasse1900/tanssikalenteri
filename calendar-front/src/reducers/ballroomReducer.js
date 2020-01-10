@@ -38,6 +38,7 @@ export const initializeBallrooms = () => {
 }
 
 export const createBallroom = ballroom => {
+  console.log('ballroomReducer - createBallroom:', ballroom)
   return async dispatch => {
     const createdBallroom = await ballroomService.create(ballroom)
     dispatch({
