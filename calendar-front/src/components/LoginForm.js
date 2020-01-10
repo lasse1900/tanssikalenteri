@@ -5,6 +5,7 @@ import { useField } from '../hooks'
 import loginService from '../services/login'
 import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
+import ballroomService from '../services/ballrooms'
 import '../app.css'
 
 const LoginForm = (props) => {
@@ -39,6 +40,7 @@ const LoginForm = (props) => {
       props.setUser(user)
       props.notify('login succeeded', false)
       console.log(`LoginForm.js - asetettu käyttäjä: ${user.name} tokenilla: ${user.token}`)
+      ballroomService.setToken(user.token)
       props.history.push('/')
     } catch (exception) {
       setShowInfo(' username or password incorrect!')
