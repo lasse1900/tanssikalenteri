@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import '../index.css'
 import Comments from './Comments'
-import { likeBallroom, removeBallroom } from '../reducers/ballroomReducer'
+import { removeBallroom } from '../reducers/ballroomReducer'
 import { useHistory } from 'react-router-dom'
 
 const Ballroom = ({ ballroom, notify, removeBallroom }) => {
@@ -40,7 +40,6 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-  likeBallroom: likeBallroom,
   removeBallroom: removeBallroom
 }
 

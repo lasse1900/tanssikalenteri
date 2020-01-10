@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
-// import PropTypes from 'prop-types'
 import loginService from '../services/login'
 import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
@@ -39,20 +38,16 @@ const LoginForm = (props) => {
       window.localStorage.setItem('loggedBallroomAppUser', JSON.stringify(user))
       props.setUser(user)
       props.notify('login succeeded', false)
-      console.log('asetettu käyttäjä', user)
-      // username.reset(''); password.reset('')  
-      // Causes a warning: index.js:1437 Warning: Can't perform a React state update on an unmounted component
+      console.log(`LoginForm.js - asetettu käyttäjä: ${user.name} tokenilla: ${user.token}`)
       props.history.push('/')
     } catch (exception) {
       setShowInfo(' username or password incorrect!')
-      // console.log('virhe', exception)
       props.notify('login not succeeded', false)
     }
   }
 
   const omitReset = (hook) => {
     let { reset, ...hookWithoutReset } = hook
-    // console.log('hookWitoutReset', JSON.stringify(hookWithoutReset))
     return hookWithoutReset
   }
 
@@ -75,10 +70,18 @@ const LoginForm = (props) => {
   )
 }
 
-LoginForm.propTypes = {
-  // handleLogin: PropTypes.object.isRequired,
-  // username: PropTypes.object.isRequired,
-  // password: PropTypes.object.isRequired
+const mapStateToProps = state => {
+  return {
+    blogs: state.blogs,
+    user: state.user,
+    users: state.users
+  }
 }
 
-export default connect(null, { loginUser, setUser, setMessage })(withRouter(LoginForm))
+const mapDispatchToProps = {
+  setMessage,
+  loginUser,
+  setUser,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LoginForm))

@@ -3,10 +3,10 @@ const baseUrl = '/api/users'
 
 let token = null
 
-const setToken = (newToken) => {
-  token = `Bearer ${newToken}`
-  console.log('token', setToken)
-}
+// const setToken = (newToken) => {
+//   token = `Bearer ${newToken}`
+//   console.log('users.js - token', token)
+// }
 
 const getAll = async () => {
   const response = await axios.get(baseUrl)
@@ -37,4 +37,5 @@ const post = async (uri, data) => {
 }
 
 
-export default { getAll, setToken, create, post }
+// export default { getAll, setToken, create, post }
+export default { getAll, create, post }

@@ -7,9 +7,6 @@ const reducer = (state = [], action) => {
   case 'CREATE_BALLROOM':
     console.log('CREATE BALLROOM -->', action)
     return [...state, action.data]
-  case 'LIKE_BALLROOM':
-    console.log('like ballroom', action.data)
-    return state.map(ballroom => ballroom.id !== action.data.id ? ballroom : action.data)
   case 'REMOVE_BALLROOM':
     return state.filter(b => b.id !== action.data)
   case 'ADD_COMMENT': {
