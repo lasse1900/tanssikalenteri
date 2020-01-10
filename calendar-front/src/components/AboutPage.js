@@ -9,8 +9,6 @@ const AboutPage = () => {
         <li>Here you can search the nearest ballrooms</li><br />
         <li>Look and save videolinks</li><br />
         <li>Look and mark calendar</li>
-        <li></li>
-        <li></li>
       </ul>
     </div>
   );

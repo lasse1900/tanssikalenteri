@@ -47,22 +47,6 @@ export const createBallroom = ballroom => {
   }
 }
 
-export const likeBallroom = ballroom => {
-  console.log('likeBallroom', ballroom.likes)
-  return async dispatch => {
-    const likedBallroom = {
-      ...ballroom,
-      likes: ballroom.likes + 1
-    }
-    const updatedBallroom = await ballroomService.update(likedBallroom)
-    dispatch({
-      type: 'LIKE_BALLROOM',
-      data: updatedBallroom
-    })
-    console.log('likeBallroom', ballroom.likes)
-  }
-}
-
 export const addComment = (id, content) => {
   const comment = { comment: content }
   console.log('addComment', comment)
