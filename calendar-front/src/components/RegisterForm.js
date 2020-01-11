@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import { loginUser, setUser } from '../reducers/userReducer'
 // import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
@@ -85,9 +85,9 @@ const RegisterForm = (props) => {
 }
 
 RegisterForm.propTypes = {
-  // handleSubmit: PropTypes.func.isRequired,
-  // username: PropTypes.object.isRequired,
-  // password: PropTypes.object.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  username: PropTypes.object.isRequired,
+  password: PropTypes.object.isRequired
 }
 
 export default connect(null, { loginUser, setUser })(withRouter(RegisterForm))

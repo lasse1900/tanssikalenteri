@@ -6,6 +6,7 @@ import loginService from '../services/login'
 import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import ballroomService from '../services/ballrooms'
+import PropTypes from 'prop-types'
 import '../app.css'
 
 const LoginForm = (props) => {
@@ -70,6 +71,12 @@ const LoginForm = (props) => {
       </form>
     </div>
   )
+}
+
+LoginForm.propTypes = {
+  handleLogin: PropTypes.object.isRequired,
+  username: PropTypes.object.isRequired,
+  password: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => {

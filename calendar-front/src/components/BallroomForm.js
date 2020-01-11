@@ -12,7 +12,7 @@ const BallroomForm = props => {
   const title = useField('title')
   const url = useField('url')
 
-  const handleBallroomCreation = async event => {
+  const handleBallroomCreation = async (event) => {
     event.preventDefault()
     const ballroomObject = {
       title: title.value,
@@ -61,6 +61,7 @@ const BallroomForm = props => {
 }
 BallroomForm.propTypes = {
   notify: PropTypes.func.isRequired,
+  // handleBallroomCreation: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => {
