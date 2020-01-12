@@ -3,15 +3,18 @@ import { connect } from 'react-redux'
 import { addComment } from '../reducers/ballroomReducer'
 import { useField } from '../hooks'
 import PropTypes from 'prop-types'
+import { useHistory } from 'react-router-dom'
 
 const Comment = props => {
   if (props.ballroom.comments === undefined) return null
 
   const comment = useField('comment')
+  const history = useHistory()
+
   const handleComment = () => {
     console.log('id: comment value:', props.ballroom.id, comment.value)
     props.addComment(props.ballroom.id, comment.value)
-    // comment.reset()
+    history.push('/')
   }
 
   const omitReset = (hook) => {
