@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/ballrooms2/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW8iLCJpZCI6IjVkZmNkMzYyOWY5ZjUwMzhjNDZhZGVjOCIsImlhdCI6MTU3ODg0NTA0OH0.SkxYtjjsf3t6q06Jo9WkmWf7qIF2ZUlX4qVR4hhrC3M
+
+{
+	"title": "Liiteri",
+	"author": "simo",
+	"url": "www://ketolat.fi"
+}
