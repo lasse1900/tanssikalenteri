@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addComment } from '../reducers/ballroomReducer'
 import { useField } from '../hooks'
+import PropTypes from 'prop-types'
 
 const Comment = props => {
   if (props.ballroom.comments === undefined) return null
@@ -28,6 +29,10 @@ const Comment = props => {
       <ul>{comments}</ul>
     </div>
   )
+}
+
+Comment.propTypes = {
+  ballroom: PropTypes.object.isRequired,
 }
 
 const mapDispatchToProps = {

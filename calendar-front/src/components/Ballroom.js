@@ -4,6 +4,7 @@ import '../index.css'
 import Comments from './Comments'
 import { removeBallroom } from '../reducers/ballroomReducer'
 import { useHistory } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const Ballroom = ({ ballroom, notify, removeBallroom }) => {
   const history = useHistory()
@@ -29,6 +30,10 @@ const Ballroom = ({ ballroom, notify, removeBallroom }) => {
       <Comments ballroom={ballroom} />
     </div>
   )
+}
+
+Ballroom.propTypes = {
+  notify: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Togglable from './Togglable'
-import PropTypes from 'prop-types'
 import { useField } from '../hooks'
 import { createBallroom } from '../reducers/ballroomReducer'
 import { Form } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
 
 const BallroomForm = props => {
 
@@ -59,9 +59,9 @@ const BallroomForm = props => {
     </Togglable>
   )
 }
+
 BallroomForm.propTypes = {
   notify: PropTypes.func.isRequired,
-  // handleBallroomCreation: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => {

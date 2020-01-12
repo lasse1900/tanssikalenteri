@@ -74,9 +74,7 @@ const LoginForm = (props) => {
 }
 
 LoginForm.propTypes = {
-  handleLogin: PropTypes.object.isRequired,
-  username: PropTypes.object.isRequired,
-  password: PropTypes.object.isRequired
+  notify: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {
