@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import '../index.css'
 import Comments from './Comments'
 import { removeBallroom } from '../reducers/ballroomReducer'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import '../index.css'
 
 const Ballroom = ({ ballroom, notify, removeBallroom }) => {
   const history = useHistory()
