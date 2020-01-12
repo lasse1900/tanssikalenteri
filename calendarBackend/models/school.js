@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 mongoose.set('useFindAndModify', false)
 
-const ballroomSchema2= mongoose.Schema({
+const schoolSchema= mongoose.Schema({
   title: String,
   author: String,
   url: String,
@@ -18,7 +18,7 @@ const ballroomSchema2= mongoose.Schema({
   ]
 })
 
-ballroomSchema2.set('toJSON', {
+schoolSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
@@ -26,4 +26,4 @@ ballroomSchema2.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Danceschool', ballroomSchema2)
+module.exports = mongoose.model('Danceschool', schoolSchema)

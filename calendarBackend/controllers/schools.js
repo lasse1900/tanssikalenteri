@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken')
-const ballroomsRouter = require('express').Router()
-const Ballroom = require('../models/ballroom2')
+const schoolsRouter = require('express').Router()
+const Ballroom = require('../models/school')
 const User = require('../models/user')
 
-ballroomsRouter.get('/', async (request, response) => {
+schoolsRouter.get('/', async (request, response) => {
   const ballrooms = await Ballroom
     .find({})
     .populate('user', { username: 1, name: 1 })
@@ -12,7 +12,7 @@ ballroomsRouter.get('/', async (request, response) => {
   response.json(ballrooms.map(ballroom => ballroom.toJSON()))
 })
 
-ballroomsRouter.post('/', async (request, response, next) => {
+schoolsRouter.post('/', async (request, response, next) => {
   const body = request.body
 
   try {
@@ -41,5 +41,4 @@ ballroomsRouter.post('/', async (request, response, next) => {
   }
 })
 
-
-module.exports = ballroomsRouter
+module.exports = schoolsRouter

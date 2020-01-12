@@ -1,6 +1,6 @@
 POST http://localhost:3003/api/ballrooms/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW8iLCJpZCI6IjVkZmNkMzYyOWY5ZjUwMzhjNDZhZGVjOCIsImlhdCI6MTU3ODg0MzE3Mn0.Yp1qEA0WZCjgWRGjI0HHqc8Z9crnYJRtzjXTlq8CjLw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW8iLCJpZCI6IjVkZmNkMzYyOWY5ZjUwMzhjNDZhZGVjOCIsImlhdCI6MTU3ODg2Mzc0Mn0.mwJNDnyF2HtIvx0ubxLUokH-Pzomevkd-_aVoYi9Xjc
 
 {
 	"title": "Ruusu",
