@@ -56,8 +56,8 @@ schoolsRouter.post('/', async (request, response, next) => {
     await user.save()
     response.status(201).json(populatedSchool)
   } catch (exception) {
-    // next(exception)
     console.log('tapahtui virhe', exception)
+    next(exception)
   }
 })
 

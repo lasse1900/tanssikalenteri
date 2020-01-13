@@ -2,14 +2,16 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
+import schoolService from './services/schools'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import { setMessage } from './reducers/notificationReducer'
 import { initializeBallrooms, removeBallroom } from './reducers/ballroomReducer'
+import { initializeSchools, removeSchool } from './reducers/schoolReducer'
 import { setUser, logoutUser } from './reducers/userReducer'
 import BallroomList from './components/BallroomList'
-import DanseSchools from './components/DanceSchools'
+import SchoolList from './components/SchoolList'
 import Users from './components/Users'
 import User from './components/User'
 import VideoLinks from './components/VideoLinks'
@@ -17,6 +19,7 @@ import Calendar from './components/Calendar'
 import AboutPage from './components/AboutPage'
 import { initializeUsers } from './reducers/userReducer'
 import Ballroom from './components/Ballroom'
+// import School from './components/School'
 import { Container } from 'semantic-ui-react'
 import NavBarLogin from './NavBarLogin'
 import RegisterInfo from './components/RegisterInfo'
@@ -26,6 +29,7 @@ const App = ({
   user,
   users,
   initializeBallrooms,
+  initializeSchools,
   setMessage,
   setUser,
   logoutUser,
@@ -34,6 +38,10 @@ const App = ({
 
   useEffect(() => {
     initializeBallrooms()
+  }, [])
+
+  useEffect(() => {
+    initializeSchools()
   }, [])
 
   useEffect(() => {
@@ -47,6 +55,16 @@ const App = ({
       console.log('App.js - user token:', user.token)
       setUser(user)
       ballroomService.setToken(user.token)
+    }
+  }, [])
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      console.log('App.js - user token:', user.token)
+      setUser(user)
+      schoolService.setToken(user.token)
     }
   }, [])
 
@@ -96,9 +114,10 @@ const App = ({
           <h2><em>Ballroom app</em></h2>
           <Notification />
           <Route exact path="/" render={() => <BallroomList notify={notify} />} />
+          <Route exact path="/" render={() => <SchoolList notify={notify} />} />
           <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
           <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
-          <Route exact path="/schools" render={({ match }) => <DanseSchools path={match.path} />} />
+          {/* <Route exact path="/schools" render={({ match }) => <School path={match.path} />} /> */}
           <Route exact path="/videos" render={({ match }) => <VideoLinks path={match.path} />} />
           <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />
           <Route exact path="/about" render={({ match }) => <AboutPage path={match.path} />} />
@@ -120,8 +139,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   initializeBallrooms,
+  initializeSchools,
   initializeUsers,
   removeBallroom,
+  removeSchool,
   setMessage,
   setUser,
   logoutUser
