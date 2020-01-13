@@ -1,15 +1,15 @@
 const jwt = require('jsonwebtoken')
 const schoolsRouter = require('express').Router()
-const Ballroom = require('../models/school')
+const School = require('../models/school')
 const User = require('../models/user')
 
 schoolsRouter.get('/', async (request, response) => {
-  const ballrooms = await Ballroom
+  const ballrooms = await School
     .find({})
     .populate('user', { username: 1, name: 1 })
     .populate('comments', { comment: 1 })
 
-  response.json(ballrooms.map(ballroom => ballroom.toJSON()))
+  response.json(ballrooms.map(school => school.toJSON()))
 })
 
 schoolsRouter.post('/', async (request, response, next) => {
@@ -23,7 +23,7 @@ schoolsRouter.post('/', async (request, response, next) => {
 
     const user = await User.findById(decodedToken.id)
 
-    const ballroom = new Ballroom({
+    const school = new School({
       title: body.title,
       author: body.author,
       url: body.url,
@@ -31,8 +31,8 @@ schoolsRouter.post('/', async (request, response, next) => {
       user: user.id
     })
 
-    const savedBallroom = await ballroom.save()
-    const populatedBallroom = await Ballroom.findById(savedBallroom._id).populate('user', { username: 1, name: 1, id: 1 })
+    const savedBallroom = await school.save()
+    const populatedBallroom = await School.findById(savedBallroom._id).populate('user', { username: 1, name: 1, id: 1 })
     user.ballrooms = user.ballrooms.concat(savedBallroom._id)
     await user.save()
     response.status(201).json(populatedBallroom)
@@ -40,5 +40,6 @@ schoolsRouter.post('/', async (request, response, next) => {
     next(exception)
   }
 })
+
 
 module.exports = schoolsRouter

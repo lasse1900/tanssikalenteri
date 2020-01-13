@@ -3,7 +3,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW8iLCJpZCI6IjVkZmNkMzYyOWY5ZjUwMzhjNDZhZGVjOCIsImlhdCI6MTU3ODg2Mzc0Mn0.mwJNDnyF2HtIvx0ubxLUokH-Pzomevkd-_aVoYi9Xjc
 
 {
-	"title": "Peli",
-	"author": "simo",
-	"url": "www://ketolat2.fi",
+	"title": "Ketolan koulu 2",
+	"author": "Lasse",
+	"url": "/home/posttal"
 }

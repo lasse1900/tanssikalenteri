@@ -94,31 +94,4 @@ ballroomsRouter.post('/:id/comments', async (request, response) => {
   response.status(201).json(savedComment.toJSON())
 })
 
-// FOR TESTING WITHOUT TOKEN
-// ballroomsRouter.delete('/:id', async (request, response, next) => {
-//   try {
-//     await Ballroom.findByIdAndRemove(request.params.id)
-//     response.status(204).end()
-//   } catch (exception) {
-//     next(exception)
-//   }
-// })
-
-// FOR TESTING WITHOUT TOKEN
-// ballroomsRouter.post('/', async (request, response, next) => {
-//   const body = request.body
-
-//   const ballroom = new Ballroom({
-//     author: body.author,
-//     title: body.title,
-//     url: body.url,
-//   })
-//   try {
-//     const savedBallroom = await ballroom.save()
-//     response.json(savedBallroom.toJSON())
-//   } catch (exception) {
-//     next(exception)
-//   }
-// })
-
 module.exports = ballroomsRouter
