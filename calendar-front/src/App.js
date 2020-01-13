@@ -19,7 +19,7 @@ import Calendar from './components/Calendar'
 import AboutPage from './components/AboutPage'
 import { initializeUsers } from './reducers/userReducer'
 import Ballroom from './components/Ballroom'
-// import School from './components/School'
+import School from './components/School'
 import { Container } from 'semantic-ui-react'
 import NavBarLogin from './NavBarLogin'
 import RegisterInfo from './components/RegisterInfo'
@@ -33,7 +33,8 @@ const App = ({
   setMessage,
   setUser,
   logoutUser,
-  ballrooms
+  ballrooms,
+  schools
 }) => {
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const App = ({
   useEffect(() => {
     initializeSchools()
   }, [])
-
+  
   useEffect(() => {
     initializeUsers()
   }, [])
@@ -74,6 +75,7 @@ const App = ({
 
   const userId = id => users.find(user => user.id === id)
   const ballroomId = id => ballrooms.find(ballroom => ballroom.id === id)
+  const schoolId = id => schools.find(school => school.id === id)
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedBallroomAppUser')
@@ -114,14 +116,15 @@ const App = ({
           <h2><em>Ballroom app</em></h2>
           <Notification />
           <Route exact path="/" render={() => <BallroomList notify={notify} />} />
-          <Route exact path="/" render={() => <SchoolList notify={notify} />} />
+          <Route exact path="/schools" render={() => <SchoolList notify={notify} />} />
+
           <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
           <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
-          {/* <Route exact path="/schools" render={({ match }) => <School path={match.path} />} /> */}
           <Route exact path="/videos" render={({ match }) => <VideoLinks path={match.path} />} />
           <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />
           <Route exact path="/about" render={({ match }) => <AboutPage path={match.path} />} />
           <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} />} />
+          <Route exact path="/schools/:id" render={({ match }) => <School notify={notify} school={schoolId(match.params.id)} />} />
           <Redirect to="/" />
         </Router>
       </div>
@@ -132,6 +135,7 @@ const App = ({
 const mapStateToProps = (state) => {
   return {
     ballrooms: state.ballrooms,
+    schools: state.schools,
     user: state.user,
     users: state.users
   }

@@ -2,14 +2,14 @@ import ballroomService from '../services/ballrooms'
 
 const reducer = (state = [], action) => {
   switch (action.type) {
-  case 'INITIALIZE':
+  case 'INITIALIZE_BALLROOMS':
     return action.data.ballrooms
   case 'CREATE_BALLROOM':
     console.log('CREATE BALLROOM -->', action)
     return [...state, action.data]
   case 'REMOVE_BALLROOM':
     return state.filter(b => b.id !== action.data)
-  case 'ADD_COMMENT': {
+  case 'ADD_BALLROOM_COMMENT': {
     const newState = JSON.parse(JSON.stringify(state))
     console.log('newState', newState)
     const newBallroom = newState.find(ballroom => ballroom.id === action.data.ballroom)
@@ -29,7 +29,7 @@ export const initializeBallrooms = () => {
   return async dispatch => {
     const ballrooms = await ballroomService.getAll()
     dispatch({
-      type: 'INITIALIZE',
+      type: 'INITIALIZE_BALLROOMS',
       data: {
         ballrooms: ballrooms
       }
@@ -54,7 +54,7 @@ export const addComment = (id, content) => {
   return async dispatch => {
     const addedComment = await ballroomService.addComment(id, comment)
     dispatch({
-      type: 'ADD_COMMENT',
+      type: 'ADD_BALLROOM_COMMENT',
       data: addedComment
     })
   }

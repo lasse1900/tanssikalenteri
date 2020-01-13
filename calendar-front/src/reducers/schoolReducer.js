@@ -2,14 +2,14 @@ import schoolService from '../services/schools'
 
 const reducer = (state = [], action) => {
   switch (action.type) {
-  case 'INITIALIZE':
+  case 'INITIALIZE_SCHOOLS':
     return action.data.schools
   case 'CREATE_SCHOOL':
     console.log('CREATE_SCHOOL -->', action)
     return [...state, action.data]
   case 'REMOVE_SCHOOL':
     return state.filter(b => b.id !== action.data)
-  case 'ADD_COMMENT': {
+  case 'ADD_SCHOOL_COMMENT': {
     const newState = JSON.parse(JSON.stringify(state))
     console.log('newState', newState)
     const newSchool = newState.find(schools => schools.id === action.data.schools)
@@ -29,7 +29,7 @@ export const initializeSchools = () => {
   return async dispatch => {
     const schools = await schoolService.getAll()
     dispatch({
-      type: 'INITIALIZE',
+      type: 'INITIALIZE_SCHOOLS',
       data: {
         schools: schools
       }
@@ -48,14 +48,14 @@ export const createSchool = school => {
   }
 }
 
-export const addComment = (id, content) => {
+export const addScoolComment = (id, content) => {
   const comment = { comment: content }
-  console.log('addComment', comment)
+  console.log('addScoolComment', comment)
   return async dispatch => {
-    const addedComment = await schoolService.addComment(id, comment)
+    const addedSchoolComment = await schoolService.addScoolComment(id, comment)
     dispatch({
-      type: 'ADD_COMMENT',
-      data: addedComment
+      type: 'ADD_SCHOOL_COMMENT',
+      data: addedSchoolComment
     })
   }
 }
