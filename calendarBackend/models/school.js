@@ -5,6 +5,7 @@ const schoolSchema= mongoose.Schema({
   title: String,
   author: String,
   url: String,
+  likes: Number,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -25,4 +26,4 @@ schoolSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Danceschool', schoolSchema) 
+module.exports = mongoose.model('School', schoolSchema) 
