@@ -19,6 +19,12 @@ const userSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Ballroom'
     }
+  ],
+  schools: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'School'
+    }
   ]
 })
 

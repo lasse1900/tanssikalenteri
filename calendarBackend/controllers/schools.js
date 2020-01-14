@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const schoolsRouter = require('express').Router()
 const School = require('../models/school')
 const User = require('../models/user')
+const Comment = require('../models/comment')
 
 schoolsRouter.get('/', async (request, response) => {
   const schools = await School
@@ -56,7 +57,6 @@ schoolsRouter.post('/', async (request, response, next) => {
     await user.save()
     response.status(201).json(populatedSchool)
   } catch (exception) {
-    console.log('tapahtui virhe', exception)
     next(exception)
   }
 })
@@ -66,7 +66,7 @@ schoolsRouter.post('/:id/comments', async (request, response) => {
   console.log('body -->', school)
 
   if (!school) {
-    return response.status(400).send({ error: 'no school on that id' }).end()
+    return response.status(400).send({ error: 'no danceschool on that id' }).end()
   }
 
   const comment = new Comment(request.body)
@@ -79,6 +79,5 @@ schoolsRouter.post('/:id/comments', async (request, response) => {
 
   response.status(201).json(savedComment.toJSON())
 })
-
 
 module.exports = schoolsRouter

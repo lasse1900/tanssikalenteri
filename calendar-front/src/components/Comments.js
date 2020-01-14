@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom'
 
 const Comment = props => {
-  if (props.ballroom.comments === undefined) return null
+  // if (props.ballroom.comments === undefined) return null
 
   const comment = useField('comment')
   const history = useHistory()
@@ -22,20 +22,20 @@ const Comment = props => {
     return hookWithoutReset
   }
 
-  const comments = props.ballroom.comments.map(c => <li key={c.id}>{c.comment}</li>)
+  // const comments = props.ballroom.comments.map(c => <li key={c.id}>{c.comment}</li>)
 
   return (
     <div>
       <h3>comments</h3>
       <input id="commentInput"{ ...omitReset(comment)  } />
       <button id="addComment" onClick={handleComment}>add comment</button>
-      <ul>{comments}</ul>
+      {/*<ul>{comments}</ul> */}
     </div>
   )
 }
 
 Comment.propTypes = {
-  ballroom: PropTypes.object.isRequired,
+  // ballroom: PropTypes.object.isRequired,
 }
 
 const mapDispatchToProps = {

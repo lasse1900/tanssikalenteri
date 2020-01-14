@@ -15,7 +15,7 @@ const School = ({ school, notify, removeSchool }) => {
     if (window.confirm(`remove school ${school.title}? by ${school.author}`)) {
       await removeSchool(school)
       notify(`school '${school.title}' removed succesfully`, false)
-      history.push('/')
+      history.push('/schools')
     }
   }
 

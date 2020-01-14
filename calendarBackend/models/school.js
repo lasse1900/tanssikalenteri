@@ -10,12 +10,12 @@ const schoolSchema= mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment'
-    }
-  ]
+  // comments: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'Comment'
+  //   }
+  // ]
 })
 
 schoolSchema.set('toJSON', {
