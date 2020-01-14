@@ -10,6 +10,11 @@ const commentSchema = mongoose.Schema({
   school: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'School'
+  },
+  comment: String,
+  video: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Video'
   }
 })
 

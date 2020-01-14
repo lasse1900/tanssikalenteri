@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/videos/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW8iLCJpZCI6IjVkZmNkMzYyOWY5ZjUwMzhjNDZhZGVjOCIsImlhdCI6MTU3ODk4NTM2Mn0.hT7mvNSsbjcKvFnNjYjkmRnM1IH1J3urSvaQoc5I5U4
+
+{
+	"title": "Arkku tango",
+	"author": "simo",
+	"url": "https://www.youtube.com/watch?v=2iR_XlfBPpI"
+}
