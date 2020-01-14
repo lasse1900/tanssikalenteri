@@ -6,6 +6,7 @@ const commentSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Ballroom'
   },
+  comment: String,
   school: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'School'

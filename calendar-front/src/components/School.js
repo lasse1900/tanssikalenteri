@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Comments from './Comments'
+import Comments from './CommentSchool'
 import { removeSchool } from '../reducers/schoolReducer'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'

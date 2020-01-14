@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addComment } from '../reducers/ballroomReducer'
+import { addComment } from '../reducers/schoolReducer'
 import { useField } from '../hooks'
 import PropTypes from 'prop-types'
 
 const Comment = props => {
-  if (props.ballroom.comments === undefined) return null
+  if (props.school.comments === undefined) return null
 
   const comment = useField('comment')
 
   const handleComment = () => {
-    console.log('id: comment value:', props.ballroom.id, comment.value)
-    props.addComment(props.ballroom.id, comment.value)
+    console.log('id: comment value:', props.school.id, comment.value)
+    props.addComment(props.school.id, comment.value)
   }
 
   const omitReset = (hook) => {
@@ -19,7 +19,7 @@ const Comment = props => {
     return hookWithoutReset
   }
 
-  const comments = props.ballroom.comments.map(c => <li key={c.id}>{c.comment}</li>)
+  const comments = props.school.comments.map(c => <li key={c.id}>{c.comment}</li>)
 
   return (
     <div>
@@ -32,7 +32,7 @@ const Comment = props => {
 }
 
 Comment.propTypes = {
-  ballroom: PropTypes.object.isRequired,
+  school: PropTypes.object.isRequired,
 }
 
 const mapDispatchToProps = {

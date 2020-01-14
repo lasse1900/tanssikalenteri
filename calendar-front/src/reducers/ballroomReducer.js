@@ -2,24 +2,24 @@ import ballroomService from '../services/ballrooms'
 
 const reducer = (state = [], action) => {
   switch (action.type) {
-  case 'INITIALIZE_BALLROOMS':
-    return action.data.ballrooms
-  case 'CREATE_BALLROOM':
-    console.log('CREATE BALLROOM -->', action)
-    return [...state, action.data]
-  case 'REMOVE_BALLROOM':
-    return state.filter(b => b.id !== action.data)
-  case 'ADD_BALLROOM_COMMENT': {
-    const newState = JSON.parse(JSON.stringify(state))
-    console.log('newState', newState)
-    const newBallroom = newState.find(ballroom => ballroom.id === action.data.ballroom)
-    console.log('newBallroom', newBallroom)
-    newBallroom.comments = newBallroom.comments.concat({ comment: action.data.comment, id: action.data.id })
-    console.log('new comment', newBallroom.comments)
-    return [...newState.filter(ballroom => ballroom.id !== newBallroom.id), newBallroom]
-  }
-  default:
-    return state
+    case 'INITIALIZE_BALLROOMS':
+      return action.data.ballrooms
+    case 'CREATE_BALLROOM':
+      console.log('CREATE BALLROOM -->', action)
+      return [...state, action.data]
+    case 'REMOVE_BALLROOM':
+      return state.filter(b => b.id !== action.data)
+    case 'ADD_BALLROOM_COMMENT': {
+      const newState = JSON.parse(JSON.stringify(state))
+      console.log('newState', newState)
+      const newBallroom = newState.find(ballroom => ballroom.id === action.data.ballroom)
+      console.log('newBallroom', newBallroom)
+      newBallroom.comments = newBallroom.comments.concat({ comment: action.data.comment, id: action.data.id })
+      console.log('new comment', newBallroom.comments)
+      return [...newState.filter(ballroom => ballroom.id !== newBallroom.id), newBallroom]
+    }
+    default:
+      return state
   }
 }
 
