@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-ro
 import ballroomService from './services/ballrooms'
 import schoolService from './services/schools'
 import videoService from './services/videos'
+import calendarService from './services/calendars'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
@@ -11,10 +12,12 @@ import { setMessage } from './reducers/notificationReducer'
 import { initializeBallrooms, removeBallroom } from './reducers/ballroomReducer'
 import { initializeSchools, removeSchool } from './reducers/schoolReducer'
 import { initializeVideos, removeVideo } from './reducers/videoReducer'
+import { initializeCalendars, removeCalendar } from './reducers/calendarReducer'
 import { setUser, logoutUser } from './reducers/userReducer'
 import BallroomList from './components/BallroomList'
 import SchoolList from './components/SchoolList'
 import VideoList from './components/VideoList'
+import CalendarList from './components/CalendarList'
 import Users from './components/Users'
 import User from './components/User'
 import Calendar from './components/Calendar'
@@ -34,24 +37,21 @@ const App = ({
   initializeBallrooms,
   initializeSchools,
   initializeVideos,
+  initializeCalendars,
   setMessage,
   setUser,
   logoutUser,
   ballrooms,
   videos,
+  calendars,
   schools
 }) => {
 
   useEffect(() => {
     initializeBallrooms()
-  }, [])
-
-  useEffect(() => {
     initializeSchools()
-  }, [])
-
-  useEffect(() => {
     initializeVideos()
+    initializeCalendars()
   }, [])
 
   useEffect(() => {
@@ -89,6 +89,16 @@ const App = ({
     }
   }, [])
 
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      console.log('App.js - user token:', user.token)
+      setUser(user)
+      calendarService.setToken(user.token)
+    }
+  }, [])
+
   const notify = (message, error) => {
     setMessage({ message, error }, 4)
   }
@@ -97,6 +107,7 @@ const App = ({
   const ballroomId = id => ballrooms.find(ballroom => ballroom.id === id)
   const schoolId = id => schools.find(school => school.id === id)
   const videoId = id => videos.find(video => video.id === id)
+  const calendarId = id => calendars.find(calendar => calendar.id === id)
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedBallroomAppUser')
@@ -129,7 +140,7 @@ const App = ({
             <Link to="/" id="home" data-cy="home" >ballrooms</Link>{' '}
             <Link to="/schools" id="schools" data-cy="schools">schools</Link>{' '}
             <Link to="/videos" id="videos" data-cy="videos">videos</Link>{' '}
-            <Link to="/calendar" id="calendar" data-cy="calendar">calendar</Link>{' '}
+            <Link to="/calendars" id="calendars" data-cy="calendars">calendar</Link>{' '}
             <Link to="/about" id="about" data-cy="about">about</Link>{' '}
             {' <'}{user.username}> logged in {' '}
             <button data-cy="logout" onClick={handleLogout}>logout</button>
@@ -139,6 +150,7 @@ const App = ({
           <Route exact path="/" render={() => <BallroomList notify={notify} />} />
           <Route exact path="/schools" render={() => <SchoolList notify={notify} />} />
           <Route exact path="/videos" render={() => <VideoList notify={notify} />} />
+          <Route exact path="/calendars" render={() => <CalendarList notify={notify} />} />
 
           <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
           <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
@@ -147,6 +159,7 @@ const App = ({
           <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} />} />
           <Route exact path="/schools/:id" render={({ match }) => <School notify={notify} school={schoolId(match.params.id)} />} />
           <Route exact path="/videos/:id" render={({ match }) => <Video notify={notify} video={videoId(match.params.id)} />} />
+          <Route exact path="/calendars/:id" render={({ match }) => <Calendar notify={notify} calendar={calendarId(match.params.id)} />} />
           <Redirect to="/" />
         </Router>
       </div>
@@ -159,6 +172,7 @@ const mapStateToProps = (state) => {
     ballrooms: state.ballrooms,
     schools: state.schools,
     videos: state.videos,
+    calendars: state.calendars,
     user: state.user,
     users: state.users
   }
@@ -168,10 +182,12 @@ const mapDispatchToProps = {
   initializeBallrooms,
   initializeSchools,
   initializeVideos,
+  initializeCalendars,
   initializeUsers,
   removeBallroom,
   removeSchool,
   removeVideo,
+  removeCalendar,
   setMessage,
   setUser,
   logoutUser

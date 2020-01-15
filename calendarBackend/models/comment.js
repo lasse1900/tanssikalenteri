@@ -15,6 +15,11 @@ const commentSchema = mongoose.Schema({
   video: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Video'
+  },
+  calendar: String,
+  video: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Calendar'
   }
 })
 
