@@ -17,7 +17,7 @@ const NavBar = () => (
         <Link to="/calendar">Calendar</Link>
       </li>
       <li>
-        <Link to="/videolinks">VideoLinks</Link>
+        <Link to="/videos">VideoLinks</Link>
       </li>
     </ul>
   </nav>

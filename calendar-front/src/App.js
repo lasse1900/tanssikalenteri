@@ -3,23 +3,26 @@ import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Redirect, Link, Switch } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
 import schoolService from './services/schools'
+import videoService from './services/videos'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import { setMessage } from './reducers/notificationReducer'
 import { initializeBallrooms, removeBallroom } from './reducers/ballroomReducer'
 import { initializeSchools, removeSchool } from './reducers/schoolReducer'
+import { initializeVideos, removeVideo } from './reducers/videoReducer'
 import { setUser, logoutUser } from './reducers/userReducer'
 import BallroomList from './components/BallroomList'
 import SchoolList from './components/SchoolList'
+import VideoList from './components/VideoList'
 import Users from './components/Users'
 import User from './components/User'
-import VideoLinks from './components/VideoLinks'
 import Calendar from './components/Calendar'
 import AboutPage from './components/AboutPage'
 import { initializeUsers } from './reducers/userReducer'
 import Ballroom from './components/Ballroom'
 import School from './components/School'
+import Video from './components/Video'
 import { Container } from 'semantic-ui-react'
 import NavBarLogin from './NavBarLogin'
 import RegisterInfo from './components/RegisterInfo'
@@ -30,10 +33,12 @@ const App = ({
   users,
   initializeBallrooms,
   initializeSchools,
+  initializeVideos,
   setMessage,
   setUser,
   logoutUser,
   ballrooms,
+  videos,
   schools
 }) => {
 
@@ -44,7 +49,11 @@ const App = ({
   useEffect(() => {
     initializeSchools()
   }, [])
-  
+
+  useEffect(() => {
+    initializeVideos()
+  }, [])
+
   useEffect(() => {
     initializeUsers()
   }, [])
@@ -69,6 +78,17 @@ const App = ({
     }
   }, [])
 
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON)
+      console.log('App.js - user token:', user.token)
+      setUser(user)
+      videoService.setToken(user.token)
+    }
+  }, [])
+
   const notify = (message, error) => {
     setMessage({ message, error }, 4)
   }
@@ -76,6 +96,7 @@ const App = ({
   const userId = id => users.find(user => user.id === id)
   const ballroomId = id => ballrooms.find(ballroom => ballroom.id === id)
   const schoolId = id => schools.find(school => school.id === id)
+  const videoId = id => videos.find(video => video.id === id)
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedBallroomAppUser')
@@ -117,14 +138,15 @@ const App = ({
           <Notification />
           <Route exact path="/" render={() => <BallroomList notify={notify} />} />
           <Route exact path="/schools" render={() => <SchoolList notify={notify} />} />
+          <Route exact path="/videos" render={() => <VideoList notify={notify} />} />
 
           <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
           <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
-          <Route exact path="/videos" render={({ match }) => <VideoLinks path={match.path} />} />
           <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />
           <Route exact path="/about" render={({ match }) => <AboutPage path={match.path} />} />
           <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} />} />
           <Route exact path="/schools/:id" render={({ match }) => <School notify={notify} school={schoolId(match.params.id)} />} />
+          <Route exact path="/videos/:id" render={({ match }) => <Video notify={notify} video={videoId(match.params.id)} />} />
           <Redirect to="/" />
         </Router>
       </div>
@@ -136,6 +158,7 @@ const mapStateToProps = (state) => {
   return {
     ballrooms: state.ballrooms,
     schools: state.schools,
+    videos: state.videos,
     user: state.user,
     users: state.users
   }
@@ -144,9 +167,11 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   initializeBallrooms,
   initializeSchools,
+  initializeVideos,
   initializeUsers,
   removeBallroom,
   removeSchool,
+  removeVideo,
   setMessage,
   setUser,
   logoutUser

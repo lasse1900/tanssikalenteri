@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import notificationReducer from './reducers/notificationReducer'
 import ballroomReducer from './reducers/ballroomReducer'
 import schoolReducer from './reducers/schoolReducer'
+import videoReducer from './reducers/videoReducer'
 import userReducer from './reducers/userReducer'
 import usersReducer from './reducers/usersReducer'
 
@@ -12,6 +13,7 @@ const reducer = combineReducers({
   notification: notificationReducer,
   ballrooms: ballroomReducer,
   schools: schoolReducer,
+  videos: videoReducer,
   user: userReducer,
   users: usersReducer
 })

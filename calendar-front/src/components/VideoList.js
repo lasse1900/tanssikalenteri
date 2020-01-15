@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import SchoolForm from './SchoolForm'
+import VideoForm from './VideoForm'
 import { setUser } from './../reducers/userReducer'
 import '../index.css'
 
-const SchoolList = (props) => {
+const VideoList = (props) => {
 
   const [user, setUser] = useState('')
 
@@ -17,22 +17,22 @@ const SchoolList = (props) => {
     }
   }, [])
 
-  const schoolForm = () => (
-    <SchoolForm
+  const videoForm = () => (
+    <VideoForm
       notify={props.notify}
     />
   )
 
-  let userSchools = props.schools.filter(function (school) {
-    return school.author === user.username
+  let userVideos = props.videos.filter(function (video) {
+    return video.author === user.username
   })
 
   return (
-    <div> {schoolForm()}
+    <div> {videoForm()}
       <br></br>
-      {userSchools.map(school =>
-        <div className='ballroomStyle' key={school.id}>
-          <Link id="schoolsList" to={`/schools/${school.id}`}>{school.title}</Link>
+      {userVideos.map(video =>
+        <div className='ballroomStyle' key={video.id}>
+          <Link id="videosList" to={`/videos/${video.id}`}>{video.title}</Link>
         </div>
       )}
     </div>
@@ -41,10 +41,10 @@ const SchoolList = (props) => {
 
 const mapStateToProps = state => {
   return {
-    schools: state.schools,
+    videos: state.videos,
     user: state.user,
     users: state.users,
   }
 }
 
-export default connect(mapStateToProps, { setUser })(SchoolList)
+export default connect(mapStateToProps, { setUser })(VideoList)
