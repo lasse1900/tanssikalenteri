@@ -5,19 +5,23 @@ import { useField } from '../hooks'
 import { createCalendar } from '../reducers/calendarReducer'
 import { Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
+import DayPicker from './DayPicker'
 
 const CalendarForm = props => {
 
   const author = useField('author')
   const title = useField('title')
   const url = useField('url')
+  // const dateData = useField('dateData')
+  const date = useField('date')
 
   const handleCalendarCreation = async (event) => {
     event.preventDefault()
     const calendarObject = {
       title: title.value,
       author: author.value,
-      url: url.value
+      url: url.value,
+      date: date.value
     }
 
     try {
@@ -25,12 +29,15 @@ const CalendarForm = props => {
       title.reset()
       author.reset()
       url.reset()
+      // dateData.reset()
+      date.reset()
       props.notify(`a new dancecalendar '${calendarObject.title}' successfully added`)
     } catch (exception) {
       // props.notify(`${exception.response.data.error}`, true)
       props.notify(`${exception}`, true)
     }
   }
+
 
   const omitReset = (hook) => {
     let { reset, ...hookWithoutReset } = hook
@@ -53,6 +60,10 @@ const CalendarForm = props => {
             <label>url</label>
             <input id="url" data-cy="url" {...omitReset(url)} />
           </Form.Field>
+          <Form.Field>
+          {/*<DayPicker /> */}
+          date:<input id="url" data-cy="date" {...omitReset(date)} />
+        </Form.Field>
           <button type='submit' data-cy="Add">Add</button>
         </Form>
       </div>

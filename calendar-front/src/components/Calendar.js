@@ -23,11 +23,12 @@ const Calendar = ({ calendar, notify, removeCalendar }) => {
     <div className='ballroomStyle'>
       <div className='toggle' >
         {calendar.title}
-        <br />
+        <br></br><br></br>
         <a href={calendar.url} target="_blank" rel="noopener noreferrer">{calendar.url} </a><br></br>
-        <br /> <button onClick={remove}>remove</button>
+        {calendar.date}
       </div>
       <Comments calendar={calendar} />
+      <br /> <button onClick={remove}>remove</button>
     </div>
   )
 }

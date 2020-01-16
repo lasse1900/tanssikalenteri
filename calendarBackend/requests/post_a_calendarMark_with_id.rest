@@ -3,7 +3,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNpbW8iLCJpZCI6IjVkZmNkMzYyOWY5ZjUwMzhjNDZhZGVjOCIsImlhdCI6MTU3ODk4NTM2Mn0.hT7mvNSsbjcKvFnNjYjkmRnM1IH1J3urSvaQoc5I5U4
 
 {
-	"title": "Kalenterimerkintä",
+	"title": "Kalenterimerkintä 3",
 	"author": "simo",
+  "date": "2020-04-15",
 	"url": "http://ajasto.fi"
 }
