@@ -12,16 +12,16 @@ const CalendarForm = props => {
   const author = useField('author')
   const title = useField('title')
   const url = useField('url')
-  // const dateData = useField('dateData')
   const date = useField('date')
 
   const handleCalendarCreation = async (event) => {
+    // console.log('you picked', pickedDate)
     event.preventDefault()
     const calendarObject = {
       title: title.value,
       author: author.value,
       url: url.value,
-      date: date.value
+      date: date.value     // pickedDate needed HERE
     }
 
     try {
@@ -29,7 +29,6 @@ const CalendarForm = props => {
       title.reset()
       author.reset()
       url.reset()
-      // dateData.reset()
       date.reset()
       props.notify(`a new dancecalendar '${calendarObject.title}' successfully added`)
     } catch (exception) {
@@ -37,7 +36,6 @@ const CalendarForm = props => {
       props.notify(`${exception}`, true)
     }
   }
-
 
   const omitReset = (hook) => {
     let { reset, ...hookWithoutReset } = hook
@@ -61,9 +59,9 @@ const CalendarForm = props => {
             <input id="url" data-cy="url" {...omitReset(url)} />
           </Form.Field>
           <Form.Field>
-          {/*<DayPicker /> */}
-          date:<input id="url" data-cy="date" {...omitReset(date)} />
-        </Form.Field>
+            <DayPicker />
+            {/*date:<input id="url" data-cy="date" {...omitReset(date)} /> */}
+          </Form.Field>
           <button type='submit' data-cy="Add">Add</button>
         </Form>
       </div>
