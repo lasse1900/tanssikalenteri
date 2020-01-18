@@ -62,8 +62,7 @@ const CalendarForm = props => {
           <Form.Field>
             <label>Please give date:</label>
             <DayPickerInput id="date" data-cy="date"
-              {...omitReset(date)} defaultValue={date.value} value={undefined} onDayChange={(day) => date.onChange({ target: { value: day } })}
-            />
+              {...omitReset(date)} defaultValue={date.value} value={undefined} onDayChange={(day) => date.onChange({ target: { value: day } })} />
           </Form.Field>
           <button type='submit' data-cy="Add">Add</button>
         </Form>
