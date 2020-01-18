@@ -5,7 +5,10 @@ import { useField } from '../hooks'
 import { createCalendar } from '../reducers/calendarReducer'
 import { Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
-import DayPicker from './DayPicker'
+
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import 'react-datepicker/dist/react-datepicker.css'
 
 const CalendarForm = props => {
 
@@ -15,13 +18,12 @@ const CalendarForm = props => {
   const date = useField('date')
 
   const handleCalendarCreation = async (event) => {
-    // console.log('you picked', pickedDate)
     event.preventDefault()
     const calendarObject = {
       title: title.value,
       author: author.value,
       url: url.value,
-      date: date.value     // pickedDate needed HERE
+      date: date.value
     }
 
     try {
@@ -59,8 +61,8 @@ const CalendarForm = props => {
             <input id="url" data-cy="url" {...omitReset(url)} />
           </Form.Field>
           <Form.Field>
-            <DayPicker />
-            {/*date:<input id="url" data-cy="date" {...omitReset(date)} /> */}
+          <label>Please give date:</label>
+          <DayPickerInput id="date" data-cy="date" {...omitReset(date)} onDayChange={(day) => date.onChange({ target: { value: day }})} />
           </Form.Field>
           <button type='submit' data-cy="Add">Add</button>
         </Form>
