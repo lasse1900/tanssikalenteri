@@ -4,10 +4,11 @@ import Togglable from './Togglable'
 import { useField } from '../hooks'
 import { createCalendar } from '../reducers/calendarReducer'
 import { Form } from 'semantic-ui-react'
+import PropTypes from 'prop-types'
+
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import 'react-datepicker/dist/react-datepicker.css'
-import PropTypes from 'prop-types'
 
 const CalendarForm = props => {
 
@@ -60,10 +61,13 @@ const CalendarForm = props => {
             <input id="url" data-cy="url" {...omitReset(url)} />
           </Form.Field>
           <Form.Field>
-            <label>Please give date:</label>
-            <DayPickerInput id="date" data-cy="date"
-              {...omitReset(date)} defaultValue={date.value} value={undefined} onDayChange={(day) => date.onChange({ target: { value: day } })}
-            />
+          <label>Please give date:</label>
+          <DayPickerInput id="date" data-cy="date"
+          
+          {...omitReset(date)} defaultValue={value} value={undefined} onDayChange={(day) => date.onChange({ target: { value: day }})}
+          
+          
+          />
           </Form.Field>
           <button type='submit' data-cy="Add">Add</button>
         </Form>
