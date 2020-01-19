@@ -23,17 +23,16 @@ const Calendar = ({ calendar, notify, removeCalendar }) => {
     }
   }
 
-
-  console.log('--> pvm :', calendar.date)
-  const data = new Date(2020, 1, 19)
+  console.log('calendar.date :', calendar.date)
+  const dateFromDB = new Date(calendar.date)
+  console.log('dateFromDB', dateFromDB)
 
   const modifiers = {
-    // highlighted: new Date(2020, 1, 19)
-    highlighted: data
+    highlighted: dateFromDB
   };
 
   const birthdayStyle = `.DayPicker-Day--highlighted {
-    background-color: orange;
+    background-color: blue;
     color: white;
   }`;
 
@@ -43,10 +42,10 @@ const Calendar = ({ calendar, notify, removeCalendar }) => {
         {calendar.title}
         <br></br><br></br>
         <a href={calendar.url} target="_blank" rel="noopener noreferrer">{calendar.url} </a><br></br>
-        {calendar.date}
         <div>
           <style>{birthdayStyle}</style>
-          <DayPicker modifiers={modifiers} month={new Date(2020, 1)} />
+         {/*<DayPicker modifiers={modifiers} selectedDays={dateFromDB}  /> */}
+         <DayPicker modifiers={modifiers} month={dateFromDB} />
         </div>
       </div>
       <Comments calendar={calendar} />
@@ -54,8 +53,6 @@ const Calendar = ({ calendar, notify, removeCalendar }) => {
     </div>
   )
 }
-
-// selectedDay={calendar.date}  EI toimi
 
 Calendar.propTypes = {
   notify: PropTypes.func.isRequired,

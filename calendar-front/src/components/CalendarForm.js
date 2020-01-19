@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import Togglable from './Togglable'
 import { useField } from '../hooks'
@@ -14,7 +14,7 @@ const CalendarForm = props => {
   const author = useField('author')
   const title = useField('title')
   const url = useField('url')
-  const date = useField('date')
+  const [pvm, setPvm] = useState('date')
 
   const handleCalendarCreation = async (event) => {
     event.preventDefault()
@@ -22,7 +22,8 @@ const CalendarForm = props => {
       title: title.value,
       author: author.value,
       url: url.value,
-      date: date.value
+      date: pvm
+      // date: pvm.toString()
     }
 
     try {
@@ -30,8 +31,11 @@ const CalendarForm = props => {
       title.reset()
       author.reset()
       url.reset()
-      date.reset()
+      // date.reset()
       props.notify(`a new dancecalendar '${calendarObject.title}' successfully added`)
+      console.log('valittu pvm', pvm)
+      let pickedDate = pvm.toString()
+      console.log('pickedDate', pickedDate)
     } catch (exception) {
       // props.notify(`${exception.response.data.error}`, true)
       props.notify(`${exception}`, true)
@@ -61,8 +65,7 @@ const CalendarForm = props => {
           </Form.Field>
           <Form.Field>
             <label>Please give date:</label>
-            <DayPickerInput id="date" data-cy="date"
-              {...omitReset(date)} defaultValue={date.value} value={undefined} onDayChange={(day) => date.onChange({ target: { value: day } })} />
+            <DayPickerInput onDayChange={day => setPvm(day)} />
           </Form.Field>
           <button type='submit' data-cy="Add">Add</button>
         </Form>
