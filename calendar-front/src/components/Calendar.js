@@ -44,7 +44,6 @@ const Calendar = ({ calendar, notify, removeCalendar }) => {
         <a href={calendar.url} target="_blank" rel="noopener noreferrer">{calendar.url} </a><br></br>
         <div>
           <style>{birthdayStyle}</style>
-         {/*<DayPicker modifiers={modifiers} selectedDays={dateFromDB}  /> */}
          <DayPicker modifiers={modifiers} month={dateFromDB} />
         </div>
       </div>

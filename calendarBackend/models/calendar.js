@@ -5,7 +5,6 @@ const calendarSchema= mongoose.Schema({
   title: String,
   author: String,
   url: String,
-  likes: Number,
   date: Date,
   user: {
     type: mongoose.Schema.Types.ObjectId,

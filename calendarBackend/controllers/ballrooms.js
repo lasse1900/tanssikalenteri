@@ -47,7 +47,6 @@ ballroomsRouter.post('/', async (request, response, next) => {
       title: body.title,
       author: body.author,
       url: body.url,
-      likes: body.likes === undefined ? 0 : body.likes,
       user: user.id
     })
 
@@ -58,20 +57,6 @@ ballroomsRouter.post('/', async (request, response, next) => {
     response.status(201).json(populatedBallroom)
   } catch (exception) {
     next(exception)
-  }
-})
-
-ballroomsRouter.put('/:id', async (request, response) => {
-  const body = await request.body
-
-  if (!body.likes) {
-    response.status(400).send({ error: 'missing likes count' })
-  } else {
-    const ballroom = {
-      likes: body.likes
-    }
-    const result = await Ballroom.findByIdAndUpdate(request.params.id, ballroom, { new: true })
-    response.status(200).json(result)
   }
 })
 

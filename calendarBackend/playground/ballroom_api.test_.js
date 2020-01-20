@@ -152,8 +152,7 @@ describe('add a valid ballroom', () => {
 describe('try to edit ballrooms table', () => {
   test.skip('ballroom without title & content not added', async () => {
     const newBallroom = {
-      author: 'Robert Jr',
-      likes: 10,
+      author: 'Robert Jr'
     }
 
     await api
@@ -183,21 +182,6 @@ describe('try to edit ballrooms table', () => {
 
       const titles = ballroomsAtEnd.map(r => r.title)
       expect(titles).not.toContain(ballroomToDelete.title)
-    })
-  })
-
-  describe('use PUT to edit likes of a ballroom ', () => {
-    test.skip('amount of likes is updated', async () => {
-      const ballroomsAtStart = await helper.ballroomsInDb()
-      const ballroomToUpdate = ballroomsAtStart[0]
-
-      const updateBallroom = {
-        likes: ballroomToUpdate.likes + 1
-      }
-
-      await api.put(`/api/ballrooms/${ballroomToUpdate.id}`).send(updateBallroom)
-      updateBallroom = await Ballroom.findById(ballroomToUpdate.id)
-      expect(updatedBallroom.likes).toBe(ballroomToUpdate.likes + 1)
     })
   })
 

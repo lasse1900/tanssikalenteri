@@ -23,7 +23,6 @@ const CalendarForm = props => {
       author: author.value,
       url: url.value,
       date: pvm
-      // date: pvm.toString()
     }
 
     try {
@@ -31,7 +30,6 @@ const CalendarForm = props => {
       title.reset()
       author.reset()
       url.reset()
-      // date.reset()
       props.notify(`a new dancecalendar '${calendarObject.title}' successfully added`)
       console.log('valittu pvm', pvm)
       let pickedDate = pvm.toString()
