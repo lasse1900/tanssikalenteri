@@ -10,7 +10,6 @@ const Comment = props => {
   const comment = useField('comment')
 
   const handleComment = () => {
-    console.log('id: comment value:', props.video.id, comment.value)
     props.addComment(props.video.id, comment.value)
   }
 

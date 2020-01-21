@@ -5,7 +5,6 @@ let token = null
 
 const setToken = newToken => {
   token = `bearer ${newToken}`
-  console.log('ballrooms.js - token', token)
 }
 
 const deleteToken = () => {
@@ -13,11 +12,9 @@ const deleteToken = () => {
 }
 
 const create = async (newBallroom) => {
-  console.log('ballrooms.js - create: [token]', token)
   const config = {
     headers: { Authorization: token }
   }
-  console.log('services ballrooms -> token:', { token })
   const response = await axios.post(baseUrl, newBallroom, config)
   return response.data
 }
@@ -38,13 +35,11 @@ const update = (ballroom) => {
 }
 
 const addComment = async (id, comment) => {
-  console.log('id: commnet:', id, comment)
   const response = await axios.post(`${baseUrl}/${id}/comments`, comment)
   return response.data
 }
 
 const remove = async (id) => {
-  console.log('id to remove', id)
   const config = {
     headers: { Authorization: token }
   }

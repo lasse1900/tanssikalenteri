@@ -62,7 +62,6 @@ const App = ({
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      console.log('App.js - user token:', user.token)
       setUser(user)
       ballroomService.setToken(user.token)
     }
@@ -72,7 +71,6 @@ const App = ({
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      console.log('App.js - user token:', user.token)
       setUser(user)
       schoolService.setToken(user.token)
     }
@@ -83,7 +81,6 @@ const App = ({
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      console.log('App.js - user token:', user.token)
       setUser(user)
       videoService.setToken(user.token)
     }
@@ -93,7 +90,6 @@ const App = ({
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
-      console.log('App.js - user token:', user.token)
       setUser(user)
       calendarService.setToken(user.token)
     }

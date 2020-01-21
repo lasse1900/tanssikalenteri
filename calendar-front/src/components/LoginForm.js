@@ -25,22 +25,18 @@ const LoginForm = (props) => {
   const handleLogin = async (event) => {
     event.preventDefault()
 
-    console.log('username', username.value)
-
     const credentials = {
       username: username.value,
       password: password.value
     }
 
     try {
-      console.log('credentials', credentials)
       const user = await loginService.login(
         credentials
       )
       window.localStorage.setItem('loggedBallroomAppUser', JSON.stringify(user))
       props.setUser(user)
       props.notify('login succeeded', false)
-      console.log(`LoginForm.js - asetettu käyttäjä: ${user.name} tokenilla: ${user.token}`)
       ballroomService.setToken(user.token)
       props.history.push('/')
     } catch (exception) {

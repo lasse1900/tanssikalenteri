@@ -29,7 +29,6 @@ const CalendarForm = props => {
       title.reset()
       url.reset()
       props.notify(`a new dancecalendar '${calendarObject.title}' successfully added`)
-      console.log('valittu pvm', pvm)
     } catch (exception) {
       // props.notify(`${exception.response.data.error}`, true)
       props.notify(`${exception}`, true)

@@ -9,7 +9,6 @@ const getAll = async () => {
 }
 
 const create = async (newUser) => {
-  console.log('cretae new user', newUser)
   const config = {
     headers: { Authorization: token }
   }
@@ -19,7 +18,6 @@ const create = async (newUser) => {
 }
 
 const post = async (uri, data) => {
-  console.log('post /services/users.js:', uri, data)
   const result = await axios.post(uri, data)
   return result.data
 }

@@ -23,9 +23,7 @@ const Calendar = ({ calendar, notify, removeCalendar }) => {
     }
   }
 
-  console.log('calendar.date :', calendar.date)
-  const dateFromDB = new Date(calendar.date)
-  console.log('dateFromDB', dateFromDB)
+  const dateFromDB = new Date(calendar.date) // parsing date from database
 
   const modifiers = {
     highlighted: dateFromDB

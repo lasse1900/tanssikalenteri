@@ -33,9 +33,6 @@ const RegisterForm = (props) => {
     }
 
     try {
-      console.log('username:', username.value)
-      console.log('password:', password.value)
-
       const user = {
         username: username.value,
         name: username.value,
@@ -48,10 +45,8 @@ const RegisterForm = (props) => {
       password.reset()
       rPassword.reset()
       props.notify('user created [from registerForm]', false)
-      console.log('user created', username)
       props.history.push('/registerInfo')
     } catch (error) {
-      console.log('Something went wrong. Please try again.', error)
       setShowInfo(' Username already taken. Please try again!')
     }
   }

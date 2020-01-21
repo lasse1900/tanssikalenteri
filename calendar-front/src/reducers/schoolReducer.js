@@ -5,17 +5,13 @@ const reducer = (state = [], action) => {
     case 'INITIALIZE_SCHOOLS':
       return action.data.schools
     case 'CREATE_SCHOOL':
-      console.log('CREATE_SCHOOL -->', action)
       return [...state, action.data]
     case 'REMOVE_SCHOOL':
       return state.filter(b => b.id !== action.data)
     case 'ADD_SCHOOL_COMMENT': {
       const newState = JSON.parse(JSON.stringify(state))
-      console.log('newState', newState)
       const newSchool = newState.find(school => school.id === action.data.school)
-      console.log('newSchool', newSchool)
       newSchool.comments = newSchool.comments.concat({ comment: action.data.comment, id: action.data.id })
-      console.log('new comment', newSchool.comments)
       return [...newState.filter(schools => schools.id !== newSchool.id), newSchool]
     }
     default:
@@ -38,7 +34,6 @@ export const initializeSchools = () => {
 }
 
 export const createSchool = school => {
-  console.log('schoolReducer - createSchool:', school)
   return async dispatch => {
     const createdSchool = await schoolService.create(school)
     dispatch({
@@ -50,7 +45,6 @@ export const createSchool = school => {
 
 export const addComment = (id, content) => {
   const comment = { comment: content }
-  console.log('addScoolComment', comment)
   return async dispatch => {
     const addedComment = await schoolService.addComment(id, comment)
     dispatch({

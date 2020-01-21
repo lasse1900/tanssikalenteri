@@ -5,7 +5,6 @@ let token = null
 
 const setToken = newToken => {
   token = `bearer ${newToken}`
-  console.log('schools.js - token', token)
 }
 
 const deleteToken = () => {
@@ -13,11 +12,9 @@ const deleteToken = () => {
 }
 
 const create = async (newSchool) => {
-  console.log('schools.js - create: [token]', token)
   const config = {
     headers: { Authorization: token }
   }
-  console.log('services schools -> token:', { token })
   const response = await axios.post(baseUrl, newSchool, config)
   return response.data
 }
@@ -38,13 +35,11 @@ const update = (school) => {
 }
 
 const addComment = async (id, comment) => {
-  console.log('id: commnet:', id, comment)
   const response = await axios.post(`${baseUrl}/${id}/comments`, comment)
   return response.data
 }
 
 const remove = async (id) => {
-  console.log('id to remove', id)
   const config = {
     headers: { Authorization: token }
   }
