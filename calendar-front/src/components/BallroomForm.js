@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 
 const BallroomForm = props => {
 
-  const author = useField('author')
   const title = useField('title')
   const url = useField('url')
 
@@ -16,14 +15,13 @@ const BallroomForm = props => {
     event.preventDefault()
     const ballroomObject = {
       title: title.value,
-      author: author.value,
+      author: props.user.name,
       url: url.value
     }
 
     try {
       await props.createBallroom(ballroomObject)
       title.reset()
-      author.reset()
       url.reset()
       props.notify(`a new ballroom '${ballroomObject.title}' successfully added`)
     } catch (exception) {
@@ -44,10 +42,6 @@ const BallroomForm = props => {
           <Form.Field>
             <label>title</label>
             <input id="title" data-cy="title" {...omitReset(title)} />
-          </Form.Field>
-          <Form.Field>
-            <label>author</label>
-            <input id="author" data-cy="author" {...omitReset(author)} />
           </Form.Field>
           <Form.Field>
             <label>url</label>

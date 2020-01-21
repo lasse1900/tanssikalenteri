@@ -8,7 +8,6 @@ import PropTypes from 'prop-types'
 
 const SchoolForm = props => {
 
-  const author = useField('author')
   const title = useField('title')
   const url = useField('url')
 
@@ -16,14 +15,13 @@ const SchoolForm = props => {
     event.preventDefault()
     const schoolObject = {
       title: title.value,
-      author: author.value,
+      author: props.user.name,
       url: url.value
     }
 
     try {
       await props.createSchool(schoolObject)
       title.reset()
-      author.reset()
       url.reset()
       props.notify(`a new danceschool '${schoolObject.title}' successfully added`)
     } catch (exception) {
@@ -44,10 +42,6 @@ const SchoolForm = props => {
           <Form.Field>
             <label>title</label>
             <input id="title" data-cy="title" {...omitReset(title)} />
-          </Form.Field>
-          <Form.Field>
-            <label>author</label>
-            <input id="author" data-cy="author" {...omitReset(author)} />
           </Form.Field>
           <Form.Field>
             <label>url</label>

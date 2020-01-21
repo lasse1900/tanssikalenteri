@@ -11,7 +11,6 @@ import PropTypes from 'prop-types'
 
 const CalendarForm = props => {
 
-  const author = useField('author')
   const title = useField('title')
   const url = useField('url')
   const [pvm, setPvm] = useState('date')
@@ -20,7 +19,7 @@ const CalendarForm = props => {
     event.preventDefault()
     const calendarObject = {
       title: title.value,
-      author: author.value,
+      author: props.user.name,
       url: url.value,
       date: pvm
     }
@@ -28,12 +27,9 @@ const CalendarForm = props => {
     try {
       await props.createCalendar(calendarObject)
       title.reset()
-      author.reset()
       url.reset()
       props.notify(`a new dancecalendar '${calendarObject.title}' successfully added`)
       console.log('valittu pvm', pvm)
-      let pickedDate = pvm.toString()
-      console.log('pickedDate', pickedDate)
     } catch (exception) {
       // props.notify(`${exception.response.data.error}`, true)
       props.notify(`${exception}`, true)
@@ -52,10 +48,6 @@ const CalendarForm = props => {
           <Form.Field>
             <label>title</label>
             <input id="title" data-cy="title" {...omitReset(title)} />
-          </Form.Field>
-          <Form.Field>
-            <label>author</label>
-            <input id="author" data-cy="author" {...omitReset(author)} />
           </Form.Field>
           <Form.Field>
             <label>url</label>
