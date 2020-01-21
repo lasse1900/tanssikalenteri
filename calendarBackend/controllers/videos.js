@@ -62,7 +62,6 @@ videoRouter.post('/', async (request, response, next) => {
 
 videoRouter.post('/:id/comments', async (request, response) => {
   const video = await Video.findById(request.params.id)
-  console.log('body -->', video)
 
   if (!video) {
     return response.status(400).send({ error: 'no videos on that id' }).end()
@@ -70,7 +69,6 @@ videoRouter.post('/:id/comments', async (request, response) => {
 
   const comment = new Comment(request.body)
   comment.video = video._id
-  console.log('comment --->', comment)
 
   const savedComment = await comment.save()
   video.comments = video.comments.concat(savedComment._id)

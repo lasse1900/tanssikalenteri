@@ -63,7 +63,6 @@ calendarRouter.post('/', async (request, response, next) => {
 
 calendarRouter.post('/:id/comments', async (request, response) => {
   const calendar = await Calendar.findById(request.params.id)
-  console.log('body -->', calendar)
 
   if (!calendar) {
     return response.status(400).send({ error: 'no calendars on that id' }).end()
@@ -71,7 +70,6 @@ calendarRouter.post('/:id/comments', async (request, response) => {
 
   const comment = new Comment(request.body)
   comment.calendar = calendar._id
-  console.log('comment --->', comment)
 
   const savedComment = await comment.save()
   calendar.comments = calendar.comments.concat(savedComment._id)

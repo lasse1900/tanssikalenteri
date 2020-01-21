@@ -62,7 +62,6 @@ schoolsRouter.post('/', async (request, response, next) => {
 
 schoolsRouter.post('/:id/comments', async (request, response) => {
   const school = await School.findById(request.params.id)
-  console.log('body -->', school)
 
   if (!school) {
     return response.status(400).send({ error: 'no danceschool on that id' }).end()
@@ -70,7 +69,6 @@ schoolsRouter.post('/:id/comments', async (request, response) => {
 
   const comment = new Comment(request.body)
   comment.school = school._id
-  console.log('comment --->', comment)
 
   const savedComment = await comment.save()
   school.comments = school.comments.concat(savedComment._id)

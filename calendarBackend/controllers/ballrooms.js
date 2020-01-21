@@ -62,7 +62,6 @@ ballroomsRouter.post('/', async (request, response, next) => {
 
 ballroomsRouter.post('/:id/comments', async (request, response) => {
   const ballroom = await Ballroom.findById(request.params.id)
-  console.log('body -->', ballroom)
 
   if (!ballroom) {
     return response.status(400).send({ error: 'no ballroom on that id' }).end()
@@ -70,7 +69,6 @@ ballroomsRouter.post('/:id/comments', async (request, response) => {
 
   const comment = new Comment(request.body)
   comment.ballroom = ballroom._id
-  console.log('comment --->', comment)
 
   const savedComment = await comment.save()
   ballroom.comments = ballroom.comments.concat(savedComment._id)
