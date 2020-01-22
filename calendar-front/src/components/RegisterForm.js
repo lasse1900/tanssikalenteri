@@ -12,7 +12,7 @@ const RegisterForm = (props) => {
 
   const username = useField('username')
   const password = useField('password')
-  const rPassword = useField('rPassword')
+  const PASSWORD = useField('PASSWORD')
   const [showInfo, setShowInfo] = useState(false)
 
   useEffect(() => {
@@ -25,10 +25,10 @@ const RegisterForm = (props) => {
 
   const createUser = async (event) => {
     event.preventDefault()
-    if (password.value !== rPassword.value) {
+    if (password.value !== PASSWORD.value) {
       setShowInfo(' please re-enter password!')
       password.reset()
-      rPassword.reset()
+      PASSWORD.reset()
       return
     }
 
@@ -43,7 +43,7 @@ const RegisterForm = (props) => {
 
       username.reset()
       password.reset()
-      rPassword.reset()
+      PASSWORD.reset()
       props.notify('user created [from registerForm]', false)
       props.history.push('/registerInfo')
     } catch (error) {
@@ -62,15 +62,15 @@ const RegisterForm = (props) => {
       <form onSubmit={createUser} >
         <div>
           username
-        <input {...omitReset(username)} placeholder='username' />
+          <input {...omitReset(username)} placeholder='username' />
         </div>
         <div>
           password
-        <input {...omitReset(password)} placeholder='password' />
+          <input {...omitReset(password)} placeholder='password' />
         </div>
         <div>
           retype password
-        <input {...omitReset(rPassword)} placeholder='retype password' />
+          <input {...omitReset(PASSWORD)} placeholder='retype password' />
         </div>
         <button type="submit">register</button>
         {showInfo}
