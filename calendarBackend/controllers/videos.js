@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const videoRouter = require('express').Router()
 const Video = require('../models/video')
 const User = require('../models/user')
-const Comment = require('../models/comment')
+const Comment = require('../models/videoComment')
 
 videoRouter.get('/', async (request, response) => {
   const videos = await Video

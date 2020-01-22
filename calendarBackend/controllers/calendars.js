@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const calendarRouter = require('express').Router()
 const Calendar = require('../models/calendar')
 const User = require('../models/user')
-const Comment = require('../models/comment')
+const Comment = require('../models/calendarComment')
 
 calendarRouter.get('/', async (request, response) => {
   const calendars = await Calendar

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const ballroomsRouter = require('express').Router()
 const Ballroom = require('../models/ballroom')
 const User = require('../models/user')
-const Comment = require('../models/comment')
+const Comment = require('../models/ballroomComment')
 
 ballroomsRouter.get('/', async (request, response) => {
   const ballrooms = await Ballroom

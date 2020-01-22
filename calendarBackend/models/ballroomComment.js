@@ -5,21 +5,6 @@ const commentSchema = mongoose.Schema({
   ballroom: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Ballroom'
-  },
-  comment: String,
-  school: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'School'
-  },
-  comment: String,
-  video: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Video'
-  },
-  comment: String,
-  calendar: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Calendar'
   }
 })
 

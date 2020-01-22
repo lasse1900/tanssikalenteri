@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const schoolsRouter = require('express').Router()
 const School = require('../models/school')
 const User = require('../models/user')
-const Comment = require('../models/comment')
+const Comment = require('../models/schoolComment')
 
 schoolsRouter.get('/', async (request, response) => {
   const schools = await School
