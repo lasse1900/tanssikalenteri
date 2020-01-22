@@ -112,10 +112,10 @@
 // module.exports = ballroomsRouter
 
 
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
 const ballroomsRouter = require('express').Router()
 const Ballroom = require('../models/ballroom')
-const User = require('../models/user')
+// const User = require('../models/user')
 
 ballroomsRouter.get('/', async (request, response) => {
   const ballrooms = await Ballroom

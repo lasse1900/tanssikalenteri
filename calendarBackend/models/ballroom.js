@@ -1,8 +1,12 @@
 const mongoose = require('mongoose')
 mongoose.set('useFindAndModify', false)
 
-const ballroomSchema= mongoose.Schema({
-  title: String,
+const ballroomSchema = mongoose.Schema({
+  title: {
+    type: String,
+    minlength: 3,
+    reguired: true
+  },
   author: String,
   url: String,
   user: {

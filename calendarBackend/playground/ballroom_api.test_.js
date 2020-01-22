@@ -139,7 +139,7 @@ describe('add a valid ballroom', () => {
       .expect('Content-Type', /application\/json/)
 
     const ballroomsAtEnd = await helper.ballroomsInDb()
-    const response = await api.get('/api/ballrooms')
+    // const response = await api.get('/api/ballrooms')
     const contents = ballroomsAtEnd.map(n => n.title)
 
     expect(ballroomsAtEnd.length).toBe(helper.initialBallrooms.length + 1)

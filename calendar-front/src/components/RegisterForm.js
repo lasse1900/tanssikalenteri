@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
-import '../app.css'
+import '../login.css'
 
 const RegisterForm = (props) => {
 
@@ -46,8 +46,9 @@ const RegisterForm = (props) => {
       PASSWORD.reset()
       props.notify('user created [from registerForm]', false)
       props.history.push('/registerInfo')
-    } catch (error) {
-      setShowInfo(' Username already taken. Please try again!')
+    } catch (exception) {
+      setShowInfo(' Username already taken OR invalid. Please try again!')
+      props.notify(`${exception.response.data}`, true)
     }
   }
 

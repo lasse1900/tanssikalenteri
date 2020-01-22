@@ -7,7 +7,7 @@ import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import ballroomService from '../services/ballrooms'
 import PropTypes from 'prop-types'
-import '../app.css'
+import '../login.css'
 
 const LoginForm = (props) => {
   const username = useField('username')
@@ -41,7 +41,7 @@ const LoginForm = (props) => {
       props.history.push('/')
     } catch (exception) {
       setShowInfo(' username or password incorrect!')
-      props.notify('login not succeeded', false)
+      props.notify(`${exception.response.data}`, true)
     }
   }
 

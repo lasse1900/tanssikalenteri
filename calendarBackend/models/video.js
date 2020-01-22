@@ -2,7 +2,11 @@ const mongoose = require('mongoose')
 mongoose.set('useFindAndModify', false)
 
 const videoSchema= mongoose.Schema({
-  title: String,
+  title: {
+    type: String,
+    minlength: 3,
+    reguired: true
+  },
   author: String,
   url: String,
   user: {
