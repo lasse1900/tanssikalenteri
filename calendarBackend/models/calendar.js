@@ -30,4 +30,4 @@ calendarSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Calendar', calendarSchema) 
+module.exports = mongoose.model('Calendar', calendarSchema)

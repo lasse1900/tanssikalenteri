@@ -29,4 +29,4 @@ videoSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Video', videoSchema) 
+module.exports = mongoose.model('Video', videoSchema)

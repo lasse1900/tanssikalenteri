@@ -6,6 +6,9 @@ import loginService from '../services/login'
 import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import ballroomService from '../services/ballrooms'
+import schoolService from '../services/schools'
+import videoService from '../services/videos'
+import calendarService from '../services/calendars'
 import PropTypes from 'prop-types'
 import '../login.css'
 
@@ -38,6 +41,9 @@ const LoginForm = (props) => {
       props.setUser(user)
       props.notify('login succeeded', false)
       ballroomService.setToken(user.token)
+      schoolService.setToken(user.token)
+      videoService.setToken(user.token)
+      calendarService.setToken(user.token)
       props.history.push('/')
     } catch (exception) {
       setShowInfo(' username or password incorrect!')
