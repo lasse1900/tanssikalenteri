@@ -1,6 +1,5 @@
 import React from 'react'
-import Tango from '../pics/tango-dancing2.png'
-
+import Tango from '../pics/argentine-tango.jpg'
 
 const AboutPage = () => {
   return (
@@ -11,9 +10,8 @@ const AboutPage = () => {
         <li>Look and & danceschools</li><br />
         <li>Look and & videolinks</li><br />
         <li>Look & mark calendar</li>
-        <br></br>
-        <img src={Tango} alt="Tango Dancing" />
       </ul>
+      <img src={Tango} alt="Tango Dancing" />
     </div>
   )
 }
