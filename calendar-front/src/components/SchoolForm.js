@@ -25,8 +25,7 @@ const SchoolForm = props => {
       url.reset()
       props.notify(`a new danceschool '${schoolObject.title}' successfully added`)
     } catch (exception) {
-      // props.notify(`${exception.response.data.error}`, true)
-      props.notify(`${exception}`, true)
+      props.notify(`${exception.response.data.error}`, true)
     }
   }
 

@@ -26,7 +26,6 @@ const BallroomForm = props => {
       props.notify(`a new ballroom '${ballroomObject.title}' successfully added`)
     } catch (exception) {
       props.notify(`${exception.response.data.error}`, true)
-      // props.notify(`${exception}`, true)
     }
   }
 

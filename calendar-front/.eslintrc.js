@@ -6,6 +6,8 @@ module.exports = {
   },
   "extends": "eslint:recommended",
   "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": true,
     "ecmaVersion": 2018
   },
   "rules": {

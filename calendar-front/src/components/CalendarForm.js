@@ -30,8 +30,7 @@ const CalendarForm = props => {
       url.reset()
       props.notify(`a new dancecalendar '${calendarObject.title}' successfully added`)
     } catch (exception) {
-      // props.notify(`${exception.response.data.error}`, true)
-      props.notify(`${exception}`, true)
+      props.notify(`${exception.response.data.error}`, true)
     }
   }
 
