@@ -35,21 +35,25 @@ const SchoolForm = props => {
   }
 
   return (
-    <Togglable buttonLabel='add'>
-      <div>
-        <Form onSubmit={event => handleSchoolCreation(event)}>
-          <Form.Field>
-            <label>title</label>
-            <input id="title" data-cy="title" {...omitReset(title)} />
-          </Form.Field>
-          <Form.Field>
-            <label>url</label>
-            <input id="url" data-cy="url" {...omitReset(url)} />
-          </Form.Field>
-          <button type='submit' data-cy="Add">Add</button>
-        </Form>
-      </div>
-    </Togglable>
+    <div>
+      <br></br>
+      <Togglable buttonLabel='add'>
+        <div>
+          <Form onSubmit={event => handleSchoolCreation(event)}>
+            <Form.Field>
+              <label>title</label>
+              <input id="title" data-cy="title" {...omitReset(title)} />
+            </Form.Field>
+            <Form.Field>
+              <label>url</label>
+              <input id="url" data-cy="url" {...omitReset(url)} />
+            </Form.Field>
+            <button type='submit' data-cy="Add">Add</button>
+          </Form>
+        </div>
+      </Togglable>
+    </div>
+
   )
 }
 

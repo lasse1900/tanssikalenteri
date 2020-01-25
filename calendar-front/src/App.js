@@ -142,7 +142,6 @@ const App = ({
             {' '}{user.username}> logged in {' '}
             <button data-cy="logout" onClick={handleLogout}>logout</button>
           </div>
-          <br></br>
           <Notification />
           <Switch>
             <Route exact path="/ballrooms" render={() => <BallroomList notify={notify} />} />

@@ -40,25 +40,29 @@ const CalendarForm = props => {
   }
 
   return (
-    <Togglable buttonLabel='add'>
-      <div>
-        <Form onSubmit={event => handleCalendarCreation(event)}>
-          <Form.Field>
-            <label>title</label>
-            <input id="title" data-cy="title" {...omitReset(title)} />
-          </Form.Field>
-          <Form.Field>
-            <label>url</label>
-            <input id="url" data-cy="url" {...omitReset(url)} />
-          </Form.Field>
-          <Form.Field>
-            <label>Please give date:</label>
-            <DayPickerInput onDayChange={day => setPvm(day)} />
-          </Form.Field>
-          <button type='submit' data-cy="Add">Add</button>
-        </Form>
-      </div>
-    </Togglable>
+    <div>
+      <br></br>
+      <Togglable buttonLabel='add'>
+        <div>
+          <Form onSubmit={event => handleCalendarCreation(event)}>
+            <Form.Field>
+              <label>title</label>
+              <input id="title" data-cy="title" {...omitReset(title)} />
+            </Form.Field>
+            <Form.Field>
+              <label>url</label>
+              <input id="url" data-cy="url" {...omitReset(url)} />
+            </Form.Field>
+            <Form.Field>
+              <label>Please give date:</label>
+              <DayPickerInput onDayChange={day => setPvm(day)} />
+            </Form.Field>
+            <button type='submit' data-cy="Add">Add</button>
+          </Form>
+        </div>
+      </Togglable>
+    </div>
+
   )
 }
 

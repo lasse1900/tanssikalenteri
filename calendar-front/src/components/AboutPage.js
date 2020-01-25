@@ -1,17 +1,35 @@
 import React from 'react'
-import Tango from '../pics/argentine-tango.jpg'
+import tango from '../pics/argentine-tango.jpg'
 
 const AboutPage = () => {
+
+  const style = {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    fontSize: 20,
+    color: 'white'
+  }
+
+  const textItems = [
+    'Here you can save and comment your favourite ballrooms',
+    'Look and save danceschools',
+    'Look and save videolinks',
+    'Look and mark calendar',
+  ]
+
+  const containerStyle = {
+    position: 'relative'
+  }
+
+  const mappedItems = textItems.map(item => <li key={item}>{item}</li>)
+
   return (
-    <div>
-      <em>Welcome to:</em> <h1><em>Dance Calendar app</em></h1>
-      <ul>
-        <li>Here you can save & comment your favourite ballrooms</li><br />
-        <li>Look and & danceschools</li><br />
-        <li>Look and & videolinks</li><br />
-        <li>Look & mark calendar</li>
+    <div style={containerStyle}>
+      <img style={style} src={tango} alt='tango' width='1200px' height='1200px'/>
+      <ul style={style} >
+        {mappedItems}
       </ul>
-      <img src={Tango} alt="Tango Dancing" />
     </div>
   )
 }
