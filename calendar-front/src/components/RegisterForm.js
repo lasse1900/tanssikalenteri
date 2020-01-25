@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
@@ -13,7 +13,14 @@ const RegisterForm = (props) => {
   const username = useField('username')
   const password = useField('password')
   const PASSWORD = useField('PASSWORD')
+  const usernameRef = useRef()
+  const passwordRef = useRef()
+  const rPasswordRef = useRef()
   const [showInfo, setShowInfo] = useState(false)
+
+  useEffect(() => {
+    usernameRef.current.focus()
+  }, [])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
@@ -22,6 +29,17 @@ const RegisterForm = (props) => {
       props.setUser(user)
     }
   }, [])
+
+  function keyPressHandle(e) {
+    if (e.keyCode === 13) {
+      if (e.target.id === "username") {
+        passwordRef.current.focus()
+      }
+      if (e.target.id === "password") {
+        rPasswordRef.current.focus()
+      }
+    }
+  }
 
   const createUser = async (event) => {
     event.preventDefault()
@@ -63,15 +81,15 @@ const RegisterForm = (props) => {
       <form onSubmit={createUser} >
         <div>
           username
-          <input {...omitReset(username)} placeholder='username' />
+          <input ref={usernameRef} id="username" {...omitReset(username)} placeholder='username' onKeyDown={keyPressHandle} />
         </div>
         <div>
           password
-          <input {...omitReset(password)} placeholder='password' />
+          <input ref={passwordRef} {...omitReset(password)} placeholder='password' onKeyDown={keyPressHandle} />
         </div>
         <div>
           retype password
-          <input {...omitReset(PASSWORD)} placeholder='retype password' />
+          <input ref={rPasswordRef} {...omitReset(PASSWORD)} placeholder='retype password' onKeyDown={keyPressHandle} />
         </div>
         <button type="submit">register</button>
         {showInfo}

@@ -15,7 +15,7 @@ const Ballroom = ({ ballroom, notify, removeBallroom }) => {
     if (window.confirm(`remove ballroom ${ballroom.title}? by ${ballroom.author}`)) {
       await removeBallroom(ballroom)
       notify(`ballroom '${ballroom.title}' removed succesfully`, false)
-      history.push('/')
+      history.push('/ballrooms')
     }
   }
 

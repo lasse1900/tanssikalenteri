@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { useField } from '../hooks'
@@ -15,7 +15,13 @@ import '../login.css'
 const LoginForm = (props) => {
   const username = useField('username')
   const password = useField('password')
+  const usernameRef = useRef()
+  const passwordRef = useRef()
   const [showInfo, setShowInfo] = useState(false)
+
+  useEffect(() => {
+    usernameRef.current.focus()
+  }, [])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
@@ -24,6 +30,14 @@ const LoginForm = (props) => {
       props.setUser(user)
     }
   }, [])
+
+  function keyPressHandle(e) {
+    if (e.keyCode === 13) {
+      if (e.target.id === "username") {
+        passwordRef.current.focus()
+      }
+    }
+  }
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -62,11 +76,11 @@ const LoginForm = (props) => {
       <form onSubmit={handleLogin} >
         <div>
           username
-        <input id="username" {...omitReset(username)} placeholder='username' />
+        <input ref={usernameRef} id="username" {...omitReset(username)} placeholder='username' onKeyDown={keyPressHandle} />
         </div>
         <div>
           password
-        <input id="password" {...omitReset(password)} placeholder='password' />
+        <input ref={passwordRef} id="password" {...omitReset(password)} placeholder='password' />
         </div>
         <button type="submit">login</button>
         {showInfo}
