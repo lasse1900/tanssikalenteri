@@ -26,7 +26,7 @@ const AboutPage = () => {
 
   return (
     <div style={containerStyle}>
-      <img style={style} src={tango} alt='tango' width='1200px' height='1200px'/>
+      <img style={style} src={tango} alt='tango' width='900px' height='900px'/>
       <ul style={style} >
         {mappedItems}
       </ul>

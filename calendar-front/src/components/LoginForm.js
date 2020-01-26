@@ -10,7 +10,7 @@ import schoolService from '../services/schools'
 import videoService from '../services/videos'
 import calendarService from '../services/calendars'
 import PropTypes from 'prop-types'
-import '../login.css'
+// import '../login.css'
 
 const LoginForm = (props) => {
   const username = useField('username')
@@ -72,6 +72,7 @@ const LoginForm = (props) => {
 
   return (
     <div>
+      <br></br>
       <h2>Login</h2>
       <form onSubmit={handleLogin} >
         <div>
@@ -82,7 +83,7 @@ const LoginForm = (props) => {
           password
         <input ref={passwordRef} id="password" {...omitReset(password)} placeholder='password' />
         </div>
-        <button type="submit">login</button>
+        <button class="ui primary mini button" type="submit">login</button>
         {showInfo}
       </form>
     </div>

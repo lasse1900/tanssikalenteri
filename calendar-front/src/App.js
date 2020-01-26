@@ -139,7 +139,7 @@ const App = ({
             <Link to="/schools" id="schools" data-cy="schools">schools</Link>{' '}
             <Link to="/videos" id="videos" data-cy="videos">videos</Link>{' '}
             <Link to="/calendars" id="calendars" data-cy="calendars">calendar</Link>{' '}
-            {' '}{user.username}> logged in {' '}
+            {' <'}{user.username}> logged in {' '}
             <button data-cy="logout" onClick={handleLogout}>logout</button>
           </div>
           <Notification />

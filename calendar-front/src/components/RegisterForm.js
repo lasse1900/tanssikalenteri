@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
-import '../login.css'
+// import '../login.css'
 
 const RegisterForm = (props) => {
 
@@ -77,7 +77,8 @@ const RegisterForm = (props) => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <br></br>
+      <h2>Register</h2>
       <form onSubmit={createUser} >
         <div>
           username
@@ -91,7 +92,7 @@ const RegisterForm = (props) => {
           retype password
           <input ref={rPasswordRef} {...omitReset(PASSWORD)} placeholder='retype password' onKeyDown={keyPressHandle} />
         </div>
-        <button type="submit">register</button>
+        <button class="ui primary mini button" type="submit">register</button>
         {showInfo}
       </form>
     </div>
