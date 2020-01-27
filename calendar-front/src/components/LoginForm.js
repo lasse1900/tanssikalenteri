@@ -74,19 +74,40 @@ const LoginForm = (props) => {
   return (
     <div>
       <br></br>
-      <h2>Login</h2>
-      <Form onSubmit={handleLogin} >
-        <div>
-          username
-        <Input ref={usernameRef} id="username" {...omitReset(username)} placeholder='username' onKeyDown={keyPressHandle} />
+      <div className="ui middle aligned center aligned grid">
+        <div className="column">
+          <h2 className="ui teal image header">
+            {/*<img src="assets/images/logo.png" className="image" /> */}
+            <div className="content">
+              Log-in to your account
         </div>
-        <div>
-          password
-        <Input ref={passwordRef} id="password" {...omitReset(password)} placeholder='password' />
+          </h2>
+          <Form className="ui large form" onSubmit={handleLogin}>
+            <div className="ui stacked segment">
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="user icon"></i>
+                  <Input ref={usernameRef} id="username" type="text" {...omitReset(username)} placeholder='Username / E-mail address' onKeyDown={keyPressHandle} />
+                </div>
+              </div>
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="lock icon"></i>
+                  <Input ref={passwordRef} id="password" type="password" name="password" {...omitReset(password)} placeholder='Password' />
+                </div>
+              </div>
+              <div className="ui fluid large teal submit button">
+                <Button className="ui fluid large teal submit button" type="submit">login</Button>
+                {showInfo}
+              </div>
+            </div>
+            <div className="ui error message"></div>
+          </Form>
+          <div className="ui message">
+            New to us? <a href='/register'>Register</a>
+          </div>
         </div>
-        <Button className="ui basic tiny button" type="submit">login</Button>
-        {showInfo}
-      </Form>
+      </div>
     </div>
   )
 }

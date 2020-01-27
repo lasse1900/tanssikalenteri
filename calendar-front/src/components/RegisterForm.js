@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
-import { Button, Input } from 'semantic-ui-react'
+import { Form, Button, Input } from 'semantic-ui-react'
 // import '../login.css'
 
 const RegisterForm = (props) => {
@@ -79,23 +79,48 @@ const RegisterForm = (props) => {
   return (
     <div>
       <br></br>
-      <h2>Register</h2>
-      <form onSubmit={createUser} >
-        <div>
-          username
-          <Input ref={usernameRef} id="username" {...omitReset(username)} placeholder='username' onKeyDown={keyPressHandle} />
+      <div className="ui middle aligned center aligned grid">
+        <div className="column">
+          <h2 className="ui teal image header">
+            {/*<img src="assets/images/logo.png" className="image" /> */}
+            <div className="content">
+              Register
         </div>
-        <div>
-          password
-          <Input ref={passwordRef} {...omitReset(password)} placeholder='password' onKeyDown={keyPressHandle} />
+          </h2>
+          <Form className="ui large form" onSubmit={createUser}>
+            <div className="ui stacked segment">
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="user icon"></i>
+                  <Input ref={usernameRef} id="username" type="text" {...omitReset(username)} placeholder='Username / E-mail address' onKeyDown={keyPressHandle} />
+                </div>
+              </div>
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="lock icon"></i>
+                  <Input ref={passwordRef} id="password" type="password" name="password" {...omitReset(password)} placeholder='Password' />
+                </div>
+              </div>
+
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="lock icon"></i>
+                  <Input ref={rPasswordRef} id="password" type="password" name="rPassword" {...omitReset(PASSWORD)} placeholder='Password' />
+                </div>
+              </div>
+
+              <div className="ui fluid large teal submit button">
+                <Button className="ui fluid large teal submit button" type="submit">register</Button>
+                {showInfo}
+              </div>
+            </div>
+            <div className="ui error message"></div>
+          </Form>
+          <div className="ui message">
+            New to us? <a href='/login'>Sign Up</a>
+          </div>
         </div>
-        <div>
-          retype password
-          <Input ref={rPasswordRef} {...omitReset(PASSWORD)} placeholder='retype password' onKeyDown={keyPressHandle} />
-        </div>
-        <Button className="ui basic tiny button" type="submit">register</Button>
-        {showInfo}
-      </form>
+      </div>
     </div>
   )
 }

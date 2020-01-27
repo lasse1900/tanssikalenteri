@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
 import schoolService from './services/schools'
 import videoService from './services/videos'
@@ -124,6 +124,7 @@ const App = ({
               <Route path="/registerInfo" render={() => <RegisterInfo notify={notify} />} />
               <Route path="/register" render={() => <RegisterForm notify={notify} />} />
             </Switch>
+            <Redirect to="/login" />
           </Router>
         </div>
       </Container>)
@@ -134,7 +135,7 @@ const App = ({
       <div>
         <Router>
           <div className='menuStyle'>
-          <Link to="/" id="about" data-cy="about">about</Link>{' '}
+            <Link to="/" id="about" data-cy="about">about</Link>{' '}
             <Link to="/ballrooms" id="home" data-cy="home" >ballrooms</Link>{' '}
             <Link to="/schools" id="schools" data-cy="schools">schools</Link>{' '}
             <Link to="/videos" id="videos" data-cy="videos">videos</Link>{' '}
