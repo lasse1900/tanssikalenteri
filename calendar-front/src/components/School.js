@@ -4,7 +4,7 @@ import Comments from './CommentSchool'
 import { removeSchool } from '../reducers/schoolReducer'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import '../index.css'
+import { Button } from 'semantic-ui-react'
 
 const School = ({ school, notify, removeSchool }) => {
   const history = useHistory()
@@ -20,12 +20,12 @@ const School = ({ school, notify, removeSchool }) => {
   }
 
   return (
-    <div className='ballroomStyle'>
+    <div>
       <div className='toggle' >
         {school.title}
         <br />
         <a href={school.url} target="_blank" rel="noopener noreferrer">{school.url} </a><br></br>
-        <br /> <button onClick={remove}>remove</button>
+        <br /> <Button className="ui basic tiny button" onClick={remove}>remove</Button>
       </div>
       <Comments school={school} />
     </div>

@@ -4,7 +4,7 @@ import Comments from './CommentBallroom'
 import { removeBallroom } from '../reducers/ballroomReducer'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import '../index.css'
+import { Button } from 'semantic-ui-react'
 
 const Ballroom = ({ ballroom, notify, removeBallroom }) => {
   const history = useHistory()
@@ -20,12 +20,12 @@ const Ballroom = ({ ballroom, notify, removeBallroom }) => {
   }
 
   return (
-    <div className='ballroomStyle'>
+    <div>
       <div className='toggle' >
         {ballroom.title}
         <br />
         <a href={ballroom.url} target="_blank" rel="noopener noreferrer">{ballroom.url} </a><br></br>
-        <br /> <button onClick={remove}>remove</button>
+        <br /> <Button className="ui basic tiny button" onClick={remove}>remove</Button>
       </div>
       <Comments ballroom={ballroom} />
     </div>

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import Togglable from './Togglable'
 import { useField } from '../hooks'
 import { createSchool } from '../reducers/schoolReducer'
-import { Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
+import { Form, Button } from 'semantic-ui-react'
 
 const SchoolForm = props => {
 
@@ -48,7 +48,7 @@ const SchoolForm = props => {
               <label>url</label>
               <input id="url" data-cy="url" {...omitReset(url)} />
             </Form.Field>
-            <button type='submit' data-cy="Add">Add</button>
+            <Button className="ui basic tiny button" type='submit' data-cy="Add">Add</Button>
           </Form>
         </div>
       </Togglable>

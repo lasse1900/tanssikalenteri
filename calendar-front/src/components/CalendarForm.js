@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import Togglable from './Togglable'
 import { useField } from '../hooks'
 import { createCalendar } from '../reducers/calendarReducer'
-import { Form } from 'semantic-ui-react'
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import 'react-datepicker/dist/react-datepicker.css'
 import PropTypes from 'prop-types'
+import { Form, Button } from 'semantic-ui-react'
 
 const CalendarForm = props => {
 
@@ -57,7 +57,7 @@ const CalendarForm = props => {
               <label>Please give date:</label>
               <DayPickerInput onDayChange={day => setPvm(day)} />
             </Form.Field>
-            <button type='submit' data-cy="Add">Add</button>
+            <Button className="ui basic tiny button" type='submit' data-cy="Add">Add</Button>
           </Form>
         </div>
       </Togglable>

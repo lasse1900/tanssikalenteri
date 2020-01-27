@@ -4,7 +4,7 @@ import Comments from './CommentVideo'
 import { removeVideo } from '../reducers/videoReducer'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import '../index.css'
+import { Button } from 'semantic-ui-react'
 
 const Video = ({ video, notify, removeVideo }) => {
   const history = useHistory()
@@ -20,12 +20,12 @@ const Video = ({ video, notify, removeVideo }) => {
   }
 
   return (
-    <div className='ballroomStyle'>
+    <div>
       <div className='toggle' >
         {video.title}
         <br />
         <a href={video.url} target="_blank" rel="noopener noreferrer">{video.url} </a><br></br>
-        <br /> <button onClick={remove}>remove</button>
+        <br /> <Button className="ui basic tiny button" onClick={remove}>remove</Button>
       </div>
       <Comments video={video} />
     </div>

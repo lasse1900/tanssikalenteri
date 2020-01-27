@@ -4,11 +4,11 @@ import Comments from './CommentCalendar'
 import { removeCalendar } from '../reducers/calendarReducer'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import '../index.css'
 
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import 'react-datepicker/dist/react-datepicker.css'
+import { Button } from 'semantic-ui-react'
 
 const Calendar = ({ calendar, notify, removeCalendar }) => {
   const history = useHistory()
@@ -35,18 +35,18 @@ const Calendar = ({ calendar, notify, removeCalendar }) => {
   }`;
 
   return (
-    <div className='ballroomStyle'>
+    <div>
       <div className='toggle' >
         {calendar.title}
         <br></br><br></br>
         <a href={calendar.url} target="_blank" rel="noopener noreferrer">{calendar.url} </a><br></br>
         <div>
           <style>{birthdayStyle}</style>
-         <DayPicker modifiers={modifiers} month={dateFromDB} />
+          <DayPicker modifiers={modifiers} month={dateFromDB} />
         </div>
       </div>
       <Comments calendar={calendar} />
-      <br /> <button onClick={remove}>remove</button>
+      <br /> <Button className="ui basic tiny button" onClick={remove}>remove</Button>
     </div>
   )
 }

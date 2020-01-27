@@ -5,6 +5,7 @@ import { useField } from '../hooks'
 import { createVideo } from '../reducers/videoReducer'
 import { Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
+import { Button } from 'semantic-ui-react'
 
 const VideoForm = props => {
 
@@ -48,7 +49,7 @@ const VideoForm = props => {
               <label>url</label>
               <input id="url" data-cy="url" {...omitReset(url)} />
             </Form.Field>
-            <button type='submit' data-cy="Add">Add</button>
+            <Button className="ui basic tiny button" type='submit' data-cy="Add">Add</Button>
           </Form>
         </div>
       </Togglable>

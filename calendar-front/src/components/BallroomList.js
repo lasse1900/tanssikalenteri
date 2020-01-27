@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BallroomForm from './BallroomForm'
 import { setUser } from './../reducers/userReducer'
-import '../index.css'
 
 const BallroomList = (props) => {
 
@@ -31,7 +30,7 @@ const BallroomList = (props) => {
     <div> {ballroomForm()}
       <br></br>
       {userBallrooms.map(ballroom =>
-        <div className='ballroomStyle' key={ballroom.id}>
+        <div key={ballroom.id}>
           <Link id="ballroomsList" to={`/ballrooms/${ballroom.id}`}>{ballroom.title}</Link>
         </div>
       )}

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import CalendarForm from './CalendarForm'
 import { setUser } from './../reducers/userReducer'
-import '../index.css'
 
 const CalendarList = (props) => {
 
@@ -31,7 +30,7 @@ const CalendarList = (props) => {
     <div> {calendarForm()}
       <br></br>
       {userCalendars.map(calendar =>
-        <div className='ballroomStyle' key={calendar.id}>
+        <div key={calendar.id}>
           <Link id="calendarsList" to={`/calendars/${calendar.id}`}>{calendar.title}</Link>
         </div>
       )}

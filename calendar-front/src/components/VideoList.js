@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import VideoForm from './VideoForm'
 import { setUser } from './../reducers/userReducer'
-import '../index.css'
 
 const VideoList = (props) => {
 
@@ -31,7 +30,7 @@ const VideoList = (props) => {
     <div> {videoForm()}
       <br></br>
       {userVideos.map(video =>
-        <div className='ballroomStyle' key={video.id}>
+        <div key={video.id}>
           <Link id="videosList" to={`/videos/${video.id}`}>{video.title}</Link>
         </div>
       )}
