@@ -4,7 +4,7 @@ import Togglable from './Togglable'
 import { useField } from '../hooks'
 import { createBallroom } from '../reducers/ballroomReducer'
 import PropTypes from 'prop-types'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Input } from 'semantic-ui-react'
 
 const BallroomForm = props => {
 
@@ -42,11 +42,11 @@ const BallroomForm = props => {
           <Form onSubmit={event => handleBallroomCreation(event)}>
             <Form.Field>
               <label>title</label>
-              <input id="title" data-cy="title" {...omitReset(title)} />
+              <Input id="title" data-cy="title" {...omitReset(title)} />
             </Form.Field>
             <Form.Field>
               <label>url</label>
-              <input id="url" data-cy="url" {...omitReset(url)} />
+              <Input id="url" data-cy="url" {...omitReset(url)} />
             </Form.Field>
             <Button className="ui basic tiny button" type='submit' data-cy="Add">Add</Button>
           </Form>

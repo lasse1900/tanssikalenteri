@@ -7,7 +7,7 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 import 'react-datepicker/dist/react-datepicker.css'
 import PropTypes from 'prop-types'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Input } from 'semantic-ui-react'
 
 const CalendarForm = props => {
 
@@ -47,11 +47,11 @@ const CalendarForm = props => {
           <Form onSubmit={event => handleCalendarCreation(event)}>
             <Form.Field>
               <label>title</label>
-              <input id="title" data-cy="title" {...omitReset(title)} />
+              <Input id="title" data-cy="title" {...omitReset(title)} />
             </Form.Field>
             <Form.Field>
               <label>url</label>
-              <input id="url" data-cy="url" {...omitReset(url)} />
+              <Input id="url" data-cy="url" {...omitReset(url)} />
             </Form.Field>
             <Form.Field>
               <label>Please give date:</label>

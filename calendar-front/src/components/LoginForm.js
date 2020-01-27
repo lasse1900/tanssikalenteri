@@ -10,7 +10,7 @@ import schoolService from '../services/schools'
 import videoService from '../services/videos'
 import calendarService from '../services/calendars'
 import PropTypes from 'prop-types'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Input } from 'semantic-ui-react'
 // import '../login.css'
 
 const LoginForm = (props) => {
@@ -78,11 +78,11 @@ const LoginForm = (props) => {
       <Form onSubmit={handleLogin} >
         <div>
           username
-        <input ref={usernameRef} id="username" {...omitReset(username)} placeholder='username' onKeyDown={keyPressHandle} />
+        <Input ref={usernameRef} id="username" {...omitReset(username)} placeholder='username' onKeyDown={keyPressHandle} />
         </div>
         <div>
           password
-        <input ref={passwordRef} id="password" {...omitReset(password)} placeholder='password' />
+        <Input ref={passwordRef} id="password" {...omitReset(password)} placeholder='password' />
         </div>
         <Button className="ui basic tiny button" type="submit">login</Button>
         {showInfo}

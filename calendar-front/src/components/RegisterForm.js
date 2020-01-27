@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
-import { Button } from 'semantic-ui-react'
+import { Button, Input } from 'semantic-ui-react'
 // import '../login.css'
 
 const RegisterForm = (props) => {
@@ -83,15 +83,15 @@ const RegisterForm = (props) => {
       <form onSubmit={createUser} >
         <div>
           username
-          <input ref={usernameRef} id="username" {...omitReset(username)} placeholder='username' onKeyDown={keyPressHandle} />
+          <Input ref={usernameRef} id="username" {...omitReset(username)} placeholder='username' onKeyDown={keyPressHandle} />
         </div>
         <div>
           password
-          <input ref={passwordRef} {...omitReset(password)} placeholder='password' onKeyDown={keyPressHandle} />
+          <Input ref={passwordRef} {...omitReset(password)} placeholder='password' onKeyDown={keyPressHandle} />
         </div>
         <div>
           retype password
-          <input ref={rPasswordRef} {...omitReset(PASSWORD)} placeholder='retype password' onKeyDown={keyPressHandle} />
+          <Input ref={rPasswordRef} {...omitReset(PASSWORD)} placeholder='retype password' onKeyDown={keyPressHandle} />
         </div>
         <Button className="ui basic tiny button" type="submit">register</Button>
         {showInfo}

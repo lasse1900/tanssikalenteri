@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import Togglable from './Togglable'
 import { useField } from '../hooks'
 import { createVideo } from '../reducers/videoReducer'
-import { Form } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
-import { Button } from 'semantic-ui-react'
+import { Form, Button, Input } from 'semantic-ui-react'
 
 const VideoForm = props => {
 
@@ -43,11 +42,11 @@ const VideoForm = props => {
           <Form onSubmit={event => handleVideoCreation(event)}>
             <Form.Field>
               <label>title</label>
-              <input id="title" data-cy="title" {...omitReset(title)} />
+              <Input id="title" data-cy="title" {...omitReset(title)} />
             </Form.Field>
             <Form.Field>
               <label>url</label>
-              <input id="url" data-cy="url" {...omitReset(url)} />
+              <Input id="url" data-cy="url" {...omitReset(url)} />
             </Form.Field>
             <Button className="ui basic tiny button" type='submit' data-cy="Add">Add</Button>
           </Form>
