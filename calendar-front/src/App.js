@@ -138,7 +138,7 @@ const App = ({
             <NavLink to="/videos" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > videos{'  '} </NavLink>
             <NavLink to="/calendars" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > calendars{'  '} </NavLink>
             {' <'}{user.username}> logged in {' - '}Date: {getCurrentDate()}{' - '}
-            <button data-cy="logout" onClick={handleLogout}>logout</button>
+            <button className="ui mini button" data-cy="logout" onClick={handleLogout}>logout</button>
           </div>
           <Notification />
           <Switch>

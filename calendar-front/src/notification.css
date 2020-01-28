@@ -20,7 +20,7 @@ code {
 .false {    
   border: 'solid';
   padding: 10;
-  font-size: 25px;
+  font-size: 15px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: red;
 }
@@ -28,7 +28,7 @@ code {
 .true {
   border: 'solid';
   padding: 10;
-  font-size: 25px;
+  font-size: 15px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: green;
 }

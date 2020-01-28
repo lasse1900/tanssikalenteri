@@ -1,5 +1,5 @@
 import React from 'react'
-import tango from '../pics/argentine-tango.jpg'
+import tango from '../pics/argentine-tango_primary.jpg'
 
 const AboutPage = () => {
 
