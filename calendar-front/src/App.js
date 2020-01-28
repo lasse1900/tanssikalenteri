@@ -30,6 +30,7 @@ import { Container } from 'semantic-ui-react'
 // import NavBarLogin from './NavBarLogin'
 import RegisterInfo from './components/RegisterInfo'
 import NotFoundPage from './components/NotFoundPage'
+import { getCurrentDate } from './utils/currentDate'
 
 const App = ({
   user,
@@ -136,7 +137,7 @@ const App = ({
             <NavLink to="/schools" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > schools{'  '} </NavLink>
             <NavLink to="/videos" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > videos{'  '} </NavLink>
             <NavLink to="/calendars" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > calendars{'  '} </NavLink>
-            {' <'}{user.username}> logged in {' '}
+            {' <'}{user.username}> logged in {' - '}Date: {getCurrentDate()}{' - '}
             <button data-cy="logout" onClick={handleLogout}>logout</button>
           </div>
           <Notification />
