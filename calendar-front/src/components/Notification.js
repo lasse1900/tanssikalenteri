@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import '../index.css'
+import '../notification.css'
 
 const Notification = ({ notification }) => {
   const style = notification.error ? 'false' : 'true'

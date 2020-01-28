@@ -11,7 +11,6 @@ import videoService from '../services/videos'
 import calendarService from '../services/calendars'
 import PropTypes from 'prop-types'
 import { Form, Button, Input } from 'semantic-ui-react'
-// import '../login.css'
 
 const LoginForm = (props) => {
   const username = useField('username')
@@ -76,7 +75,7 @@ const LoginForm = (props) => {
       <br></br>
       <div className="ui middle aligned center aligned grid">
         <div className="column">
-          <h2 className="ui teal image header">
+          <h2 className="ui blue image header">
             {/*<img src="assets/images/logo.png" className="image" /> */}
             <div className="content">
               Log-in to your account
@@ -96,8 +95,8 @@ const LoginForm = (props) => {
                   <Input ref={passwordRef} id="password" type="password" name="password" {...omitReset(password)} placeholder='Password' />
                 </div>
               </div>
-              <div className="ui fluid large teal submit button">
-                <Button className="ui fluid large teal submit button" type="submit">login</Button>
+              <div className="ui fluid large blue submit button">
+                <Button className="ui fluid large blue submit button" type="submit">login</Button>
                 {showInfo}
               </div>
             </div>

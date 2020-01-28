@@ -13,21 +13,6 @@ code {
     monospace;
 }
 
-.person {
-  color: gray;
-  padding-top: 5px;
-  font-size: 15px;
-}
-
-.ballroomStyle {
-  padding-top: 10;
-  padding-left: 2;
-  margin-right: 300px;
-  border: solid;
-  border-width: 1px;
-  margin-bottom: 5;
-}
-
 .done {
   color: white;
 }
@@ -46,26 +31,4 @@ code {
   font-size: 25px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: green;
-}
-
-.ballroomStyle2 {
-  padding-top: 10;
-  background: lightgray;
-  margin-bottom: 5;
-}
-
-.menuStyle {
-  padding-top: 10;
-  background: lightgray;
-  margin-bottom: 5;
-}
-
-.linkStyle {
-  padding: 1;
-}
-
-.button-add {
-  position: absolute;
-  right: 10px;
-  font-size: 26px;
 }

@@ -7,7 +7,6 @@ import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
 import { Form, Button, Input } from 'semantic-ui-react'
-// import '../login.css'
 
 const RegisterForm = (props) => {
 
@@ -81,7 +80,7 @@ const RegisterForm = (props) => {
       <br></br>
       <div className="ui middle aligned center aligned grid">
         <div className="column">
-          <h2 className="ui teal image header">
+          <h2 className="ui blue image header">
             {/*<img src="assets/images/logo.png" className="image" /> */}
             <div className="content">
               Register
@@ -109,8 +108,8 @@ const RegisterForm = (props) => {
                 </div>
               </div>
 
-              <div className="ui fluid large teal submit button">
-                <Button className="ui fluid large teal submit button" type="submit">register</Button>
+              <div className="ui fluid large blue submit button">
+                <Button className="ui fluid large blue submit button" type="submit">register</Button>
                 {showInfo}
               </div>
             </div>

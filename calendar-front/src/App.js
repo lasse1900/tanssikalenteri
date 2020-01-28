@@ -30,7 +30,6 @@ import { Container } from 'semantic-ui-react'
 // import NavBarLogin from './NavBarLogin'
 import RegisterInfo from './components/RegisterInfo'
 import NotFoundPage from './components/NotFoundPage'
-import './index.css'
 
 const App = ({
   user,
@@ -118,13 +117,10 @@ const App = ({
       <Container>
         <div>
           <Router>
-            {/*{<NavBarLogin user={user}/>} */}
-            <Switch>
-              <Route path="/login" render={() => <LoginForm notify={notify} />} />
-              <Route path="/registerInfo" render={() => <RegisterInfo notify={notify} />} />
-              <Route path="/register" render={() => <RegisterForm notify={notify} />} />
-              {/*<Route path="/" render={() => <NavBarLogin />} /> */}
-            </Switch>
+            {user === null && <LoginForm notify={notify} />}
+            {/*<Route path="/login" render={() => <LoginForm notify={notify} />} /> */}
+            <Route path="/registerInfo" render={() => <RegisterInfo notify={notify} />} />
+            <Route path="/register" render={() => <RegisterForm notify={notify} />} />
           </Router>
         </div>
       </Container>)
