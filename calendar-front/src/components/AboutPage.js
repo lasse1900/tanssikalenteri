@@ -7,7 +7,7 @@ const AboutPage = () => {
     position: 'absolute',
     left: 0,
     top: 0,
-    fontSize: 20,
+    fontSize: 23,
     color: 'white'
   }
 

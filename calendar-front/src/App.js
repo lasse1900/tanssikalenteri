@@ -22,6 +22,7 @@ import Users from './components/Users'
 import User from './components/User'
 import Calendar from './components/Calendar'
 import AboutPage from './components/AboutPage'
+import LinksPage from './components/LinksPage'
 import { initializeUsers } from './reducers/userReducer'
 import Ballroom from './components/Ballroom'
 import School from './components/School'
@@ -133,6 +134,7 @@ const App = ({
         <Router>
           <div className='ui vertical fluid menu'>
             <NavLink to="/home" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > about{'  '} </NavLink>
+            <NavLink to="/links" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > links{'  '} </NavLink>
             <NavLink to="/ballrooms" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > ballrooms{'  '} </NavLink>
             <NavLink to="/schools" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > schools{'  '} </NavLink>
             <NavLink to="/videos" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > videos{'  '} </NavLink>
@@ -150,6 +152,7 @@ const App = ({
             <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
             <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />
             <Route exact path="/home" render={({ match }) => <AboutPage path={match.path} />} />
+            <Route exact path="/links" render={({ match }) => <LinksPage path={match.path} />} />
             <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} />} />
             <Route exact path="/schools/:id" render={({ match }) => <School notify={notify} school={schoolId(match.params.id)} />} />
             <Route exact path="/videos/:id" render={({ match }) => <Video notify={notify} video={videoId(match.params.id)} />} />
