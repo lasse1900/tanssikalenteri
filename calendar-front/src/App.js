@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
 import schoolService from './services/schools'
 import videoService from './services/videos'
@@ -27,7 +27,7 @@ import Ballroom from './components/Ballroom'
 import School from './components/School'
 import Video from './components/Video'
 import { Container } from 'semantic-ui-react'
-import NavBarLogin from './NavBarLogin'
+// import NavBarLogin from './NavBarLogin'
 import RegisterInfo from './components/RegisterInfo'
 import NotFoundPage from './components/NotFoundPage'
 import './index.css'
@@ -118,13 +118,13 @@ const App = ({
       <Container>
         <div>
           <Router>
-            <NavBarLogin />
+            {/*{<NavBarLogin user={user}/>} */}
             <Switch>
               <Route path="/login" render={() => <LoginForm notify={notify} />} />
               <Route path="/registerInfo" render={() => <RegisterInfo notify={notify} />} />
               <Route path="/register" render={() => <RegisterForm notify={notify} />} />
+              {/*<Route path="/" render={() => <NavBarLogin />} /> */}
             </Switch>
-            <Redirect to="/login" />
           </Router>
         </div>
       </Container>)
@@ -134,12 +134,12 @@ const App = ({
     <Container>
       <div>
         <Router>
-          <div className='menuStyle'>
-            <Link to="/" id="about" data-cy="about">about</Link>{' '}
-            <Link to="/ballrooms" id="home" data-cy="home" >ballrooms</Link>{' '}
-            <Link to="/schools" id="schools" data-cy="schools">schools</Link>{' '}
-            <Link to="/videos" id="videos" data-cy="videos">videos</Link>{' '}
-            <Link to="/calendars" id="calendars" data-cy="calendars">calendar</Link>{' '}
+          <div className='ui vertical fluid menu'>
+            <NavLink to="/home" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > about{'  '} </NavLink>
+            <NavLink to="/ballrooms" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > ballrooms{'  '} </NavLink>
+            <NavLink to="/schools" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > schools{'  '} </NavLink>
+            <NavLink to="/videos" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > videos{'  '} </NavLink>
+            <NavLink to="/calendars" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > calendars{'  '} </NavLink>
             {' <'}{user.username}> logged in {' '}
             <button data-cy="logout" onClick={handleLogout}>logout</button>
           </div>
@@ -152,7 +152,7 @@ const App = ({
             <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
             <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
             <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />
-            <Route exact path="/" render={({ match }) => <AboutPage path={match.path} />} />
+            <Route exact path="/home" render={({ match }) => <AboutPage path={match.path} />} />
             <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} />} />
             <Route exact path="/schools/:id" render={({ match }) => <School notify={notify} school={schoolId(match.params.id)} />} />
             <Route exact path="/videos/:id" render={({ match }) => <Video notify={notify} video={videoId(match.params.id)} />} />

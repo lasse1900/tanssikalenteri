@@ -59,7 +59,7 @@ const LoginForm = (props) => {
       schoolService.setToken(user.token)
       videoService.setToken(user.token)
       calendarService.setToken(user.token)
-      props.history.push('/')
+      props.history.push('/home')
     } catch (exception) {
       setShowInfo(' username or password incorrect!')
       props.notify(`${exception.response.data}`, true)

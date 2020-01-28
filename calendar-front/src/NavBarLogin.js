@@ -1,11 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom'
+import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
 
-const NavBarLogin = () => (
-  <nav>
-    <Link to="/login"></Link>
-    <Link to="/register"></Link>
-  </nav>
+const NavBarLogin = (props) => (
+
+  <div>
+    <Route path="/login" render={() => <LoginForm notify={props.notify} />} />
+    <Route path="/register" render={() => <RegisterForm notify={props.notify} />} />
+  </div>
+
 )
 
-export default NavBarLogin;
+export default NavBarLogin
+
+
+// <Switch>
+// <Link to="/login"></Link>
+// <Link to="/register"></Link>
+// </Switch>
