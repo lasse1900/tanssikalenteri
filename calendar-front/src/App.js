@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState} from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
@@ -28,7 +28,6 @@ import Ballroom from './components/Ballroom'
 import School from './components/School'
 import Video from './components/Video'
 import { Container } from 'semantic-ui-react'
-// import NavBarLogin from './NavBarLogin'
 import RegisterInfo from './components/RegisterInfo'
 import NotFoundPage from './components/NotFoundPage'
 import { getCurrentDate } from './utils/currentDate'
@@ -106,12 +105,22 @@ const App = ({
   const schoolId = id => schools.find(school => school.id === id)
   const videoId = id => videos.find(video => video.id === id)
   const calendarId = id => calendars.find(calendar => calendar.id === id)
+  const [loggedOut, setLoggedOut] = useState(false)
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedBallroomAppUser')
     notify(`${user.username} successfully logged out`, false)
     setUser(null)
     logoutUser()
+    setLoggedOut(true)
+  }
+
+  if (loggedOut) {
+    return (
+      <Router>
+        <LoginForm notify={notify} />
+      </Router>
+    )
   }
 
   if (user === null) {
@@ -119,8 +128,7 @@ const App = ({
       <Container>
         <div>
           <Router>
-            {user === null && <LoginForm notify={notify} />}
-            {/*<Route path="/login" render={() => <LoginForm notify={notify} />} /> */}
+            <Route path="/login" render={() => <LoginForm notify={notify} />} />
             <Route path="/registerInfo" render={() => <RegisterInfo notify={notify} />} />
             <Route path="/register" render={() => <RegisterForm notify={notify} />} />
           </Router>

@@ -63,7 +63,9 @@ const RegisterForm = (props) => {
       password.reset()
       PASSWORD.reset()
       props.notify('user created [from registerForm]', false)
-      props.history.push('/registerInfo')
+      // props.history.push('/registerInfo')
+      console.log('username created', username)
+      props.history.push('/login')
     } catch (exception) {
       setShowInfo(' Username already taken OR invalid. Please try again!')
       props.notify(`${exception.response.data}`, true)
