@@ -16,6 +16,6 @@ commentSchema.set('toJSON', {
   }
 })
 
-const Comment = mongoose.model('Comment', commentSchema)
+const BallroomComment = mongoose.model('BallroomComment', commentSchema)
 
-module.exports = Comment
+module.exports = BallroomComment
