@@ -1,6 +1,6 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, NavLink, Switch, Redirect } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
 import schoolService from './services/schools'
 import videoService from './services/videos'
@@ -57,6 +57,18 @@ const App = ({
 
   useEffect(() => {
     initializeUsers()
+  }, [])
+
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
+    if (!loggedUserJSON) {
+      // return (
+      //   <Router>
+      //     <Redirect to="/login" />
+      //   </Router>
+      // )
+    }
   }, [])
 
   useEffect(() => {
@@ -118,7 +130,7 @@ const App = ({
   if (loggedOut) {
     return (
       <Router>
-        <LoginForm notify={notify} />
+        <Redirect to="/login" />
       </Router>
     )
   }
