@@ -1,15 +1,15 @@
 const supertest = require('supertest')
 const mongoose = require('mongoose')
-const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
+const helper = require('../tests/test_helper')
 
 const User = require('../models/user')
 
 describe('when there is initially one user at db', () => {
   beforeEach(async () => {
     await User.deleteMany({})
-    const user = new User({ username: 'root', name:'head', password: 'sekret' })
+    const user = new User({ username: 'root', name:'Root', password: 'sekret' })
     await user.save()
   })
 
@@ -18,8 +18,8 @@ describe('when there is initially one user at db', () => {
 
     const newUser = {
       'username': 'root',
-      'name': 'Tommi Peranto',
-      'password': 'pallo'
+      'name': 'root',
+      'password': 'secret'
     }
 
     await api
@@ -31,14 +31,32 @@ describe('when there is initially one user at db', () => {
     expect(usersAtEnd.length).toBe(usersAtStart.length)
   })
 
+  test('creation succeeds as status 200 - created another user', async () => {
+    const usersAtStart = await helper.usersInDb()
+
+    const newUser = {
+      'username': 'lasse',
+      'name': 'lasse',
+      'password': 'secret'
+    }
+
+    await api
+      .post('/api/users')
+      .send(newUser)
+      .expect(200)
+
+    const usersAtEnd = await helper.usersInDb()
+    expect(usersAtEnd.length).toBe(usersAtStart.length + 1)
+  })
+
 
   test('creation fails at status 400 if password < 3 characters', async () => {
     const usersAtStart = await helper.usersInDb()
 
     const newUser = {
-      'username': 'tommi',
-      'name': 'Tommi Peranto',
-      'password': 'pa'
+      'username': 'tomi',
+      'name': 'Tomi',
+      'password': 'se'
     }
 
     await api
@@ -54,9 +72,9 @@ describe('when there is initially one user at db', () => {
     const usersAtStart = await helper.usersInDb()
 
     const newUser = {
-      username: 'lasse',
-      name: 'Lasse Mantere',
-      password: 'salainen',
+      username: 'simo',
+      name: 'Simo',
+      password: 'secret',
     }
 
     await api
@@ -70,6 +88,14 @@ describe('when there is initially one user at db', () => {
 
     const usernames = usersAtEnd.map(u => u.username)
     expect(usernames).toContain(newUser.username)
+  })
+
+  test('Login with new user count', async () => {
+    const response = await api
+      .post('/login')
+      .send({ username: 'simo', password: 'secret' })
+    token = `Bearer ${response.body.token}`
+    // console.log('------------> token', response.body)
   })
 
 })

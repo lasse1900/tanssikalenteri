@@ -15,7 +15,7 @@ const initialBallrooms = [
 ]
 
 beforeEach(async () => {
-  await Ballroom.remove({})
+  await Ballroom.deleteOne({})
 
   let ballroomObject = new Ballroom(initialBallrooms[0])
   await ballroomObject.save()
@@ -27,7 +27,8 @@ beforeEach(async () => {
 const nonExistingId = async () => {
   const ballroom = new Ballroom()
   await ballroom.save()
-  await ballroom.remove()
+  await ballroom.deleteOne()
+  // await ballroom.remove()
 
   return ballroom._id.toString()
 }

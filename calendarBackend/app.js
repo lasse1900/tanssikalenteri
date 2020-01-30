@@ -13,7 +13,7 @@ const loginRouter = require('./controllers/login')
 const logger = require('./utils/logger')
 const middleware = require('./utils/middleware')
 
-mongoose.connect(config.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true })
+mongoose.connect(config.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
   .then(() => {
     logger.info('connected to MongoDB')
   })

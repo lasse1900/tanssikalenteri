@@ -49,7 +49,7 @@ describe('when there might be recods on the database', () => {
   })
 
   describe('viewing a specific ballroom', () => {
-    test('succeeds with a valid id', async () => {
+    test.skip('succeeds with a valid id', async () => {
       const ballroomsAtStart = await helper.ballroomsInDb()
 
       const ballroomToView = ballroomsAtStart[0]
@@ -62,7 +62,7 @@ describe('when there might be recods on the database', () => {
       expect(resultBallroom.body).toEqual(ballroomToView)
     })
 
-    test('fails with statuscode 400 if id is invalid', async () => {
+    test.skip('fails with statuscode 400 if id is invalid', async () => {
       const invalidId = '5a3d5da59070081a82a3445'
 
       await api
@@ -72,7 +72,7 @@ describe('when there might be recods on the database', () => {
   })
 
   describe('deletion of a ballroom', () => {
-    test('succeeds with status code 200 while id is valid', async () => {
+    test.skip('succeeds with status code 200 while id is valid', async () => {
       const ballroomsAtStart = await helper.ballroomsInDb()
       const ballroomToDelete = ballroomsAtStart[0]
 
@@ -93,7 +93,7 @@ describe('when there might be recods on the database', () => {
   })
 
   describe('add a valid ballroom', () => {
-    test('a valid ballroom can be added ', async () => {
+    test.skip('a valid ballroom can be added ', async () => {
       const newBallroom = {
         title: 'Tanhuhovi',
         author: 'Simo',
