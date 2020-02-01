@@ -93,25 +93,25 @@ const RegisterForm = (props) => {
               <div className="field">
                 <div className="ui left icon input">
                   <i className="user icon"></i>
-                  <Input ref={usernameRef} id="username" type="text" {...omitReset(username)} placeholder='Username / E-mail address' onKeyDown={keyPressHandle} />
+                  <Input ref={usernameRef} id="username" type="text" data-cy="username" {...omitReset(username)} placeholder='Username / E-mail address' onKeyDown={keyPressHandle} />
                 </div>
               </div>
               <div className="field">
                 <div className="ui left icon input">
                   <i className="lock icon"></i>
-                  <Input ref={passwordRef} id="password" type="password" name="password" {...omitReset(password)} placeholder='Password' />
+                  <Input ref={passwordRef} id="password" type="password" name="password" data-cy="password" {...omitReset(password)} placeholder='Password' />
                 </div>
               </div>
 
               <div className="field">
                 <div className="ui left icon input">
                   <i className="lock icon"></i>
-                  <Input ref={rPasswordRef} id="password" type="password" name="rPassword" {...omitReset(PASSWORD)} placeholder='Password' />
+                  <Input ref={rPasswordRef} id="password" type="password" name="rPassword" data-cy="rPassword" {...omitReset(PASSWORD)} placeholder='Password' />
                 </div>
               </div>
 
               <div className="ui fluid large blue submit button">
-                <Button className="ui fluid large blue submit button" type="submit">register</Button>
+                <Button className="ui fluid large blue submit button" type="submit" data-cy="register">register</Button>
                 {showInfo}
               </div>
             </div>

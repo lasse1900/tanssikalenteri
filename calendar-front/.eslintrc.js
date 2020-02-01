@@ -10,7 +10,11 @@ module.exports = {
     "allowImportExportEverywhere": true,
     "ecmaVersion": 2018
   },
+  "plugins:" [
+    "react-hooks"
+  ],
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
     "indent": [
       "error",
       2
