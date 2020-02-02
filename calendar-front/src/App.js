@@ -153,12 +153,12 @@ const App = ({
       <div>
         <Router>
           <div className='ui vertical fluid menu'>
-            <NavLink to="/home" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > about{'  '} </NavLink>
-            <NavLink to="/links" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > links{'  '} </NavLink>
-            <NavLink to="/ballrooms" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > ballrooms{'  '} </NavLink>
-            <NavLink to="/schools" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > schools{'  '} </NavLink>
-            <NavLink to="/videos" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > videos{'  '} </NavLink>
-            <NavLink to="/calendars" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > calendars{'  '} </NavLink>
+            <NavLink to="/home" data-cy="home" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > about{'  '} </NavLink>
+            <NavLink to="/links" data-cy="links" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > links{'  '} </NavLink>
+            <NavLink to="/ballrooms" data-cy="ballrooms" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > ballrooms{'  '} </NavLink>
+            <NavLink to="/schools" data-cy="schools" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > schools{'  '} </NavLink>
+            <NavLink to="/videos" data-cy="vidoes" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > videos{'  '} </NavLink>
+            <NavLink to="/calendars" data-cy="calendars" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > calendars{'  '} </NavLink>
             {' <'}{user.username}> logged in {' - '}Date: {getCurrentDate()}{' - '}
             <button className="ui mini button" data-cy="logout" onClick={handleLogout}>logout</button>
           </div>

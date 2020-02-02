@@ -11,142 +11,69 @@ describe('Blogilista ', function () {
   //   // cy.visit('http://localhost:3000/login')
   // })
 
-  it('user can register to the app', function () {
-    cy.visit('http://localhost:3000/register')
 
+  it('user can register and login to the app', function () {
+    cy.visit('http://localhost:3000/register')
+    cy.contains('Register')
     cy.get('#username').type('admin')
     cy.get('#password').type('secret')
-    cy.get('[data-cy=rPassword] > #password')
+    cy.get('[data-cy=rPassword] > #password').type("secret")
     cy.get('[data-cy=register]').click()
-    // cy.contains('Login')
+    cy.get('[data-cy="Sign up"]').click()
+    cy.get('#username').type('admin')
+    cy.get('#password').type('secret')
+    cy.get('[data-cy=login]').click()
   })
 
   it('user can log in ', function () {
     cy.visit('http://localhost:3000/login')
-
-    cy.get('#username').type('simo')
+    cy.contains('Log-in to your account')
+    cy.get('#username').type('admin')
     cy.get('#password').type('secret')
     cy.get('[data-cy=login]').click()
-    cy.contains('<simo> logged in')
+    cy.contains('<admin> logged in')
+    cy.get('[data-cy=ballrooms]').click()
+    cy.get(':nth-child(1) > :nth-child(2) > :nth-child(1) > .ui').click()
+    cy.get('[data-cy=ballroom-title] > input').type("Pavi")
+    cy.get('[data-cy=ballroom-url] > input').type("http://pavi.fi")
+    cy.get('[data-cy=togglable-add-ballroom]').click()
+    cy.get('[data-cy=cancel]').click()
+    cy.get('[data-cy=logout]').click()
   })
 
-  // ------------ tähän asti ------------------
 
-  // describe('user can log in and logout', function () {
-  //   beforeEach(function () {
-  //     // cy.contains('Login').click()
-  //     cy.contains('username')
-  //     cy.get('#username').type('admin')
-  //     cy.get('#password').type('secret')
-  //     cy.get('[data-cy=login]').click()
-  //   })
+  it('user can log in, add a ballroom and logout', function () {
+    cy.visit('http://localhost:3000/login')
+    cy.contains('Log-in to your account')
+    cy.get('#username').type('admin')
+    cy.get('#password').type('secret')
+    cy.get('[data-cy=login]').click()
+    cy.contains('<admin> logged in')
+    cy.get('[data-cy=ballrooms]').click()
+    cy.get(':nth-child(1) > :nth-child(2) > :nth-child(1) > .ui').click()
+    cy.get('[data-cy=ballroom-title] > input').type("Pavi")
+    cy.get('[data-cy=ballroom-url] > input').type("http://pavi.fi")
+    cy.get('[data-cy=togglable-add-ballroom]').click()
+    cy.get('[data-cy=cancel]').click()
+    cy.get('[data-cy=logout]').click()
+  })
 
-  //   it('name of the user is shown', function () {
-  //     cy.contains('admin logged in')
-  //   })
-
-  //   it('user can logout', function () {
-  //     cy.contains('logout').click()
-  //     cy.contains('log-in')
-  //   })
-  // })
-
-
-  // describe('a new blog can be created', function () {
-  //   beforeEach(function () {
-  //     cy.contains('Login').click()
-  //     cy.contains('username')
-  //     cy.get('#username').type('admin')
-  //     cy.get('#password').type('secret')
-  //     cy.get('[data-cy=login]').click()
-  //   })
-
-  //   it('name of the user is shown', function () {
-  //     cy.contains('admin logged in')
-  //   })
-
-  //   it('one blog is created', function () {
-  //     cy.contains('add').click()
-  //     cy.get('#title').type('cypress test blog')
-  //     cy.get('#author').type('cypress')
-  //     cy.get('#url').type('https://www')
-  //     cy.get('[data-cy=Add]').click()
-  //     cy.contains('add').click()
-
-  //     it('user can logout', function () {
-  //       cy.contains('logout').click()
-  //       cy.contains('login')
-  //     })
-
-  //   })
-  // })
-
-  // describe('add a like to a blog', function () {
-  //   beforeEach(function () {
-  //     cy.contains('Login').click()
-  //     cy.contains('username')
-  //     cy.get('#username').type('admin')
-  //     cy.get('#password').type('secret')
-  //     cy.get('[data-cy=login]').click()
-  //   })
-
-  //   it('name of the user is shown', function () {
-  //     cy.contains('admin logged in')
-  //   })
-
-  //   it('one blog is created', function () {
-  //     cy.contains('add').click()
-  //     cy.get('#title').type('cypress test blog')
-  //     cy.get('#author').type('cypress')
-  //     cy.get('#url').type('https://www')
-  //     cy.get('[data-cy=Add]').click()
-  //     cy.contains('add').click()
-  //     cy.get('#blogsList').click()
-  //     cy.contains('cypress test blog cypress').click()
-  //     cy.contains('like').click()
-  //     cy.contains('cypress test blog cypress').click()
-  //     cy.screenshot()
-  //   })
-
-  //   it('user logout', function () {
-  //     cy.contains('logout').click()
-  //     cy.contains('login')
-  //   })
-
-  // })
-
-  // describe('add a comment to a blog', function () {
-  //   beforeEach(function () {
-  //     cy.contains('Login').click()
-  //     cy.contains('username')
-  //     cy.get('#username').type('admin')
-  //     cy.get('#password').type('secret')
-  //     cy.get('[data-cy=login]').click()
-  //   })
-
-  //   it('name of the user is shown', function () {
-  //     cy.contains('admin logged in')
-  //   })
-
-  //   it('one blog is created', function () {
-  //     cy.contains('add').click()
-  //     cy.get('#title').type('cypress test blog')
-  //     cy.get('#author').type('cypress')
-  //     cy.get('#url').type('https://www')
-  //     cy.get('[data-cy=Add]').click()
-  //     cy.contains('add').click()
-  //     cy.get('#blogsList').click()
-  //     cy.contains('cypress test blog cypress').click()
-  //     cy.get('#commentInput').type('cypress test comment #1')
-  //     cy.get('#addComment').click()
-  //     cy.wait(500)
-  //     cy.screenshot()
-  //   })
-
-  //   it('user logout', function () {
-  //     cy.contains('logout').click()
-  //     cy.contains('login')
-  //   })
-  // })
+  it('user can log in, add a calendar mark and logout', function () {
+    cy.visit('http://localhost:3000/login')
+    cy.contains('Log-in to your account')
+    cy.get('#username').type('admin')
+    cy.get('#password').type('secret')
+    cy.get('[data-cy=login]').click()
+    cy.contains('<admin> logged in')
+    cy.get('[data-cy=calendars]').click()
+    cy.get(':nth-child(1) > :nth-child(2) > :nth-child(1) > .ui').click()
+    cy.get('[data-cy=calendar-title] > input').type("Summercamp")
+    cy.get('[data-cy=calendar-url] > input').type("https://www.tanssikurssit.fi/tapahtuma/valasrannan-tanssileiri/")
+    cy.get('.DayPickerInput > input').type("2020-05-21")
+    cy.get('[data-cy=calendars]').click()
+    cy.get('[data-cy=togglable-add-calendar]').click()
+    cy.get('[data-cy=cancel]').click()
+    cy.get('[data-cy=logout]').click()
+  })
 
 })

@@ -42,22 +42,22 @@ const CalendarForm = props => {
   return (
     <div>
       <br></br>
-      <Togglable buttonLabel='add'>
+      <Togglable data-cy="togglable-add-calendarMark" buttonLabel='add'>
         <div>
           <Form onSubmit={event => handleCalendarCreation(event)}>
             <Form.Field>
               <label>title</label>
-              <Input id="title" data-cy="title" {...omitReset(title)} />
+              <Input data-cy="calendar-title" {...omitReset(title)} />
             </Form.Field>
             <Form.Field>
               <label>url</label>
-              <Input id="url" data-cy="url" {...omitReset(url)} />
+              <Input data-cy="calendar-url" {...omitReset(url)} />
             </Form.Field>
             <Form.Field>
               <label>Please give date:</label>
-              <DayPickerInput onDayChange={day => setPvm(day)} />
+              <DayPickerInput data-cy="date-input" onDayChange={day => setPvm(day)} />
             </Form.Field>
-            <Button className="ui basic tiny button" type='submit' data-cy="Add">Add</Button>
+            <Button data-cy="togglable-add-calendar"  className="ui basic tiny button" type='submit'>Add</Button>
           </Form>
         </div>
       </Togglable>

@@ -118,7 +118,7 @@ const RegisterForm = (props) => {
             <div className="ui error message"></div>
           </Form>
           <div className="ui message">
-            New to us? <a href='/login'>Sign Up</a>
+            New to us? <a href='/login' data-cy="Sign up">Sign Up</a>
           </div>
         </div>
       </div>

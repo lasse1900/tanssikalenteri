@@ -37,18 +37,18 @@ const BallroomForm = props => {
   return (
     <div>
       <br></br>
-      <Togglable buttonLabel='add'>
+      <Togglable data-cy="togglable-add-ballroom" buttonLabel='add'>
         <div>
           <Form onSubmit={event => handleBallroomCreation(event)}>
             <Form.Field>
               <label>title</label>
-              <Input id="title" data-cy="title" {...omitReset(title)} />
+              <Input data-cy="ballroom-title" {...omitReset(title)} />
             </Form.Field>
             <Form.Field>
               <label>url</label>
-              <Input id="url" data-cy="url" {...omitReset(url)} />
+              <Input data-cy="ballroom-url" {...omitReset(url)} />
             </Form.Field>
-            <Button className="ui basic tiny button" type='submit' data-cy="Add">Add</Button>
+            <Button data-cy="togglable-add-ballroom"  className="ui basic tiny button" type='submit' >Add</Button>
           </Form>
         </div>
       </Togglable>
