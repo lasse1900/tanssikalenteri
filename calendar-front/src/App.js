@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, NavLink, Switch, Redirect } from 'react-router-dom'
+import { Route, NavLink, Switch, Redirect, withRouter } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import ballroomService from './services/ballrooms'
 import schoolService from './services/schools'
 import videoService from './services/videos'
@@ -60,6 +61,7 @@ const App = ({
   }, [])
 
   const [loggedOut, setLoggedOut] = useState(false)
+  const history = useHistory()
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
@@ -68,10 +70,16 @@ const App = ({
       setUser(user)
       setTokens(user)
     } else {
-      setLoggedOut(true)    // obs
-      handleRedirect()      // obs
+      setLoggedOut(true)
+      handleRedirect()
     }
   }, [])
+
+  useEffect(() => {
+    if (!user) {
+      history.push('/login')
+    }
+  }, [user])
 
   const setTokens = (user) => {
     ballroomService.setToken(user.token)
@@ -80,28 +88,13 @@ const App = ({
     calendarService.setToken(user.token)
   }
 
-  // kun logout niin jää routeen mikä on silloin aktiivinen - eikä refresh palauta login routea kuten alla *)
-  // pitää käsin kirjoittaa selaimeen login route
-  
   const handleRedirect = () => {
     if (loggedOut) {
       return (
-        <Router>
-          <Redirect to="/login" />
-        </Router>
+        <Redirect to="/login" />
       )
     }
   }
-
-  // tämä alla toimiii about, mutta vaatii refresh *)
-
-  // if (loggedOut) {
-  //   return (
-  //     <Router>
-  //       <Redirect to="/login" />
-  //     </Router>
-  //   )
-  // }
 
   const notify = (message, error) => {
     setMessage({ message, error }, 4)
@@ -125,11 +118,9 @@ const App = ({
     return (
       <Container>
         <div>
-          <Router>
-            <Route path="/login" render={() => <LoginForm notify={notify} />} />
-            <Route path="/registerInfo" render={() => <RegisterInfo notify={notify} />} />
-            <Route path="/register" render={() => <RegisterForm notify={notify} />} />
-          </Router>
+          <Route path="/login" render={() => <LoginForm notify={notify} />} />
+          <Route path="/registerInfo" render={() => <RegisterInfo notify={notify} />} />
+          <Route path="/register" render={() => <RegisterForm notify={notify} />} />
         </div>
       </Container>)
   }
@@ -137,35 +128,33 @@ const App = ({
   return (
     <Container>
       <div>
-        <Router>
-          <div className='ui vertical fluid menu'>
-            <NavLink to="/home" data-cy="home" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > about{'  '} </NavLink>
-            <NavLink to="/links" data-cy="links" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > links{'  '} </NavLink>
-            <NavLink to="/ballrooms" data-cy="ballrooms" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > ballrooms{'  '} </NavLink>
-            <NavLink to="/schools" data-cy="schools" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > schools{'  '} </NavLink>
-            <NavLink to="/videos" data-cy="vidoes" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > videos{'  '} </NavLink>
-            <NavLink to="/calendars" data-cy="calendars" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > calendars{'  '} </NavLink>
-            {' <'}{user.username}> logged in {' - '}Date: {getCurrentDate()}{' - '}
-            <button className="ui mini button" data-cy="logout" onClick={handleLogout}>logout</button>
-          </div>
-          <Notification />
-          <Switch>
-            <Route exact path="/ballrooms" render={() => <BallroomList notify={notify} />} />
-            <Route exact path="/schools" render={() => <SchoolList notify={notify} />} />
-            <Route exact path="/videos" render={() => <VideoList notify={notify} />} />
-            <Route exact path="/calendars" render={() => <CalendarList notify={notify} />} />
-            <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
-            <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
-            <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />
-            <Route exact path="/home" render={({ match }) => <AboutPage path={match.path} />} />
-            <Route exact path="/links" render={({ match }) => <LinksPage path={match.path} />} />
-            <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} />} />
-            <Route exact path="/schools/:id" render={({ match }) => <School notify={notify} school={schoolId(match.params.id)} />} />
-            <Route exact path="/videos/:id" render={({ match }) => <Video notify={notify} video={videoId(match.params.id)} />} />
-            <Route exact path="/calendars/:id" render={({ match }) => <Calendar notify={notify} calendar={calendarId(match.params.id)} />} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </Router>
+        <div className='ui vertical fluid menu'>
+          <NavLink to="/home" data-cy="home" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > about{'  '} </NavLink>
+          <NavLink to="/links" data-cy="links" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > links{'  '} </NavLink>
+          <NavLink to="/ballrooms" data-cy="ballrooms" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > ballrooms{'  '} </NavLink>
+          <NavLink to="/schools" data-cy="schools" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > schools{'  '} </NavLink>
+          <NavLink to="/videos" data-cy="vidoes" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > videos{'  '} </NavLink>
+          <NavLink to="/calendars" data-cy="calendars" className="Nav_link" activeClassName="activeRoute" activeStyle={{ color: 'red' }} > calendars{'  '} </NavLink>
+          {' <'}{user.username}> logged in {' - '}Date: {getCurrentDate()}{' - '}
+          <button className="ui mini button" data-cy="logout" onClick={handleLogout}>logout</button>
+        </div>
+        <Notification />
+        <Switch>
+          <Route exact path="/ballrooms" render={() => <BallroomList notify={notify} />} />
+          <Route exact path="/schools" render={() => <SchoolList notify={notify} />} />
+          <Route exact path="/videos" render={() => <VideoList notify={notify} />} />
+          <Route exact path="/calendars" render={() => <CalendarList notify={notify} />} />
+          <Route exact path="/users" render={({ match }) => <Users path={match.path} />} />
+          <Route exact path="/users/:id" render={({ match }) => <User user={userId(match.params.id)} />} />
+          <Route exact path="/calendar" render={({ match }) => <Calendar path={match.path} />} />
+          <Route exact path="/home" render={({ match }) => <AboutPage path={match.path} />} />
+          <Route exact path="/links" render={({ match }) => <LinksPage path={match.path} />} />
+          <Route exact path="/ballrooms/:id" render={({ match }) => <Ballroom notify={notify} ballroom={ballroomId(match.params.id)} />} />
+          <Route exact path="/schools/:id" render={({ match }) => <School notify={notify} school={schoolId(match.params.id)} />} />
+          <Route exact path="/videos/:id" render={({ match }) => <Video notify={notify} video={videoId(match.params.id)} />} />
+          <Route exact path="/calendars/:id" render={({ match }) => <Calendar notify={notify} calendar={calendarId(match.params.id)} />} />
+          <Route component={NotFoundPage} />
+        </Switch>
       </div>
     </Container>
   )
@@ -197,4 +186,4 @@ const mapDispatchToProps = {
   logoutUser
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))

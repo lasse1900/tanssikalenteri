@@ -47,11 +47,11 @@ const CalendarForm = props => {
           <Form onSubmit={event => handleCalendarCreation(event)}>
             <Form.Field>
               <label>title</label>
-              <Input data-cy="calendar-title" {...omitReset(title)} />
+              <Input data-cy="calendar-title" type="text" {...omitReset(title)} />
             </Form.Field>
             <Form.Field>
               <label>url</label>
-              <Input data-cy="calendar-url" {...omitReset(url)} />
+              <Input data-cy="calendar-url" type="url" {...omitReset(url)} />
             </Form.Field>
             <Form.Field>
               <label>Please give date:</label>

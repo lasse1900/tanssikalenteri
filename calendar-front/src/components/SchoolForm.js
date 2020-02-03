@@ -42,11 +42,11 @@ const SchoolForm = props => {
           <Form onSubmit={event => handleSchoolCreation(event)}>
             <Form.Field>
               <label>title</label>
-              <Input id="title" data-cy="title" {...omitReset(title)} />
+              <Input id="title" data-cy="title" type="text" {...omitReset(title)} />
             </Form.Field>
             <Form.Field>
               <label>url</label>
-              <Input id="url" data-cy="url" {...omitReset(url)} />
+              <Input id="url" data-cy="url" type="url" {...omitReset(url)} />
             </Form.Field>
             <Button className="ui basic tiny button" type='submit' data-cy="Add">Add</Button>
           </Form>

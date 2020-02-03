@@ -11,6 +11,7 @@ import videoService from '../services/videos'
 import calendarService from '../services/calendars'
 import PropTypes from 'prop-types'
 import { Form, Button, Input } from 'semantic-ui-react'
+import { useHistory } from 'react-router-dom'
 
 const LoginForm = (props) => {
   const username = useField('username')
@@ -18,6 +19,7 @@ const LoginForm = (props) => {
   const usernameRef = useRef()
   const passwordRef = useRef()
   const [showInfo, setShowInfo] = useState(false)
+  const history = useHistory()
 
   useEffect(() => {
     usernameRef.current.focus()
@@ -70,6 +72,10 @@ const LoginForm = (props) => {
     return hookWithoutReset
   }
 
+  const goToRegisterPage = () => {
+    history.push('/register')
+  }
+
   return (
     <div>
       <br></br>
@@ -103,7 +109,8 @@ const LoginForm = (props) => {
             <div className="ui error message"></div>
           </Form>
           <div className="ui message">
-            New to us? <a href='/register'>Register</a>
+            <span>New to us?{' '}</span>
+            <Button data-cy="to-registerForm" className="ui basic tiny button" type='submit' onClick={goToRegisterPage} >to Register Page</Button>
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
 import { Form, Button, Input } from 'semantic-ui-react'
+import { useHistory } from 'react-router-dom'
 
 const RegisterForm = (props) => {
 
@@ -17,6 +18,7 @@ const RegisterForm = (props) => {
   const passwordRef = useRef()
   const rPasswordRef = useRef()
   const [showInfo, setShowInfo] = useState(false)
+  const history = useHistory()
 
   useEffect(() => {
     usernameRef.current.focus()
@@ -77,6 +79,10 @@ const RegisterForm = (props) => {
     return hookWithoutReset
   }
 
+  const goToLoginPage = () => {
+    history.push('/login')
+  }
+
   return (
     <div>
       <br></br>
@@ -118,7 +124,8 @@ const RegisterForm = (props) => {
             <div className="ui error message"></div>
           </Form>
           <div className="ui message">
-            New to us? <a href='/login' data-cy="Sign up">Sign Up</a>
+            <span>Allready a user?{' '}</span>
+            <Button data-cy="to-registerForm" className="ui basic tiny button" type='submit' onClick={goToLoginPage} >to Login Page</Button>
           </div>
         </div>
       </div>
