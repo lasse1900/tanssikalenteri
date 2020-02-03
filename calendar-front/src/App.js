@@ -59,54 +59,49 @@ const App = ({
     initializeUsers()
   }, [])
 
-
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
-    if (!loggedUserJSON) {
-      // return (
-      //   <Router>
-      //     <Redirect to="/login" />
-      //   </Router>
-      // )
-    }
-  }, [])
+  const [loggedOut, setLoggedOut] = useState(false)
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
-      ballroomService.setToken(user.token)
+      setTokens(user)
+    } else {
+      setLoggedOut(true)    // obs
+      handleRedirect()      // obs
     }
   }, [])
 
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      schoolService.setToken(user.token)
-    }
-  }, [])
+  const setTokens = (user) => {
+    ballroomService.setToken(user.token)
+    schoolService.setToken(user.token)
+    videoService.setToken(user.token)
+    calendarService.setToken(user.token)
+  }
 
-
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      videoService.setToken(user.token)
+  // kun logout niin jää routeen mikä on silloin aktiivinen - eikä refresh palauta login routea kuten alla *)
+  // pitää käsin kirjoittaa selaimeen login route
+  
+  const handleRedirect = () => {
+    if (loggedOut) {
+      return (
+        <Router>
+          <Redirect to="/login" />
+        </Router>
+      )
     }
-  }, [])
+  }
 
-  useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBallroomAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      calendarService.setToken(user.token)
-    }
-  }, [])
+  // tämä alla toimiii about, mutta vaatii refresh *)
+
+  // if (loggedOut) {
+  //   return (
+  //     <Router>
+  //       <Redirect to="/login" />
+  //     </Router>
+  //   )
+  // }
 
   const notify = (message, error) => {
     setMessage({ message, error }, 4)
@@ -117,7 +112,6 @@ const App = ({
   const schoolId = id => schools.find(school => school.id === id)
   const videoId = id => videos.find(video => video.id === id)
   const calendarId = id => calendars.find(calendar => calendar.id === id)
-  const [loggedOut, setLoggedOut] = useState(false)
 
   const handleLogout = () => {
     window.localStorage.removeItem('loggedBallroomAppUser')
@@ -125,14 +119,6 @@ const App = ({
     setUser(null)
     logoutUser()
     setLoggedOut(true)
-  }
-
-  if (loggedOut) {
-    return (
-      <Router>
-        <Redirect to="/login" />
-      </Router>
-    )
   }
 
   if (user === null) {
