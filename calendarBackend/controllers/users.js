@@ -9,7 +9,7 @@ usersRouter.get('/', async (request, response) => {
 
 usersRouter.post('/', async (request, response, next) => {
   const body = request.body
-  if (!body.password || body.password.length < 3) {
+  if (!body.password || body.password.length < 6) {
     response.status(400).send({ error: 'password should be at least 8 chars' })
   } else {
     try {

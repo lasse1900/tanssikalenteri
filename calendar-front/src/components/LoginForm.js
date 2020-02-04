@@ -92,13 +92,15 @@ const LoginForm = (props) => {
               <div className="field">
                 <div className="ui left icon input">
                   <i className="user icon"></i>
-                  <Input ref={usernameRef} id="username" type="text" data-cy="username" {...omitReset(username)} placeholder='Username / E-mail address' onKeyDown={keyPressHandle} />
+                  <Input ref={usernameRef} id="username" type="text" data-cy="username" {...omitReset(username)}
+                    placeholder='Username / E-mail address - (minlength 5)' onKeyDown={keyPressHandle} />
                 </div>
               </div>
               <div className="field">
                 <div className="ui left icon input">
                   <i className="lock icon"></i>
-                  <Input ref={passwordRef} id="password" type="password" name="password" data-cy="password" {...omitReset(password)} placeholder='Password' />
+                  <Input ref={passwordRef} id="password" type="password" name="password" data-cy="password" {...omitReset(password)}
+                    placeholder='Password - (minlength 6)' />
                 </div>
               </div>
               <div className="ui fluid large blue submit button">
