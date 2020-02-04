@@ -57,7 +57,7 @@ const CalendarForm = props => {
               <label>Please give date:</label>
               <DayPickerInput data-cy="date-input" onDayChange={day => setPvm(day)} />
             </Form.Field>
-            <Button data-cy="togglable-add-calendar"  className="ui basic tiny button" type='submit'>Add</Button>
+            <Button data-cy="togglable-add-calendar"  className="ui basic tiny button" type='submit'>add</Button>
           </Form>
         </div>
       </Togglable>

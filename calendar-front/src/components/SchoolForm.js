@@ -48,7 +48,7 @@ const SchoolForm = props => {
               <label>url</label>
               <Input id="url" data-cy="url" type="url" {...omitReset(url)} />
             </Form.Field>
-            <Button className="ui basic tiny button" type='submit' data-cy="Add">Add</Button>
+            <Button className="ui basic tiny button" type='submit' data-cy="Add">add</Button>
           </Form>
         </div>
       </Togglable>

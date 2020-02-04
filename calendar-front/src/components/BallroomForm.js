@@ -48,7 +48,7 @@ const BallroomForm = props => {
               <label>url</label>
               <Input data-cy="ballroom-url" type="url"{...omitReset(url)} />
             </Form.Field>
-            <Button data-cy="togglable-add-ballroom"  className="ui basic tiny button" type='submit' >Add</Button>
+            <Button data-cy="togglable-add-ballroom"  className="ui basic tiny button" type='submit' >add</Button>
           </Form>
         </div>
       </Togglable>
