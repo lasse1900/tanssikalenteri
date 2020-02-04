@@ -12,18 +12,18 @@ describe('Blogilista ', function () {
   // })
 
 
-  it('user can register and login to the app', function () {
-    cy.visit('http://localhost:3000/register')
-    cy.contains('Register')
-    cy.get('#username').type('admin')
-    cy.get('#password').type('secret')
-    cy.get('[data-cy=rPassword] > #password').type("secret")
-    cy.get('[data-cy=register]').click()
-    cy.get('[data-cy="Sign up"]').click()
-    cy.get('#username').type('admin')
-    cy.get('#password').type('secret')
-    cy.get('[data-cy=login]').click()
-  })
+  // it('user can register and login to the app', function () {
+  //   cy.visit('http://localhost:3000/register')
+  //   cy.contains('Register')
+  //   cy.get('#username').type('admin')
+  //   cy.get('#password').type('secret')
+  //   cy.get('[data-cy=rPassword] > #password').type("secret")
+  //   cy.get('[data-cy=register]').click()
+  //   cy.get('[data-cy="Sign up"]').click()
+  //   cy.get('#username').type('admin')
+  //   cy.get('#password').type('secret')
+  //   cy.get('[data-cy=login]').click()
+  // })
 
   it('user can log in ', function () {
     cy.visit('http://localhost:3000/login')

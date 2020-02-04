@@ -29,7 +29,6 @@ import Ballroom from './components/Ballroom'
 import School from './components/School'
 import Video from './components/Video'
 import { Container } from 'semantic-ui-react'
-import RegisterInfo from './components/RegisterInfo'
 import NotFoundPage from './components/NotFoundPage'
 import { getCurrentDate } from './utils/currentDate'
 
@@ -119,7 +118,6 @@ const App = ({
       <Container>
         <div>
           <Route path="/login" render={() => <LoginForm notify={notify} />} />
-          <Route path="/registerInfo" render={() => <RegisterInfo notify={notify} />} />
           <Route path="/register" render={() => <RegisterForm notify={notify} />} />
         </div>
       </Container>)
