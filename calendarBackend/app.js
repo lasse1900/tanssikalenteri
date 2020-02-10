@@ -12,7 +12,7 @@ const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const logger = require('./utils/logger')
 const middleware = require('./utils/middleware')
-const path = require('path')
+// const path = require('path')
 
 mongoose.connect(config.MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true })
   .then(() => {
@@ -35,9 +35,9 @@ app.use('/api/calendars', calendarsRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 
-app.get(/^\/(?!api).*/, (req, res) => {
-  res.sendFile(path.join(__dirname, './build', 'index.html'))
-})
+// app.get(/^\/(?!api).*/, (req, res) => {
+//   res.sendFile(path.join(__dirname, './build', 'index.html'))
+// })
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
