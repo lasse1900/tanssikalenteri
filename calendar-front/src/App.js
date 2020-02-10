@@ -80,6 +80,12 @@ const App = ({
     }
   }, [user])
 
+  useEffect(() => {
+    if (user) {
+      history.push('/about')
+    }
+  }, [user])
+
   const setTokens = (user) => {
     ballroomService.setToken(user.token)
     schoolService.setToken(user.token)
