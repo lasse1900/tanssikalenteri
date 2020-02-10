@@ -10,8 +10,9 @@ import schoolService from '../services/schools'
 import videoService from '../services/videos'
 import calendarService from '../services/calendars'
 import PropTypes from 'prop-types'
-import { Form, Button, Input } from 'semantic-ui-react'
+import { Form, Button, Image, Input } from 'semantic-ui-react'
 import { useHistory } from 'react-router-dom'
+import tango from '../pics/argentine-tango_primary.jpg'
 
 const LoginForm = (props) => {
   const username = useField('username')
@@ -82,10 +83,9 @@ const LoginForm = (props) => {
       <div className="ui middle aligned center aligned grid">
         <div className="column">
           <h2 className="ui blue image header">
-            {/*<img src="assets/images/logo.png" className="image" /> */}
             <div className="content">
-              Log-in to your account
-        </div>
+              <i>Dance Calendar App - Login</i>
+            </div>
           </h2>
           <Form className="ui large form" onSubmit={handleLogin}>
             <div className="ui stacked segment">
@@ -115,6 +115,9 @@ const LoginForm = (props) => {
             <Button data-cy="to-registerForm" className="ui basic tiny button" type='submit' onClick={goToRegisterPage} >to Register Page</Button>
           </div>
         </div>
+      </div>
+      <div className="ui middle aligned center aligned grid">
+        <Image src={tango} />
       </div>
     </div>
   )

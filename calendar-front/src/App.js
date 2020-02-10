@@ -82,7 +82,7 @@ const App = ({
 
   useEffect(() => {
     if (user) {
-      history.push('/about')
+      history.push('/ballrooms')
     }
   }, [user])
 

@@ -6,8 +6,9 @@ import PropTypes from 'prop-types'
 import { loginUser, setUser } from '../reducers/userReducer'
 import { setMessage } from '../reducers/notificationReducer'
 import userService from '../services/users'
-import { Form, Button, Input } from 'semantic-ui-react'
+import { Form, Button, Image, Input } from 'semantic-ui-react'
 import { useHistory } from 'react-router-dom'
+import tango from '../pics/argentine-tango_primary.jpg'
 
 const RegisterForm = (props) => {
 
@@ -65,7 +66,7 @@ const RegisterForm = (props) => {
       password.reset()
       PASSWORD.reset()
       props.notify('user created [from registerForm]', false)
-      // props.history.push('/registerInfo')
+      // props.history.push('/registerInfo') - left for possible future use
       console.log('username created', username)
       props.history.push('/login')
     } catch (exception) {
@@ -89,10 +90,9 @@ const RegisterForm = (props) => {
       <div className="ui middle aligned center aligned grid">
         <div className="column">
           <h2 className="ui blue image header">
-            {/*<img src="assets/images/logo.png" className="image" /> */}
             <div className="content">
-              Register
-        </div>
+              <i>Dance Calendar App - Register</i>
+            </div>
           </h2>
           <Form className="ui large form" onSubmit={createUser}>
             <div className="ui stacked segment">
@@ -131,6 +131,9 @@ const RegisterForm = (props) => {
             <Button data-cy="to-registerForm" className="ui basic tiny button" type='submit' onClick={goToLoginPage} >to Login Page</Button>
           </div>
         </div>
+      </div>
+      <div className="ui middle aligned center aligned grid">
+        <Image src={tango} />
       </div>
     </div>
   )
