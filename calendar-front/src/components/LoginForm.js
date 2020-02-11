@@ -56,7 +56,7 @@ const LoginForm = (props) => {
       )
       window.localStorage.setItem('loggedBallroomAppUser', JSON.stringify(user))
       props.setUser(user)
-      props.notify('login succeeded', false)
+      // props.notify('login succeeded', false)
       ballroomService.setToken(user.token)
       schoolService.setToken(user.token)
       videoService.setToken(user.token)

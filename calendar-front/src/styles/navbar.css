@@ -1,0 +1,21 @@
+.Nav_link:link {
+  color: blue;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  text-decoration: none;
+}
+.Nav_link:visited {
+  color: blue;
+}
+.Nav_link:hover {
+  color: blue;
+}
+.Nav_link:active {
+  color: teal;
+}
+
+.activeRoute {
+  background-color: white;
+  /* border-bottom: 0.2rem solid teal; */
+  cursor: not-allowed;
+}
