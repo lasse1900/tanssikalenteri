@@ -12,11 +12,11 @@ const AboutPage = () => {
   }
 
   const textItems = [
-    'Here you can save and comment your favourite ballrooms',
+    'Comment and save your favourite ballrooms',
     'Look, save and comment danceschools',
     'Look, save and comment videolinks',
     'Make calendar notes',
-    'Under links page you find some useful shortcut buttons'
+    'Under links some useful shortcut buttons'
   ]
 
   const containerStyle = {
