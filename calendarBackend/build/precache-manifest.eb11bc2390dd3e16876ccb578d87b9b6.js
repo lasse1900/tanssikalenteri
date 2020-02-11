@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "2606e591e93b5c4db8af",
-    "url": "/static/css/main.f054ed84.chunk.css"
+    "revision": "ddc3f674e34cfa5edf49",
+    "url": "/static/css/main.95732378.chunk.css"
   },
   {
-    "revision": "2606e591e93b5c4db8af",
-    "url": "/static/js/main.2606e591.chunk.js"
+    "revision": "ddc3f674e34cfa5edf49",
+    "url": "/static/js/main.ddc3f674.chunk.js"
   },
   {
-    "revision": "6fff1a4a4d4766e10206",
+    "revision": "6b1b167cce0dc1b383d7",
     "url": "/static/css/1.66ef7ff2.chunk.css"
   },
   {
-    "revision": "6fff1a4a4d4766e10206",
-    "url": "/static/js/1.6fff1a4a.chunk.js"
+    "revision": "6b1b167cce0dc1b383d7",
+    "url": "/static/js/1.6b1b167c.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/static/media/argentine-tango_primary.70ea742f.jpg"
   },
   {
-    "revision": "2665569c576f84baa80b460832bb6dee",
+    "revision": "e6416365cfa79153dfde73705d38a490",
     "url": "/index.html"
   }
 ];
