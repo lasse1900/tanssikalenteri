@@ -5,8 +5,8 @@ Dance Calendar is just a basic notes app to use if dancing belongs to one’s in
 
 The App is running at: https://dance-calendar.herokuapp.com/
 
-The user guide is here: 
+The user guide is here: https://github.com/Lasseboy59/tanssikalenteri/blob/master/userguide.md
 
-and the working hours: 
+and the working hours: https://github.com/Lasseboy59/tanssikalenteri/blob/master/workinhours.md
 
 by: Lauri Kyttälä

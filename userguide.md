@@ -14,6 +14,8 @@ The App has following 8 different views:
 
 https://1drv.ms/u/s!AkVjn4OILmbHiNc83YkOx7h1SKtL4w?e=YWFv7m
 
+https://drive.google.com/open?id=1JeRN2B084YcrbXI7vF99Jjm4aLBQeN1K
+
 #2. Register view, similar to login page. When user has given an valid ID and password – user is directly changed to login page.
 
 https://1drv.ms/u/s!AkVjn4OILmbHiNc3LQlc1PjPJOB08g?e=TQaGBb
