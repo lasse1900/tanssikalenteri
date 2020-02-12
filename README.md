@@ -7,11 +7,9 @@ The App is running at: https://dance-calendar.herokuapp.com/
 
 The user guide is here: https://github.com/Lasseboy59/tanssikalenteri/blob/master/userguide.md
 
-and the working hours: https://github.com/Lasseboy59/tanssikalenteri/blob/master/workinhours.md
+The working hours: https://github.com/Lasseboy59/tanssikalenteri/blob/master/workinhours.md
 
-Backend is implemented with NodeJS & Express and database used was MongoDB.
-Frontend is implemented with React and Redux. Styling is made with Semantic UI React components which are published under MIT license.
+Backend was implemented with NodeJS & Express and database used was MongoDB.
+Frontend was implemented with React and Redux. Styling was made with Semantic UI React components which are published under MIT license.
 
-The wallpaper photo is purhased from https://www.istockphoto.com/fi.
-
-by: Lauri Kyttälä
+The wallpaper photo was purhased from https://www.istockphoto.com/fi.
