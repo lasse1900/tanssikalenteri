@@ -31,7 +31,6 @@ import Video from './components/Video'
 import { Container } from 'semantic-ui-react'
 import NotFoundPage from './components/NotFoundPage'
 import '../src/styles/navbar.css'
-// import { getCurrentDate } from './utils/currentDate'
 
 const App = ({
   user,
@@ -83,7 +82,7 @@ const App = ({
 
   useEffect(() => {
     if (user) {
-      history.push('/ballrooms')
+      history.push('/home')
     }
   }, [user])
 
