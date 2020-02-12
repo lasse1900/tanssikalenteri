@@ -55,4 +55,6 @@ https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/Calendar_
 
 Finally, Dance Calendar is just a basic notes app to use if dancing belongs to one's interest and hobbies. Semantic-ui is used to style the app layout, so it is responsive within different user interfaces.
 
+# User guide as pdf:
+
 The user guide can be read as pdf at the following site: https://drive.google.com/file/d/1Cbfpn_eg060tSHmCBuJzVSY11R-jlkbv/view?usp=sharing
