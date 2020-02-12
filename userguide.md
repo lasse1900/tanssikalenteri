@@ -12,35 +12,33 @@ The App has following 8 different views:
 
 #1.	Login view, just ordinary login page asked to give username (at least 5 chars) and password (at least 6 chars).
 
-https://1drv.ms/u/s!AkVjn4OILmbHiNc83YkOx7h1SKtL4w?e=YWFv7m
-
-https://drive.google.com/open?id=1JeRN2B084YcrbXI7vF99Jjm4aLBQeN1K
+https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/Login_Page.png
 
 #2. Register view, similar to login page. When user has given an valid ID and password – user is directly changed to login page.
 
-https://1drv.ms/u/s!AkVjn4OILmbHiNc3LQlc1PjPJOB08g?e=TQaGBb
+https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/Register_Page.png
 
 #3. About view, informative page telling shortly which are the basic ways to use the app.
 
-https://1drv.ms/u/s!AkVjn4OILmbHiNc73-9cnGRN1FOL3g?e=yrKyZU
+https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/About_Page.png
 
 #4. Links view, here user can find some links to the popular sites like youtube, facebook, twitter plus view links to finnish dance links.
 
-https://1drv.ms/u/s!AkVjn4OILmbHiNc5HC9wvNWV9GfxDQ?e=vaekIF
+https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/Links_Page.png
 
 
 #5. Ballrooms – main view, user can view and add one.
 
-https://1drv.ms/u/s!AkVjn4OILmbHiNc-0BBdkP3H38CRFg?e=mAheiu
+https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/Ballrooms_Page.png
 
 
 #5a. Ballrooms – child view, user can remove ballrooms or add comments.
 
-https://1drv.ms/u/s!AkVjn4OILmbHiNc6ACrJ1xIEIxBsWA?e=UC2y78
+https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/Calendar_Comments.png
 
 #5b. Ballrooms – child view opens when user adds a new ballroom.
 
-https://1drv.ms/u/s!AkVjn4OILmbHiNc2cYHm7NbBaVAfjw?e=LyqHHp
+https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/Ballrooms_Page_Add.png
 
 #6. Schools view, is used same way as Ballrooms view.
 
@@ -49,10 +47,10 @@ https://1drv.ms/u/s!AkVjn4OILmbHiNc2cYHm7NbBaVAfjw?e=LyqHHp
 
 #8. Calendar view, here user can add calendar marks.
 
-https://1drv.ms/u/s!AkVjn4OILmbHiNc9ntXBLHaOyGjbAQ?e=LbQTfq
+https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/Calendar_View_Add.png
 
 #8b. Calendar view child, user can comment or remove calendar marks.
 
-https://1drv.ms/u/s!AkVjn4OILmbHiNc4F2nlFt8htcXQuA?e=eDUtsF
+https://github.com/Lasseboy59/tanssikalenteri/blob/master/imagesToDocs/Calendar_Comments.png
 
 Finally, Dance Calendar is just a basic notes app to use if dancing belongs to one's interest and hobbies. Semantic-ui is used to style the app layout, so it is responsive within different user interfaces.
